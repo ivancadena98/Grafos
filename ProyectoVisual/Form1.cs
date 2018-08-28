@@ -114,25 +114,7 @@ namespace ProyectoVisual
                     DibujarG();
                     break;
                 case 4: //Agregar aristas
-                    foreach(Vertice v in grafo.Vertices){
-                        if (v.Seleccion(e.X, e.Y) && toque == 0)
-                        {
-                            v1 = v;
-                            toque = 1;
-                            v1.Seleccionar(lienzo);
-                        }
-                        else if (v.Seleccion(e.X, e.Y) && toque == 1)
-                        {
-                            v2 = v;
-                            v2.Seleccionar(lienzo);
-                            if (!v1.Equals(v2))
-                            {
-                                grafo.AgregaArista(lienzo,v1, v2);
-                                up2Date = false;
-                                toque = 0;
-                            }
-                        }
-                    }
+                    AgregarArista(e.X, e.Y);
                     break;
             }
         }
@@ -156,7 +138,6 @@ namespace ProyectoVisual
                     v1 = v;
                     v1.Seleccionar(lienzo);
                     c = 1;
-                    //Console.WriteLine("entre ejejejeje");
                 }
             }
                 foreach (Vertice v in grafo.Vertices) {
@@ -175,6 +156,30 @@ namespace ProyectoVisual
                     MessageBox.Show("No pueden ser iguales");
                 }
             Console.WriteLine(grafo.Aristas.Count);
+        }
+
+        //Agregar Arísta 
+        public void AgregarArista(int x, int y) {
+            foreach (Vertice v in grafo.Vertices)
+            {
+                if (v.Seleccion(x, y) && toque == 0)
+                {
+                    v1 = v;
+                    toque = 1;
+                    v1.Seleccionar(lienzo);
+                }
+                else if (v.Seleccion(x, y) && toque == 1)
+                {
+                    v2 = v;
+                    v2.Seleccionar(lienzo);
+                    if (!v1.Equals(v2))
+                    {
+                        grafo.AgregaArista(lienzo, v1, v2);
+                        up2Date = false;
+                        toque = 0;
+                    }
+                }
+            }
         }
         //AGREGAR VERTICE
         private void agregarVérticeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -279,6 +284,8 @@ namespace ProyectoVisual
                 up2Date = true;
             }
         }
+
+
 
         //Actualizaciones Accion hecha con hilo
         private void checarActualizaciones()

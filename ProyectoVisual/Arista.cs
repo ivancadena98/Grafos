@@ -15,6 +15,8 @@ namespace ProyectoVisual
         private int id, idv1, idv2;
         private int x1, y1, x2, y2;
         private int Dir;
+        private Font letra = new Font("Arial", 10);
+        private SolidBrush brocha = new SolidBrush(Color.Black);
         public Arista(int id_in, int idv1_in, int idv2_in, int x1_in, int y1_in, int x2_in, int y2_in, int D=0) {
             id = id_in;
             idv1 = idv1_in;
@@ -124,16 +126,27 @@ namespace ProyectoVisual
         }
         public void DibujaArista(Graphics g)
         {
-            if (Dir == 0)
+            int corx = (x1 + x2) / 2 + 2; //Punto medio en x
+            int cory = (y1 + y2) / 2 + 3; //Punto medio en y
+
+            //Condicional para verificar el punto medio
+            if (corx == (x1 + x2) / 2 || cory== (y1 + y2) / 2) { 
+                corx+=3;
+                cory+=3;
+            }
+                //Arista no dirigida
+                if (Dir == 0)
             {
                 Pen pablo = new Pen(Color.Black, 4);
-
                 g.DrawLine(pablo, x1, y1, x2, y2);
+                g.DrawString("e"+Convert.ToString(id + 1), letra, brocha, corx, cory);
             }
+                //Arista dirigida
             else {
                 Pen pablo = new Pen(Color.Black, 4);
                 pablo.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
                 g.DrawLine(pablo, x1, y1, x2, y2);
+                g.DrawString("e"+Convert.ToString(id + 1), letra, brocha, corx,cory);
             }
         }
         public bool ChecarVertice(Vertice v)

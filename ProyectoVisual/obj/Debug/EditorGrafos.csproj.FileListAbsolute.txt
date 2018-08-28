@@ -28,3 +28,16 @@ C:\Users\Ivan\Desktop\Grafos\Editor\ProyectoVisual\obj\Debug\EditorGrafos.csproj
 C:\Users\Ivan\Desktop\Grafos\Editor\ProyectoVisual\obj\Debug\EditorGrafos.csproj.CopyComplete
 C:\Users\Ivan\Desktop\Grafos\Editor\ProyectoVisual\obj\Debug\ProyectoVisual.exe
 C:\Users\Ivan\Desktop\Grafos\Editor\ProyectoVisual\obj\Debug\ProyectoVisual.pdb
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\bin\Debug\ProyectoVisual.exe.config
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\bin\Debug\ProyectoVisual.exe
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\bin\Debug\ProyectoVisual.pdb
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\obj\Debug\EditorGrafos.csprojAssemblyReference.cache
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\obj\Debug\ProyectoVisual.Form1.resources
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\obj\Debug\ProyectoVisual.Properties.Resources.resources
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\obj\Debug\EditorGrafos.csproj.GenerateResource.cache
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\obj\Debug\EditorGrafos.csproj.CoreCompileInputs.cache
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\obj\Debug\EditorGrafos.csproj.CopyComplete
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\obj\Debug\ProyectoVisual.exe
+C:\Users\Ivan\Desktop\Grafos\ProyectoVisual\obj\Debug\ProyectoVisual.pdb
