@@ -26,22 +26,13 @@ namespace ProyectoVisual
         {
             var jsongrafo = JsonConvert.SerializeObject(g);
             System.IO.File.WriteAllText(ruta, jsongrafo);
-            
-
-           
-            
         }
         public Grafo Abrir(Pen D)
         {
 
             Grafo g = new Grafo(D);
             g = JsonConvert.DeserializeObject<Grafo>(System.IO.File.ReadAllText(ruta));
-
-            
-
             return g;
-
-
         }
     }
 }

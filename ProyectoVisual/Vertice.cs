@@ -10,17 +10,24 @@ namespace ProyectoVisual
     class Vertice
     {
         private int id;
-        private int x, y;               //
+        private int x, y;              
         private int xv, yv, radio = 18;
+
+        private int Ent, Sal;
         private Pen juan = new Pen(Color.Blue);
         private Font letra = new Font("Arial", 20);
         private SolidBrush brocha = new SolidBrush(Color.Black);
+
+
+
         public Vertice(int id_in, int X, int Y)
         {
             id = id_in;
             radio = 18;
             x = X;
             y = Y;
+            Ent = 0;
+            Sal = 0;
         }
         public Vertice()
         {

@@ -124,6 +124,7 @@ namespace ProyectoVisual
                 Dir = value;
             }
         }
+        //Método para dibujar una arísta
         public void DibujaArista(Graphics g)
         {
             int corx = (x1 + x2) / 2 + 2; //Punto medio en x
@@ -149,6 +150,7 @@ namespace ProyectoVisual
                 g.DrawString("e"+Convert.ToString(id + 1), letra, brocha, corx,cory);
             }
         }
+        //Método para encontrar un vértice
         public bool ChecarVertice(Vertice v)
         {
             return ((v.ID==idv1) || (v.ID==idv2));

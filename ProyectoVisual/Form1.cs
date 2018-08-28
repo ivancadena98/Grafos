@@ -33,8 +33,6 @@ namespace ProyectoVisual
         Pen flD;
         int tam = 4;
         int auxv1, auxv2;
-        delegate void d();
-        d arisDir;
         //Acciones
         int tipo; //Define el tipo de objeto que se va a agregar
         int selectMove = -1;                   //selectMove es para el nodo que fue seleccionado para que se mueva
@@ -75,8 +73,11 @@ namespace ProyectoVisual
             corriendoPrograma = true;
             Actualizado.Start();
 
-            arisDir = VerticesD;
-
+            //Deshabilitar opciones hasta que se cree un vértice
+            AristaMenu.Enabled = false;
+            GuardarG.Enabled = false;
+            GuardarGrafoC.Enabled = false;
+            AgregarGrafo.Enabled = false;
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -92,7 +93,7 @@ namespace ProyectoVisual
             lienzo.Clear(Color.White);
             grafo.Dibujar(lienzo);
         }
-        //CLICK
+        //CLICK para seleccionar qué se hará (Crear vértice, crear arísta, eliminar vértice).
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             switch (tipo)
@@ -102,15 +103,7 @@ namespace ProyectoVisual
                     up2Date = false;
                     break;
                 case 82: // eliminar vertice
-                        for (int i = 0; i < grafo.Vertices.Count; i++) {
-                             Vertice v = grafo.Vertices[i];
-                             if (v.Seleccion(e.X, e.Y))
-                                {
-                                      grafo.elimAr(v.ID);
-                                      grafo.Vertices.RemoveAt(i);
-                                      break;
-                                }
-                            }
+                    ElimVertice(e.X, e.Y);
                     DibujarG();
                     break;
                 case 4: //Agregar aristas
@@ -148,7 +141,6 @@ namespace ProyectoVisual
                         grafo.AgregarAristaDir(lienzo, v1, v2);
                         up2Date = false;
                         toque = 0;
-                        //Console.WriteLine("entre 2 ejejejeje");
                     }
                 }
                  if(auxv1 == auxv2)
@@ -157,7 +149,19 @@ namespace ProyectoVisual
                 }
             Console.WriteLine(grafo.Aristas.Count);
         }
-
+        //Eliminar Vertice
+        public void ElimVertice(int x, int y) {
+            for (int i = 0; i < grafo.Vertices.Count; i++)
+            {
+                Vertice v = grafo.Vertices[i];
+                if (v.Seleccion(x, y))
+                {
+                    grafo.elimAr(v.ID);
+                    grafo.Vertices.RemoveAt(i);
+                    break;
+                }
+            }
+        }
         //Agregar Arísta 
         public void AgregarArista(int x, int y) {
             foreach (Vertice v in grafo.Vertices)
@@ -185,6 +189,11 @@ namespace ProyectoVisual
         private void agregarVérticeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tipo = 0;
+            //Habilitar opciones para el manejo de grafos
+            AristaMenu.Enabled = true;
+            GuardarG.Enabled = true;
+            GuardarGrafoC.Enabled = true;
+            AgregarGrafo.Enabled = true;
         }
 
        //MOVER VERTICE
@@ -216,6 +225,7 @@ namespace ProyectoVisual
         private void agregarAristaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             tipo = 4;
+            AristaDir.Enabled = false;
         }
 
         //NUEVO
@@ -284,9 +294,7 @@ namespace ProyectoVisual
                 up2Date = true;
             }
         }
-
-
-
+        
         //Actualizaciones Accion hecha con hilo
         private void checarActualizaciones()
         {
@@ -296,7 +304,7 @@ namespace ProyectoVisual
                 {
                     if (!up2Date)
                     {
-                        if (MessageBox.Show("Si continúa los cambios se perderán, está seguro de continuar?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        if (MessageBox.Show("Los cambios se perderán, está seguro de continuar?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
                             borrar = true;
                             lienzo.Clear(Color.White);
@@ -428,11 +436,11 @@ namespace ProyectoVisual
         {
             tipo = 82;
         }
-
+        //Agregar Arista Dirigida
         private void agregarAristaDirigidaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            AristaN.Enabled = false;
             //tipo = 2;
-            arisDir.Invoke();
         }
 
     }

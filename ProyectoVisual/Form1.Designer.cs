@@ -33,30 +33,29 @@
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.guardarComoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.agregarVérticeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GuardarG = new System.Windows.Forms.ToolStripMenuItem();
+            this.GuardarGrafoC = new System.Windows.Forms.ToolStripMenuItem();
+            this.AgregarGrafo = new System.Windows.Forms.ToolStripMenuItem();
+            this.VerticeMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.AgregarVertice = new System.Windows.Forms.ToolStripMenuItem();
             this.moverVértiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarVérticeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seleccionarVérticeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aristaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.agregarAristaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.agregarAristaDirigidaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.seleccionarAristaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AristaMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.AristaN = new System.Windows.Forms.ToolStripMenuItem();
+            this.AristaDir = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.agregarGrafoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(9, 25);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 31);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(672, 335);
+            this.pictureBox1.Size = new System.Drawing.Size(896, 412);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -70,12 +69,12 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
-            this.editarToolStripMenuItem,
-            this.aristaToolStripMenuItem});
+            this.VerticeMenu,
+            this.AristaMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(690, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(920, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -84,130 +83,123 @@
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoToolStripMenuItem,
             this.abrirToolStripMenuItem,
-            this.guardarToolStripMenuItem,
-            this.guardarComoToolStripMenuItem,
-            this.agregarGrafoToolStripMenuItem});
+            this.GuardarG,
+            this.GuardarGrafoC,
+            this.AgregarGrafo});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.archivoToolStripMenuItem.Text = "Archivo";
             // 
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
-            // guardarToolStripMenuItem
+            // GuardarG
             // 
-            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.guardarToolStripMenuItem.Text = "Guardar";
-            this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
+            this.GuardarG.Name = "GuardarG";
+            this.GuardarG.Size = new System.Drawing.Size(216, 26);
+            this.GuardarG.Text = "Guardar";
+            this.GuardarG.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
-            // guardarComoToolStripMenuItem
+            // GuardarGrafoC
             // 
-            this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
-            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.guardarComoToolStripMenuItem.Text = "Guardar como...";
-            this.guardarComoToolStripMenuItem.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
+            this.GuardarGrafoC.Name = "GuardarGrafoC";
+            this.GuardarGrafoC.Size = new System.Drawing.Size(216, 26);
+            this.GuardarGrafoC.Text = "Guardar como...";
+            this.GuardarGrafoC.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
             // 
-            // editarToolStripMenuItem
+            // AgregarGrafo
             // 
-            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.agregarVérticeToolStripMenuItem,
+            this.AgregarGrafo.Name = "AgregarGrafo";
+            this.AgregarGrafo.Size = new System.Drawing.Size(216, 26);
+            this.AgregarGrafo.Text = "Agregar grafo";
+            // 
+            // VerticeMenu
+            // 
+            this.VerticeMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AgregarVertice,
             this.moverVértiveToolStripMenuItem,
             this.eliminarVérticeToolStripMenuItem,
             this.seleccionarVérticeToolStripMenuItem});
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.editarToolStripMenuItem.Text = "Vértice";
+            this.VerticeMenu.Name = "VerticeMenu";
+            this.VerticeMenu.Size = new System.Drawing.Size(66, 24);
+            this.VerticeMenu.Text = "Vértice";
             // 
-            // agregarVérticeToolStripMenuItem
+            // AgregarVertice
             // 
-            this.agregarVérticeToolStripMenuItem.Name = "agregarVérticeToolStripMenuItem";
-            this.agregarVérticeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.agregarVérticeToolStripMenuItem.Text = "Agregar vértice";
-            this.agregarVérticeToolStripMenuItem.Click += new System.EventHandler(this.agregarVérticeToolStripMenuItem_Click);
+            this.AgregarVertice.Name = "AgregarVertice";
+            this.AgregarVertice.Size = new System.Drawing.Size(216, 26);
+            this.AgregarVertice.Text = "Agregar vértice";
+            this.AgregarVertice.Click += new System.EventHandler(this.agregarVérticeToolStripMenuItem_Click);
             // 
             // moverVértiveToolStripMenuItem
             // 
             this.moverVértiveToolStripMenuItem.Name = "moverVértiveToolStripMenuItem";
-            this.moverVértiveToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.moverVértiveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.moverVértiveToolStripMenuItem.Text = "Mover vértice";
             this.moverVértiveToolStripMenuItem.Click += new System.EventHandler(this.moverVértiveToolStripMenuItem_Click);
             // 
             // eliminarVérticeToolStripMenuItem
             // 
             this.eliminarVérticeToolStripMenuItem.Name = "eliminarVérticeToolStripMenuItem";
-            this.eliminarVérticeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.eliminarVérticeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.eliminarVérticeToolStripMenuItem.Text = "Eliminar vértice";
             this.eliminarVérticeToolStripMenuItem.Click += new System.EventHandler(this.eliminarVérticeToolStripMenuItem_Click);
             // 
             // seleccionarVérticeToolStripMenuItem
             // 
             this.seleccionarVérticeToolStripMenuItem.Name = "seleccionarVérticeToolStripMenuItem";
-            this.seleccionarVérticeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.seleccionarVérticeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.seleccionarVérticeToolStripMenuItem.Text = "Seleccionar vértice";
             this.seleccionarVérticeToolStripMenuItem.Click += new System.EventHandler(this.seleccionarVérticeToolStripMenuItem_Click);
             // 
-            // aristaToolStripMenuItem
+            // AristaMenu
             // 
-            this.aristaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.agregarAristaToolStripMenuItem1,
-            this.agregarAristaDirigidaToolStripMenuItem1,
-            this.seleccionarAristaToolStripMenuItem});
-            this.aristaToolStripMenuItem.Name = "aristaToolStripMenuItem";
-            this.aristaToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.aristaToolStripMenuItem.Text = "Arista";
+            this.AristaMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AristaN,
+            this.AristaDir});
+            this.AristaMenu.Name = "AristaMenu";
+            this.AristaMenu.Size = new System.Drawing.Size(59, 24);
+            this.AristaMenu.Text = "Arista";
             // 
-            // agregarAristaToolStripMenuItem1
+            // AristaN
             // 
-            this.agregarAristaToolStripMenuItem1.Name = "agregarAristaToolStripMenuItem1";
-            this.agregarAristaToolStripMenuItem1.Size = new System.Drawing.Size(190, 22);
-            this.agregarAristaToolStripMenuItem1.Text = "Agregar arista";
-            this.agregarAristaToolStripMenuItem1.Click += new System.EventHandler(this.agregarAristaToolStripMenuItem1_Click);
+            this.AristaN.Name = "AristaN";
+            this.AristaN.Size = new System.Drawing.Size(234, 26);
+            this.AristaN.Text = "Agregar arista";
+            this.AristaN.Click += new System.EventHandler(this.agregarAristaToolStripMenuItem1_Click);
             // 
-            // agregarAristaDirigidaToolStripMenuItem1
+            // AristaDir
             // 
-            this.agregarAristaDirigidaToolStripMenuItem1.Name = "agregarAristaDirigidaToolStripMenuItem1";
-            this.agregarAristaDirigidaToolStripMenuItem1.Size = new System.Drawing.Size(190, 22);
-            this.agregarAristaDirigidaToolStripMenuItem1.Text = "Agregar arista dirigida";
-            this.agregarAristaDirigidaToolStripMenuItem1.Click += new System.EventHandler(this.agregarAristaDirigidaToolStripMenuItem1_Click);
-            // 
-            // seleccionarAristaToolStripMenuItem
-            // 
-            this.seleccionarAristaToolStripMenuItem.Name = "seleccionarAristaToolStripMenuItem";
-            this.seleccionarAristaToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.seleccionarAristaToolStripMenuItem.Text = "Seleccionar arista";
+            this.AristaDir.Name = "AristaDir";
+            this.AristaDir.Size = new System.Drawing.Size(234, 26);
+            this.AristaDir.Text = "Agregar arista dirigida";
+            this.AristaDir.Click += new System.EventHandler(this.agregarAristaDirigidaToolStripMenuItem1_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // agregarGrafoToolStripMenuItem
-            // 
-            this.agregarGrafoToolStripMenuItem.Name = "agregarGrafoToolStripMenuItem";
-            this.agregarGrafoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.agregarGrafoToolStripMenuItem.Text = "Agregar grafo";
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 371);
+            this.ClientSize = new System.Drawing.Size(920, 457);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Editor de Grafos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -229,20 +221,19 @@
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem guardarComoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem agregarVérticeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GuardarG;
+        private System.Windows.Forms.ToolStripMenuItem GuardarGrafoC;
+        private System.Windows.Forms.ToolStripMenuItem VerticeMenu;
+        private System.Windows.Forms.ToolStripMenuItem AgregarVertice;
         private System.Windows.Forms.ToolStripMenuItem moverVértiveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarVérticeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aristaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem agregarAristaToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem agregarAristaDirigidaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem AristaMenu;
+        private System.Windows.Forms.ToolStripMenuItem AristaN;
+        private System.Windows.Forms.ToolStripMenuItem AristaDir;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem seleccionarVérticeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem seleccionarAristaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem agregarGrafoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AgregarGrafo;
     }
 }
 
