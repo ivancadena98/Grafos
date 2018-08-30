@@ -14,6 +14,7 @@ namespace ProyectoVisual
         private List<Arista> aristas;
         private int idv, ida; //Identificador para los vértices y las aristas
         private Pen p;
+
         //selecciones
         private Vertice vselec;
         public Grafo(Pen DL)
@@ -115,7 +116,7 @@ namespace ProyectoVisual
                     }
                 }
 
-                Dibujar(g);
+               // Dibujar(g);
 
             }
 
@@ -155,7 +156,7 @@ namespace ProyectoVisual
         //DIBUJAR GRAFO
         public void Dibujar(Graphics g)
         {
-            g.Clear(Color.White);
+            //g.Clear(Color.White);
             if(vertices.Count>0)
                 foreach (Vertice v in vertices)
                     v.Dibujar(g);

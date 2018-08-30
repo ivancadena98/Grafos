@@ -34,7 +34,7 @@ namespace ProyectoVisual
         int tam = 4;
         int auxv1, auxv2;
         //Acciones
-        int tipo; //Define el tipo de objeto que se va a agregar
+        int tipo=-1; //Define el tipo de objeto que se va a agregar
         int selectMove = -1;                   //selectMove es para el nodo que fue seleccionado para que se mueva
         int toque = 0; //Bandera para gestionar cómo se agregan las aristas
 
@@ -44,8 +44,9 @@ namespace ProyectoVisual
         //Mover vertices
         bool moviendo = false;
 
+        //Lista de grafos
+        List<Grafo> ListGrafo;
         Grafo grafo;
-        
 
         public Form1()
         {
@@ -63,8 +64,10 @@ namespace ProyectoVisual
             archivo = new Archivo();
             pb = new PictureBox();
             lienzo = pictureBox1.CreateGraphics();
-            grafo = new Grafo(flD);
+            ListGrafo = new List<Grafo>();
+            //grafo = new Grafo(flD);
             grafoaux = new Grafo(flD);
+            //ListGrafo.Add(grafo);
             Controls.Add(pb);
 
             Actualizado = new Thread(checarActualizaciones);
@@ -77,7 +80,6 @@ namespace ProyectoVisual
             AristaMenu.Enabled = false;
             GuardarG.Enabled = false;
             GuardarGrafoC.Enabled = false;
-            AgregarGrafo.Enabled = false;
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -89,30 +91,38 @@ namespace ProyectoVisual
         {
             pb.Paint += new PaintEventHandler(pictureBox1_Paint);
         }
-        public void DibujarG() {
+
+        public void DibujarG(int IDG) {
             lienzo.Clear(Color.White);
-            grafo.Dibujar(lienzo);
+            foreach(Grafo gr in ListGrafo)
+            {
+                gr.Dibujar(lienzo);
+            }
         }
         //CLICK para seleccionar qué se hará (Crear vértice, crear arísta, eliminar vértice).
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
+            int IDG = (int)IdGrafos.Value - 1; //Saber cuál grafo se está modificando
             switch (tipo)
             {
                 case 0: // Agregar vértices
-                    grafo.AgregaVertice(lienzo, e.X, e.Y, pictureBox1.Width, pictureBox1.Height);
+                    ListGrafo[IDG].AgregaVertice(lienzo, e.X, e.Y, pictureBox1.Width, pictureBox1.Height);
                     up2Date = false;
                     break;
+                case 2: //Agregar arista dirigida
+                    AgregarAristaDir(e.X, e.Y,IDG);
+                    break;
                 case 82: // eliminar vertice
-                    ElimVertice(e.X, e.Y);
-                    DibujarG();
+                    ElimVertice(e.X, e.Y,IDG);
+                    DibujarG (IDG);
                     break;
                 case 4: //Agregar aristas
-                    AgregarArista(e.X, e.Y);
+                    AgregarArista(e.X, e.Y,IDG);
                     break;
             }
         }
 
-        public void VerticesD(){
+        /*public void VerticesD(){
             string a, b;
             int c = 0;
             a  = Interaction.InputBox("Vertice inicial: ", "Arista dirigida", "0", 100, 50);
@@ -148,23 +158,23 @@ namespace ProyectoVisual
                     MessageBox.Show("No pueden ser iguales");
                 }
             Console.WriteLine(grafo.Aristas.Count);
-        }
+        }*/
         //Eliminar Vertice
-        public void ElimVertice(int x, int y) {
-            for (int i = 0; i < grafo.Vertices.Count; i++)
+        public void ElimVertice(int x, int y,int IDG) {
+            for (int i = 0; i < ListGrafo[IDG].Vertices.Count; i++)
             {
-                Vertice v = grafo.Vertices[i];
+                Vertice v = ListGrafo[IDG].Vertices[i];
                 if (v.Seleccion(x, y))
                 {
-                    grafo.elimAr(v.ID);
-                    grafo.Vertices.RemoveAt(i);
+                    ListGrafo[IDG].elimAr(v.ID);
+                    ListGrafo[IDG].Vertices.RemoveAt(i);
                     break;
                 }
             }
         }
         //Agregar Arísta 
-        public void AgregarArista(int x, int y) {
-            foreach (Vertice v in grafo.Vertices)
+        public void AgregarArista(int x, int y,int IDG) {
+            foreach (Vertice v in ListGrafo[IDG].Vertices)
             {
                 if (v.Seleccion(x, y) && toque == 0)
                 {
@@ -178,7 +188,31 @@ namespace ProyectoVisual
                     v2.Seleccionar(lienzo);
                     if (!v1.Equals(v2))
                     {
-                        grafo.AgregaArista(lienzo, v1, v2);
+                        ListGrafo[IDG].AgregaArista(lienzo, v1, v2);
+                        up2Date = false;
+                        toque = 0;
+                    }
+                }
+            }
+        }
+        // Método para crear la arista dirigida 
+        public void AgregarAristaDir(int x, int y,int IDG)
+        {
+            foreach (Vertice v in ListGrafo[IDG].Vertices)
+            {
+                if (v.Seleccion(x, y) && toque == 0)
+                {
+                    v1 = v;
+                    toque = 1;
+                    v1.Seleccionar(lienzo);
+                }
+                else if (v.Seleccion(x, y) && toque == 1)
+                {
+                    v2 = v;
+                    v2.Seleccionar(lienzo);
+                    if (!v1.Equals(v2))
+                    {
+                        ListGrafo[IDG].AgregaArista(lienzo, v1, v2);
                         up2Date = false;
                         toque = 0;
                     }
@@ -193,7 +227,6 @@ namespace ProyectoVisual
             AristaMenu.Enabled = true;
             GuardarG.Enabled = true;
             GuardarGrafoC.Enabled = true;
-            AgregarGrafo.Enabled = true;
         }
 
        //MOVER VERTICE
@@ -204,15 +237,16 @@ namespace ProyectoVisual
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            int IDG = (int)IdGrafos.Value-1;
             switch (tipo)
             {
                 case 1:
-                    foreach (Vertice v in grafo.Vertices)
+                    foreach (Vertice v in ListGrafo[IDG].Vertices)
                     {
                         if (v.Seleccion(e.X, e.Y))
                         {
                             selectMove = v.ID;
-                            grafo.SeleccionarVertice(lienzo, selectMove);
+                            ListGrafo[IDG].SeleccionarVertice(lienzo, selectMove);
                             moviendo = true;
                             break;
                         }
@@ -233,6 +267,7 @@ namespace ProyectoVisual
         {
             checando = true; //se activa el hilo que checa que el proyecto actualizado esté guardado
             while (checando) { }
+
         }
 
         //ABRIR
@@ -309,8 +344,12 @@ namespace ProyectoVisual
                             borrar = true;
                             lienzo.Clear(Color.White);
                             grafo.copiar(grafoaux);
-                            grafo.destruir();
+                            //grafo.destruir();
                             up2Date = true;
+                            AristaMenu.Enabled = false;
+                            GuardarG.Enabled = false;
+                            GuardarGrafoC.Enabled = false;
+                            BTNAgregar.Enabled = false;
                         }
                     }
                     else
@@ -318,7 +357,7 @@ namespace ProyectoVisual
                         borrar = true;
                         lienzo.Clear(Color.LightGray);
                         grafo.copiar(grafoaux);
-                        grafo.destruir();
+                        //grafo.destruir();
                         up2Date = true;
                     }
                         
@@ -332,10 +371,11 @@ namespace ProyectoVisual
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-
+            int IDG = (int)IdGrafos.Value - 1;
             if (moviendo)
             {
-                grafo.MoverVertice(lienzo, e.X, e.Y, pictureBox1.Width, pictureBox1.Height);
+                ListGrafo[IDG].MoverVertice(lienzo, e.X, e.Y, pictureBox1.Width, pictureBox1.Height);
+                DibujarG(IDG);
             }
         }
 
@@ -352,6 +392,7 @@ namespace ProyectoVisual
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             moviendo = false;
+            //DibujarG((int)IdGrafos.Value);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -436,11 +477,21 @@ namespace ProyectoVisual
         {
             tipo = 82;
         }
+        //Agregar grafo
+        private void BTNAgregar_Click(object sender, EventArgs e)
+        {
+            tipo = -1;
+            VerticeMenu.Enabled = true;
+            Grafo g = new Grafo(flD);
+            ListGrafo.Add(g);
+            IdGrafos.Value ++;
+        }
+
         //Agregar Arista Dirigida
         private void agregarAristaDirigidaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AristaN.Enabled = false;
-            //tipo = 2;
+            tipo = 2;
         }
 
     }

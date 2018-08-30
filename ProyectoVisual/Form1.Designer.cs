@@ -35,7 +35,6 @@
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GuardarG = new System.Windows.Forms.ToolStripMenuItem();
             this.GuardarGrafoC = new System.Windows.Forms.ToolStripMenuItem();
-            this.AgregarGrafo = new System.Windows.Forms.ToolStripMenuItem();
             this.VerticeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AgregarVertice = new System.Windows.Forms.ToolStripMenuItem();
             this.moverVértiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,8 +45,11 @@
             this.AristaDir = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.IdGrafos = new System.Windows.Forms.NumericUpDown();
+            this.BTNAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -74,7 +76,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(920, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -84,8 +86,7 @@
             this.nuevoToolStripMenuItem,
             this.abrirToolStripMenuItem,
             this.GuardarG,
-            this.GuardarGrafoC,
-            this.AgregarGrafo});
+            this.GuardarGrafoC});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.archivoToolStripMenuItem.Text = "Archivo";
@@ -118,12 +119,6 @@
             this.GuardarGrafoC.Text = "Guardar como...";
             this.GuardarGrafoC.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
             // 
-            // AgregarGrafo
-            // 
-            this.AgregarGrafo.Name = "AgregarGrafo";
-            this.AgregarGrafo.Size = new System.Drawing.Size(216, 26);
-            this.AgregarGrafo.Text = "Agregar grafo";
-            // 
             // VerticeMenu
             // 
             this.VerticeMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -131,6 +126,7 @@
             this.moverVértiveToolStripMenuItem,
             this.eliminarVérticeToolStripMenuItem,
             this.seleccionarVérticeToolStripMenuItem});
+            this.VerticeMenu.Enabled = false;
             this.VerticeMenu.Name = "VerticeMenu";
             this.VerticeMenu.Size = new System.Drawing.Size(66, 24);
             this.VerticeMenu.Text = "Vértice";
@@ -138,28 +134,28 @@
             // AgregarVertice
             // 
             this.AgregarVertice.Name = "AgregarVertice";
-            this.AgregarVertice.Size = new System.Drawing.Size(216, 26);
+            this.AgregarVertice.Size = new System.Drawing.Size(208, 26);
             this.AgregarVertice.Text = "Agregar vértice";
             this.AgregarVertice.Click += new System.EventHandler(this.agregarVérticeToolStripMenuItem_Click);
             // 
             // moverVértiveToolStripMenuItem
             // 
             this.moverVértiveToolStripMenuItem.Name = "moverVértiveToolStripMenuItem";
-            this.moverVértiveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.moverVértiveToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.moverVértiveToolStripMenuItem.Text = "Mover vértice";
             this.moverVértiveToolStripMenuItem.Click += new System.EventHandler(this.moverVértiveToolStripMenuItem_Click);
             // 
             // eliminarVérticeToolStripMenuItem
             // 
             this.eliminarVérticeToolStripMenuItem.Name = "eliminarVérticeToolStripMenuItem";
-            this.eliminarVérticeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.eliminarVérticeToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.eliminarVérticeToolStripMenuItem.Text = "Eliminar vértice";
             this.eliminarVérticeToolStripMenuItem.Click += new System.EventHandler(this.eliminarVérticeToolStripMenuItem_Click);
             // 
             // seleccionarVérticeToolStripMenuItem
             // 
             this.seleccionarVérticeToolStripMenuItem.Name = "seleccionarVérticeToolStripMenuItem";
-            this.seleccionarVérticeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.seleccionarVérticeToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.seleccionarVérticeToolStripMenuItem.Text = "Seleccionar vértice";
             this.seleccionarVérticeToolStripMenuItem.Click += new System.EventHandler(this.seleccionarVérticeToolStripMenuItem_Click);
             // 
@@ -190,11 +186,31 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // IdGrafos
+            // 
+            this.IdGrafos.InterceptArrowKeys = false;
+            this.IdGrafos.Location = new System.Drawing.Point(935, 180);
+            this.IdGrafos.Name = "IdGrafos";
+            this.IdGrafos.Size = new System.Drawing.Size(120, 22);
+            this.IdGrafos.TabIndex = 2;
+            // 
+            // BTNAgregar
+            // 
+            this.BTNAgregar.Location = new System.Drawing.Point(935, 221);
+            this.BTNAgregar.Name = "BTNAgregar";
+            this.BTNAgregar.Size = new System.Drawing.Size(120, 50);
+            this.BTNAgregar.TabIndex = 3;
+            this.BTNAgregar.Text = "Agregar";
+            this.BTNAgregar.UseVisualStyleBackColor = true;
+            this.BTNAgregar.Click += new System.EventHandler(this.BTNAgregar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 457);
+            this.ClientSize = new System.Drawing.Size(1067, 457);
+            this.Controls.Add(this.BTNAgregar);
+            this.Controls.Add(this.IdGrafos);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
@@ -209,6 +225,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,7 +250,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem seleccionarVérticeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AgregarGrafo;
+        private System.Windows.Forms.NumericUpDown IdGrafos;
+        private System.Windows.Forms.Button BTNAgregar;
     }
 }
 

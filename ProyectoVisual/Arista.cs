@@ -152,6 +152,7 @@ namespace ProyectoVisual
         }
         //Método para encontrar un vértice
         public bool ChecarVertice(Vertice v)
+
         {
             return ((v.ID==idv1) || (v.ID==idv2));
         }

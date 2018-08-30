@@ -10,11 +10,13 @@ namespace ProyectoVisual
     class Vertice
     {
         private int id;
-        private int x, y;              
+        private int x, y;
         private int xv, yv, radio = 18;
+        //Listas para saber que arístas salen o entran al vértice
+        private List<int> Entrada;
+        private List<int> Salida;
 
-        private int Ent, Sal;
-        private Pen juan = new Pen(Color.Blue);
+        private Pen juan = new Pen(Color.Blue); //Lapiz 
         private Font letra = new Font("Arial", 20);
         private SolidBrush brocha = new SolidBrush(Color.Black);
 
@@ -26,13 +28,35 @@ namespace ProyectoVisual
             radio = 18;
             x = X;
             y = Y;
-            Ent = 0;
-            Sal = 0;
+            Entrada = new List<int>();
+            Salida = new List<int>();
         }
         public Vertice()
         {
             id = 00;
             radio = 18;
+        }
+        public List<int> En
+        {
+            get {
+                return Entrada;
+            }
+            set {
+                Entrada = value;
+            }
+
+        }
+        public List<int> Sal
+        {
+            get
+            {
+                return Salida;
+            }
+            set
+            {
+                Salida = value;
+            }
+
         }
         public int ID
         {
