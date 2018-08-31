@@ -15,6 +15,7 @@ namespace ProyectoVisual
         //Listas para saber que arístas salen o entran al vértice
         private List<int> Entrada;
         private List<int> Salida;
+        private List<Vertice> verticesAd;
 
         private Pen juan = new Pen(Color.Blue); //Lapiz 
         private Font letra = new Font("Arial", 20);
@@ -30,11 +31,13 @@ namespace ProyectoVisual
             y = Y;
             Entrada = new List<int>();
             Salida = new List<int>();
+            VerticesAd = new List<Vertice>();
         }
         public Vertice()
         {
             id = 00;
             radio = 18;
+            VerticesAd = new List<Vertice>();
         }
         public List<int> En
         {
@@ -57,6 +60,9 @@ namespace ProyectoVisual
                 Salida = value;
             }
 
+        }
+        public List<Vertice> VerticesAd {
+            get => verticesAd; set => verticesAd = value;
         }
         public int ID
         {
@@ -124,6 +130,7 @@ namespace ProyectoVisual
                 radio = value;
             }
         }
+
         public void Dibujar(Graphics g)
         {
             g.DrawEllipse(juan, x - radio, y - radio, radio * 2, radio * 2);
@@ -148,6 +155,10 @@ namespace ProyectoVisual
         public bool ChecarLimites(int xnew, int ynew, int width, int height)
         {
             return (xnew - radio > 0 && xnew + radio < width && ynew - radio > 0 && ynew + radio < height);
+        }
+        public void AgrVertice(Vertice v)
+        {
+            verticesAd.Add(v);
         }
     }
 }

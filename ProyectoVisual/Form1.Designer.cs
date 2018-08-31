@@ -47,6 +47,13 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.IdGrafos = new System.Windows.Forms.NumericUpDown();
             this.BTNAgregar = new System.Windows.Forms.Button();
+            this.MenuLista = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListaAdy = new System.Windows.Forms.ToolStripMenuItem();
+            this.matrizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matrízDeAdyacenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matrízDeIncidenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RTBGrafo = new System.Windows.Forms.RichTextBox();
+            this.ListaIncidencia = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).BeginInit();
@@ -72,11 +79,13 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
             this.VerticeMenu,
-            this.AristaMenu});
+            this.AristaMenu,
+            this.MenuLista,
+            this.matrizToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1128, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -94,28 +103,28 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // GuardarG
             // 
             this.GuardarG.Name = "GuardarG";
-            this.GuardarG.Size = new System.Drawing.Size(216, 26);
+            this.GuardarG.Size = new System.Drawing.Size(188, 26);
             this.GuardarG.Text = "Guardar";
             this.GuardarG.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
             // GuardarGrafoC
             // 
             this.GuardarGrafoC.Name = "GuardarGrafoC";
-            this.GuardarGrafoC.Size = new System.Drawing.Size(216, 26);
+            this.GuardarGrafoC.Size = new System.Drawing.Size(188, 26);
             this.GuardarGrafoC.Text = "Guardar como...";
             this.GuardarGrafoC.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
             // 
@@ -189,14 +198,14 @@
             // IdGrafos
             // 
             this.IdGrafos.InterceptArrowKeys = false;
-            this.IdGrafos.Location = new System.Drawing.Point(935, 180);
+            this.IdGrafos.Location = new System.Drawing.Point(956, 41);
             this.IdGrafos.Name = "IdGrafos";
             this.IdGrafos.Size = new System.Drawing.Size(120, 22);
             this.IdGrafos.TabIndex = 2;
             // 
             // BTNAgregar
             // 
-            this.BTNAgregar.Location = new System.Drawing.Point(935, 221);
+            this.BTNAgregar.Location = new System.Drawing.Point(956, 81);
             this.BTNAgregar.Name = "BTNAgregar";
             this.BTNAgregar.Size = new System.Drawing.Size(120, 50);
             this.BTNAgregar.TabIndex = 3;
@@ -204,11 +213,64 @@
             this.BTNAgregar.UseVisualStyleBackColor = true;
             this.BTNAgregar.Click += new System.EventHandler(this.BTNAgregar_Click);
             // 
+            // MenuLista
+            // 
+            this.MenuLista.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ListaAdy,
+            this.ListaIncidencia});
+            this.MenuLista.Name = "MenuLista";
+            this.MenuLista.Size = new System.Drawing.Size(51, 24);
+            this.MenuLista.Text = "Lista";
+            // 
+            // ListaAdy
+            // 
+            this.ListaAdy.Name = "ListaAdy";
+            this.ListaAdy.Size = new System.Drawing.Size(216, 26);
+            this.ListaAdy.Text = "Lista de adyacencia";
+            this.ListaAdy.Click += new System.EventHandler(this.ListaAdy_Click);
+            // 
+            // matrizToolStripMenuItem
+            // 
+            this.matrizToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.matrízDeAdyacenciaToolStripMenuItem,
+            this.matrízDeIncidenciaToolStripMenuItem});
+            this.matrizToolStripMenuItem.Name = "matrizToolStripMenuItem";
+            this.matrizToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.matrizToolStripMenuItem.Text = "Matriz";
+            // 
+            // matrízDeAdyacenciaToolStripMenuItem
+            // 
+            this.matrízDeAdyacenciaToolStripMenuItem.Name = "matrízDeAdyacenciaToolStripMenuItem";
+            this.matrízDeAdyacenciaToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.matrízDeAdyacenciaToolStripMenuItem.Text = "Matríz de adyacencia";
+            // 
+            // matrízDeIncidenciaToolStripMenuItem
+            // 
+            this.matrízDeIncidenciaToolStripMenuItem.Name = "matrízDeIncidenciaToolStripMenuItem";
+            this.matrízDeIncidenciaToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.matrízDeIncidenciaToolStripMenuItem.Text = "Matríz de incidencia";
+            // 
+            // RTBGrafo
+            // 
+            this.RTBGrafo.Location = new System.Drawing.Point(914, 137);
+            this.RTBGrafo.Name = "RTBGrafo";
+            this.RTBGrafo.Size = new System.Drawing.Size(202, 306);
+            this.RTBGrafo.TabIndex = 4;
+            this.RTBGrafo.Text = "";
+            // 
+            // ListaIncidencia
+            // 
+            this.ListaIncidencia.Name = "ListaIncidencia";
+            this.ListaIncidencia.Size = new System.Drawing.Size(216, 26);
+            this.ListaIncidencia.Text = "Lista de incidencia";
+            this.ListaIncidencia.Click += new System.EventHandler(this.ListaIncidencia_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 457);
+            this.ClientSize = new System.Drawing.Size(1128, 457);
+            this.Controls.Add(this.RTBGrafo);
             this.Controls.Add(this.BTNAgregar);
             this.Controls.Add(this.IdGrafos);
             this.Controls.Add(this.pictureBox1);
@@ -252,6 +314,13 @@
         private System.Windows.Forms.ToolStripMenuItem seleccionarVérticeToolStripMenuItem;
         private System.Windows.Forms.NumericUpDown IdGrafos;
         private System.Windows.Forms.Button BTNAgregar;
+        private System.Windows.Forms.ToolStripMenuItem MenuLista;
+        private System.Windows.Forms.ToolStripMenuItem ListaAdy;
+        private System.Windows.Forms.ToolStripMenuItem matrizToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem matrízDeAdyacenciaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem matrízDeIncidenciaToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox RTBGrafo;
+        private System.Windows.Forms.ToolStripMenuItem ListaIncidencia;
     }
 }
 

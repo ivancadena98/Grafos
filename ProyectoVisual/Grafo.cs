@@ -14,16 +14,20 @@ namespace ProyectoVisual
         private List<Arista> aristas;
         private int idv, ida; //Identificador para los vértices y las aristas
         private Pen p;
-
+        private ListaAdyacente lisAd;
+        private ListaIncidencia lisInc;
         //selecciones
         private Vertice vselec;
         public Grafo(Pen DL)
         {
             p = DL;
             vertices = new List<Vertice>();
+            
             aristas = new List<Arista>();
             idv = 0;
             ida = 0;
+            lisAd = new ListaAdyacente();
+            lisInc = new ListaIncidencia();
         }
         //getters setters
         public List<Vertice> Vertices
@@ -58,6 +62,7 @@ namespace ProyectoVisual
             get { return ida; }
             set { ida = value; }
         }
+        //Método para crear vértice
         public void AgregaVertice(Graphics g, int x, int y, int width, int height)
         {
             bool banColision = false;
@@ -122,13 +127,13 @@ namespace ProyectoVisual
 
         }
         //AGREGAR ARISTA NO DIRIGIDA
-        public void AgregaArista(Graphics g, Vertice v1, Vertice v2)
+        public void AgregaArista(Graphics g, Vertice v1, Vertice v2,int x, int y)
         {
             
             try
             {
                
-                Arista a = new Arista(ida,v1.ID, v2.ID, v1.X, v1.Y, v2.X, v2.Y);
+                Arista a = new Arista(ida,v1.ID, v2.ID, v1.X, v1.Y, x, y);
                 aristas.Add(a);
 
                 a.DibujaArista(g);
@@ -206,5 +211,39 @@ namespace ProyectoVisual
 
 
         }
-}
+        //Método para llamar y acomodar la lista de adyacencia no dirigida
+        public void ListaNoDir() {
+            lisAd.Lista(vertices, aristas);
+            lisAd.RealizaLista();
+        }
+        //Método para llamar y acomodar la lista de adyacencia dirigida
+        public void ListaSiDir()
+        {
+            lisAd.ListaDir(vertices, aristas);
+            lisAd.RealizaLista();
+        }
+
+        //Método para recuperar la lista de adyacencia
+        public List<string> recuperaLista()
+        {
+            return (lisAd.ImpLista());
+
+        }
+
+        //Método para crear y acomodar la lista de incidencia
+        public void ListaIn()
+        {
+            lisInc.Lista(vertices, aristas);
+            lisInc.RealizaLista();
+        }
+
+        //Método para recuperar la lista de incidencia
+        public List<string> recuperaListaIncidencia()
+        {
+            return (lisInc.ImpLista());
+
+        }
+
+    }
+
 }

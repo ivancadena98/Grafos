@@ -22,9 +22,13 @@ namespace ProyectoVisual
         bool corriendoPrograma;
         bool control = false;
 
+        //Bandera para saber si el grafo es dirigido o no dirigido
+        bool dirigido;
+
         //Auxiliares
         Vertice v1 = new Vertice();
         Vertice v2 = new Vertice();
+        List<Vertice> ListaVerAux = new List<Vertice>();
         Grafo grafoaux;
 
         //Graficos
@@ -94,7 +98,7 @@ namespace ProyectoVisual
 
         public void DibujarG(int IDG) {
             lienzo.Clear(Color.White);
-            foreach(Grafo gr in ListGrafo)
+            foreach (Grafo gr in ListGrafo)
             {
                 gr.Dibujar(lienzo);
             }
@@ -108,13 +112,14 @@ namespace ProyectoVisual
                 case 0: // Agregar vértices
                     ListGrafo[IDG].AgregaVertice(lienzo, e.X, e.Y, pictureBox1.Width, pictureBox1.Height);
                     up2Date = false;
+                    RTBGrafo.Text = (ListGrafo[IDG].Vertices.Count).ToString();
                     break;
                 case 2: //Agregar arista dirigida
                     AgregarAristaDir(e.X, e.Y,IDG);
                     break;
                 case 82: // eliminar vertice
                     ElimVertice(e.X, e.Y,IDG);
-                    DibujarG (IDG);
+                    
                     break;
                 case 4: //Agregar aristas
                     AgregarArista(e.X, e.Y,IDG);
@@ -168,9 +173,12 @@ namespace ProyectoVisual
                 {
                     ListGrafo[IDG].elimAr(v.ID);
                     ListGrafo[IDG].Vertices.RemoveAt(i);
+                    //pictureBox1.Invalidate();
                     break;
+
                 }
             }
+            
         }
         //Agregar Arísta 
         public void AgregarArista(int x, int y,int IDG) {
@@ -188,7 +196,7 @@ namespace ProyectoVisual
                     v2.Seleccionar(lienzo);
                     if (!v1.Equals(v2))
                     {
-                        ListGrafo[IDG].AgregaArista(lienzo, v1, v2);
+                        ListGrafo[IDG].AgregaArista(lienzo, v1, v2,x,y);
                         up2Date = false;
                         toque = 0;
                     }
@@ -212,7 +220,7 @@ namespace ProyectoVisual
                     v2.Seleccionar(lienzo);
                     if (!v1.Equals(v2))
                     {
-                        ListGrafo[IDG].AgregaArista(lienzo, v1, v2);
+                        ListGrafo[IDG].AgregaArista(lienzo, v1, v2,x,y);
                         up2Date = false;
                         toque = 0;
                     }
@@ -260,6 +268,7 @@ namespace ProyectoVisual
         {
             tipo = 4;
             AristaDir.Enabled = false;
+            dirigido = false;
         }
 
         //NUEVO
@@ -486,11 +495,46 @@ namespace ProyectoVisual
             ListGrafo.Add(g);
             IdGrafos.Value ++;
         }
+        //Imprimir la lista de adyacencia
+        private void ListaAdy_Click(object sender, EventArgs e)
+        {
+            RTBGrafo.Clear();
+            List<string> AuxList = new List<string>();
+            AuxList.Clear();
+            if (!dirigido) //Lista de grafo no dirigido
+            {
+                ListGrafo[(int)IdGrafos.Value - 1].ListaNoDir();
+                AuxList = ListGrafo[(int)IdGrafos.Value - 1].recuperaLista();
+                RTBGrafo.Lines = AuxList.ToArray();
+                    //RTBGrafo.Text = "Si entra "+(v.ID).ToString()+(ListaVerAux.Count).ToString();
+            }
+            else if (dirigido)
+            {
+                ListGrafo[(int)IdGrafos.Value - 1].ListaSiDir();
+                AuxList = ListGrafo[(int)IdGrafos.Value - 1].recuperaLista();
+                RTBGrafo.Lines = AuxList.ToArray();
+            }
+        }
+        //Imprimir lista de incidencia
+        private void ListaIncidencia_Click(object sender, EventArgs e)
+        {
+            RTBGrafo.Clear();
+            RTBGrafo.Focus();
+            List<string> AuxList = new List<string>();
+            AuxList.Clear();
+            if (dirigido)
+            {
+                ListGrafo[(int)IdGrafos.Value - 1].ListaIn();
+                AuxList = ListGrafo[(int)IdGrafos.Value - 1].recuperaListaIncidencia();
+                RTBGrafo.Lines = AuxList.ToArray();
+            }
+        }
 
         //Agregar Arista Dirigida
         private void agregarAristaDirigidaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AristaN.Enabled = false;
+            dirigido = true;
             tipo = 2;
         }
 
