@@ -107,6 +107,7 @@ namespace ProyectoVisual
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             int IDG = (int)IdGrafos.Value - 1; //Saber cuál grafo se está modificando
+            //Bandera para saber que opción se hará
             switch (tipo)
             {
                 case 0: // Agregar vértices
@@ -173,7 +174,7 @@ namespace ProyectoVisual
                 {
                     ListGrafo[IDG].elimAr(v.ID);
                     ListGrafo[IDG].Vertices.RemoveAt(i);
-                    //pictureBox1.Invalidate();
+                    DibujarG(IDG);
                     break;
 
                 }
@@ -220,7 +221,7 @@ namespace ProyectoVisual
                     v2.Seleccionar(lienzo);
                     if (!v1.Equals(v2))
                     {
-                        ListGrafo[IDG].AgregaArista(lienzo, v1, v2,x,y);
+                        ListGrafo[IDG].AgregarAristaDir(lienzo, v1, v2,x,y);
                         up2Date = false;
                         toque = 0;
                     }
@@ -269,6 +270,9 @@ namespace ProyectoVisual
             tipo = 4;
             AristaDir.Enabled = false;
             dirigido = false;
+            MatrizMenu.Enabled = true;
+            BTNGrado.Enabled = true;
+            MenuLista.Enabled = true;
         }
 
         //NUEVO
@@ -515,18 +519,147 @@ namespace ProyectoVisual
                 RTBGrafo.Lines = AuxList.ToArray();
             }
         }
-        //Imprimir lista de incidencia
+        //Imprimir la lista de incidencia
         private void ListaIncidencia_Click(object sender, EventArgs e)
         {
+            
+        }
+        //Imprimir la matríz de incidencia
+        private void matrízDeIncidenciaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int[,] AuxList;
             RTBGrafo.Clear();
-            RTBGrafo.Focus();
-            List<string> AuxList = new List<string>();
-            AuxList.Clear();
             if (dirigido)
             {
                 ListGrafo[(int)IdGrafos.Value - 1].ListaIn();
-                AuxList = ListGrafo[(int)IdGrafos.Value - 1].recuperaListaIncidencia();
-                RTBGrafo.Lines = AuxList.ToArray();
+                AuxList = ListGrafo[(int)IdGrafos.Value - 1].recuperaMatIncidencia();
+                RTBGrafo.Text += " ";
+                RTBGrafo.Text += "|    ";
+                foreach (Arista a in  ListGrafo[(int)IdGrafos.Value - 1].Aristas)
+                {
+                    RTBGrafo.Text += string.Format("{0,4:D}", (a.ID+1).ToString());
+                }
+                RTBGrafo.Text += "\n";
+                for (int i=0; i < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; i++)
+                {
+                    RTBGrafo.Text += (ListGrafo[(int)IdGrafos.Value - 1].Vertices[i].ID+1).ToString() + "|";
+                    RTBGrafo.Text += "   ";
+                    for (int j = 0; j < ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count; j++)
+                    {
+
+                        //RTBGrafo.Text += (AuxList[i, j]).ToString();
+                        RTBGrafo.Text += string.Format("{0,4:D}", AuxList[i, j].ToString());
+                    }
+                    RTBGrafo.Text += Environment.NewLine;
+                }
+                
+            }
+            else if (!dirigido)
+            {
+                ListGrafo[(int)IdGrafos.Value - 1].ListaInNoDir();
+                AuxList = ListGrafo[(int)IdGrafos.Value - 1].recuperaMatIncidencia();
+                RTBGrafo.Text += " ";
+                RTBGrafo.Text += "|    ";
+                foreach (Arista a in ListGrafo[(int)IdGrafos.Value - 1].Aristas)
+                {
+                    //RTBGrafo.Text += "  ";
+                    RTBGrafo.Text += string.Format("{0,4:D}", (a.ID + 1).ToString());
+                    //RTBGrafo.Text += "";
+                }
+                RTBGrafo.Text += "\n";
+                for (int i = 0; i < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; i++)
+                {
+                    RTBGrafo.Text += (ListGrafo[(int)IdGrafos.Value - 1].Vertices[i].ID + 1).ToString() + "|";
+                    RTBGrafo.Text += "   ";
+                    for (int j = 0; j < ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count; j++)
+                    {
+
+                        //RTBGrafo.Text += (AuxList[i, j]).ToString();
+                        RTBGrafo.Text += string.Format("{0,4:D}", AuxList[i, j].ToString());
+                    }
+                    RTBGrafo.Text += Environment.NewLine;
+                }
+            }
+        }
+        //imprimir la matriz de adyacencia
+        private void MatrizAd_Click(object sender, EventArgs e)
+        {
+            int[,] AuxList;
+            RTBGrafo.Clear();
+            if(ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count == 0)
+            {
+                RTBGrafo.Text = "Grafo nulo. ";
+            }
+            else if (dirigido)
+            {
+                ListGrafo[(int)IdGrafos.Value - 1].MatAdDir();
+                AuxList = ListGrafo[(int)IdGrafos.Value - 1].RegresaAd();
+                RTBGrafo.Text += " ";
+                RTBGrafo.Text += "|    ";
+                foreach (Vertice a in ListGrafo[(int)IdGrafos.Value - 1].Vertices)
+                {
+                    RTBGrafo.Text += string.Format("{0,4:D}", (a.ID + 1).ToString());
+                }
+                RTBGrafo.Text += "\n";
+                for (int i = 0; i < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; i++)
+                {
+                    RTBGrafo.Text += (ListGrafo[(int)IdGrafos.Value - 1].Vertices[i].ID + 1).ToString() + "|";
+                    RTBGrafo.Text += "   ";
+                    for (int j = 0; j < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; j++)
+                    {
+
+                        //RTBGrafo.Text += (AuxList[i, j]).ToString();
+                        RTBGrafo.Text += string.Format("{0,4:D}", AuxList[i, j].ToString());
+                    }
+                    RTBGrafo.Text += Environment.NewLine;
+                }
+
+            }
+            else if (!dirigido)
+            {
+                ListGrafo[(int)IdGrafos.Value - 1].MatANoDir();
+                AuxList = ListGrafo[(int)IdGrafos.Value - 1].RegresaAd();
+                RTBGrafo.Text += " ";
+                RTBGrafo.Text += "|    ";
+                foreach (Vertice a in ListGrafo[(int)IdGrafos.Value - 1].Vertices)
+                {
+                    //RTBGrafo.Text += "  ";
+                    RTBGrafo.Text += string.Format("{0,4:D}", (a.ID + 1).ToString());
+                    //RTBGrafo.Text += "";
+                }
+                RTBGrafo.Text += "\n";
+                for (int i = 0; i < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; i++)
+                {
+                    RTBGrafo.Text += (ListGrafo[(int)IdGrafos.Value - 1].Vertices[i].ID + 1).ToString() + "|";
+                    RTBGrafo.Text += "   ";
+                    for (int j = 0; j < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; j++)
+                    {
+
+                        //RTBGrafo.Text += (AuxList[i, j]).ToString();
+                        RTBGrafo.Text += string.Format("{0,4:D}", AuxList[i, j].ToString());
+                    }
+                    RTBGrafo.Text += Environment.NewLine;
+                }
+            }
+        }
+        //Método para imprimir los grafos
+        private void BTNGrado_Click(object sender, EventArgs e)
+        {
+            RTBGrafo.Clear();
+            ListGrafo[(int)IdGrafos.Value - 1].CalculaGrado();
+            foreach (Vertice v in ListGrafo[(int)IdGrafos.Value - 1].Vertices)
+            {
+                if (!dirigido)
+                {
+                    RTBGrafo.Text += (v.ID + 1).ToString() + " Total= " + v.total();
+                    RTBGrafo.Text += "\n";
+                }
+                else
+                {
+                    RTBGrafo.Text += (v.ID + 1).ToString() + " : entrada= " + v.VerticesEntrada.ToString() +
+                   " salida= " + v.VerticesSalida.ToString() + " Total= " + v.total();
+                    RTBGrafo.Text += "\n";
+                }
             }
         }
 
@@ -535,6 +668,9 @@ namespace ProyectoVisual
         {
             AristaN.Enabled = false;
             dirigido = true;
+            MenuLista.Enabled = true;
+            MatrizMenu.Enabled = true;
+            BTNGrado.Enabled = true;
             tipo = 2;
         }
 

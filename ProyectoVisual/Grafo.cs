@@ -15,7 +15,9 @@ namespace ProyectoVisual
         private int idv, ida; //Identificador para los vértices y las aristas
         private Pen p;
         private ListaAdyacente lisAd;
-        private ListaIncidencia lisInc;
+        private MatrizIncidencia MatInc;
+        private int[,] MatrizIncidencia;
+        private MatrizAdyacencia MatAD;
         //selecciones
         private Vertice vselec;
         public Grafo(Pen DL)
@@ -27,7 +29,8 @@ namespace ProyectoVisual
             idv = 0;
             ida = 0;
             lisAd = new ListaAdyacente();
-            lisInc = new ListaIncidencia();
+            MatInc = new MatrizIncidencia();
+            MatAD = new MatrizAdyacencia();
         }
         //getters setters
         public List<Vertice> Vertices
@@ -146,9 +149,9 @@ namespace ProyectoVisual
 
         }
         //Agregar arista dirigida
-        public void AgregarAristaDir(Graphics g, Vertice v1, Vertice v2) {
+        public void AgregarAristaDir(Graphics g, Vertice v1, Vertice v2,int x, int y) {
             try {
-                Arista a = new Arista(ida, v1.ID, v2.ID, v1.X, v1.Y, v2.X, v2.Y,1);
+                Arista a = new Arista(ida, v1.ID, v2.ID, v1.X, v1.Y, x, y,1);
                 aristas.Add(a);
                 a.DibujaArista(g);
                 ida++;
@@ -230,20 +233,62 @@ namespace ProyectoVisual
 
         }
 
-        //Método para crear y acomodar la lista de incidencia
+        //Método para crear y acomodar la matriz de incidencia dirigida
         public void ListaIn()
         {
-            lisInc.Lista(vertices, aristas);
-            lisInc.RealizaLista();
+            MatInc.Lista(vertices, aristas);
         }
 
-        //Método para recuperar la lista de incidencia
-        public List<string> recuperaListaIncidencia()
+        //Método para crear y acomodar la matríz de incidencia no dirigida
+        public void ListaInNoDir()
         {
-            return (lisInc.ImpLista());
-
+            MatInc.ListaNDir(vertices, aristas);
         }
 
+        //Método para recuperar la matriz de incidencia
+        public int[,] recuperaMatIncidencia()
+        {
+            MatrizIncidencia = MatInc.recuperamatriz();
+            return (MatrizIncidencia);
+
+        }
+        //Método para crear la matríz de adyacencia Dirigida
+        public void MatAdDir()
+        {
+            MatAD.RealizaMatriz(vertices, aristas);
+        }
+
+        //Método para crear la matríz de adyacencia no dirigida
+        public void MatANoDir()
+        {
+            MatAD.RealizaMatrizNDir(vertices, aristas);
+        }
+
+        //Método para regresar la matríz de adyacencia
+        public int[,] RegresaAd()
+        {
+            return MatAD.recuperamatriz();
+        }
+        //Método para saber el número de aristas que son de un vértice
+        public void CalculaGrado()
+        {
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                for (int j = 0; j < aristas.Count; j++)
+                {
+                    //Condicionales para verificar la comunicación entre vértices por el id de entrada o salida de los vértices
+                    if (vertices[i].ID == aristas[j].IDV1) //Salida
+                    {
+                        vertices[i].AgregarVerticeEnt();
+                    }
+                    else if (vertices[i].ID == aristas[j].IDV2) //Entrada
+                    {
+                        vertices[i].AgregarVerticeSal();
+                    }
+
+                }
+            }
+        }
     }
 
 }

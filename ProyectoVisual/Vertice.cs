@@ -16,7 +16,8 @@ namespace ProyectoVisual
         private List<int> Entrada;
         private List<int> Salida;
         private List<Vertice> verticesAd;
-
+        private int VEnt;
+        private int VSal;
         private Pen juan = new Pen(Color.Blue); //Lapiz 
         private Font letra = new Font("Arial", 20);
         private SolidBrush brocha = new SolidBrush(Color.Black);
@@ -32,12 +33,16 @@ namespace ProyectoVisual
             Entrada = new List<int>();
             Salida = new List<int>();
             VerticesAd = new List<Vertice>();
+            VEnt = 0;
+            VSal = 0;
         }
         public Vertice()
         {
             id = 00;
             radio = 18;
             VerticesAd = new List<Vertice>();
+            VEnt = 0;
+            VSal = 0;
         }
         public List<int> En
         {
@@ -63,6 +68,14 @@ namespace ProyectoVisual
         }
         public List<Vertice> VerticesAd {
             get => verticesAd; set => verticesAd = value;
+        }
+        public int VerticesEntrada
+        {
+            get => VEnt; set => VEnt = value;
+        }
+        public int VerticesSalida
+        {
+            get => VSal; set => VSal = value;
         }
         public int ID
         {
@@ -130,13 +143,18 @@ namespace ProyectoVisual
                 radio = value;
             }
         }
-
+        public int total()
+        {
+            return (VEnt + VSal);
+        }
+        //Método para dibujar vértice
         public void Dibujar(Graphics g)
         {
             g.DrawEllipse(juan, x - radio, y - radio, radio * 2, radio * 2);
             g.DrawString(Convert.ToString(id + 1), letra, brocha, x - radio + 5, y - radio + 3);
 
         }
+        
         public bool Seleccion(int xP, int yP)
         {
             // Los parametos de entrada son las coordenadas del click
@@ -147,6 +165,7 @@ namespace ProyectoVisual
 
             return resp;
         }
+
         public void Seleccionar(Graphics g)
         {
             Pen juan = new Pen(Color.Red);
@@ -159,6 +178,16 @@ namespace ProyectoVisual
         public void AgrVertice(Vertice v)
         {
             verticesAd.Add(v);
+        }
+        //Método para agregar un "1" al contador de entrada
+        public void AgregarVerticeEnt()
+        {
+            VEnt++;
+        }
+        //Método para agregar un "1" al contador de salida
+        public void AgregarVerticeSal()
+        {
+            VSal++;
         }
     }
 }
