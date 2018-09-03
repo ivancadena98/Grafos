@@ -236,6 +236,8 @@ namespace ProyectoVisual
             AristaMenu.Enabled = true;
             GuardarG.Enabled = true;
             GuardarGrafoC.Enabled = true;
+            MatrizMenu.Enabled = true;
+            MenuLista.Enabled = true;
         }
 
        //MOVER VERTICE
@@ -505,7 +507,12 @@ namespace ProyectoVisual
             RTBGrafo.Clear();
             List<string> AuxList = new List<string>();
             AuxList.Clear();
-            if (!dirigido) //Lista de grafo no dirigido
+            if (ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count == 0)
+            {
+                RTBGrafo.Text = "Grafo nulo. ";
+            }
+            //RTBGrafo.Clear();
+            else if (!dirigido) //Lista de grafo no dirigido
             {
                 ListGrafo[(int)IdGrafos.Value - 1].ListaNoDir();
                 AuxList = ListGrafo[(int)IdGrafos.Value - 1].recuperaLista();
@@ -529,7 +536,11 @@ namespace ProyectoVisual
         {
             int[,] AuxList;
             RTBGrafo.Clear();
-            if (dirigido)
+            if (ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count == 0)
+            {
+                RTBGrafo.Text = "Grafo nulo. ";
+            }
+            else if (dirigido)
             {
                 ListGrafo[(int)IdGrafos.Value - 1].ListaIn();
                 AuxList = ListGrafo[(int)IdGrafos.Value - 1].recuperaMatIncidencia();
@@ -661,6 +672,11 @@ namespace ProyectoVisual
                     RTBGrafo.Text += "\n";
                 }
             }
+        }
+
+        private void MatrizMenu_Click(object sender, EventArgs e)
+        {
+
         }
 
         //Agregar Arista Dirigida

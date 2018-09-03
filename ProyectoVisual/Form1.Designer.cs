@@ -216,6 +216,7 @@
             this.MatrizMenu.Name = "MatrizMenu";
             this.MatrizMenu.Size = new System.Drawing.Size(63, 24);
             this.MatrizMenu.Text = "Matriz";
+            this.MatrizMenu.Click += new System.EventHandler(this.MatrizMenu_Click);
             // 
             // MatrizAd
             // 
