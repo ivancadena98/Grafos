@@ -289,6 +289,14 @@ namespace ProyectoVisual
                 }
             }
         }
+        public void BorraGrados()
+        {
+            foreach(Vertice vr in vertices)
+            {
+                vr.VerticesEntrada = 0;
+                vr.VerticesSalida = 0;
+            }
+        }
     }
 
 }

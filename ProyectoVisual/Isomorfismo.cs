@@ -13,15 +13,14 @@ namespace ProyectoVisual
 
         private int[,] AuxListU;
         private int[,] AuxListV;
-        private int[,] AuxListFinal;
         private bool ban;
-
+        
         private int tam;
         private int[] GradosU;
         private int[] GradosV;
         private int[] AuxV;
         
-        private int v1, v2,aux;
+        private int aux;
 
         public Isomorfismo(Grafo gU, Grafo gV,int[,] MatU, int[,] MatV, int T)
         {
@@ -49,6 +48,28 @@ namespace ProyectoVisual
                 B = false;
             return B;
         }
+        public bool GradoVertice()
+        {
+            int Mu = 0;
+            int mV = 0;
+            foreach(Vertice v in g1.Vertices)
+            {
+                if (Mu < v.total())
+                    Mu = v.total();
+            }
+            foreach (Vertice v in g2.Vertices)
+            {
+                if (mV < v.total())
+                    mV = v.total();
+            }
+            if (mV != Mu)
+                return false;
+            else
+            {
+                
+                return true;
+            }
+        }
 
         public void MatrizIGual()
         {
@@ -67,41 +88,24 @@ namespace ProyectoVisual
             }
             
         }
-        /*public void CambiaMat(ref int[,] prueba)
+        
+        public void CambiaMat(int i,int j)
         {
-            GradosRenglon(prueba);
-            BuscaPos();
-            for (int c = 0; c < tam; c++)
-            {
-                int aux2 = prueba[v1, c];
-                prueba[v1, c] = prueba[v2, c];
-                prueba[v2, c] = aux2;
-            }
-            for (int c = 0; c < tam; c++)
-            {
-                int aux2 = prueba[c,v1];
-                prueba[c,v1] = prueba[c,v2];
-                prueba[c,v2] = aux2;
-            }
-        }*/
-        public void CambiaMat()
-        {
-            GradosRenglon(AuxListV);
-            BuscaPos();
-            for (int c = 0; c < tam; c++)
-            {
-                int aux2 = AuxListV[v1, c];
-                AuxListV[v1, c] = AuxListV[v2, c];
-                AuxListV[v2, c] = aux2;
-            }
-            for (int c = 0; c < tam; c++)
-            {
-                int aux2 = AuxListV[c, v1];
-                AuxListV[c, v1] = AuxListV[c, v2];
-                AuxListV[c, v2] = aux2;
-            }
+                    for (int c = 0; c < tam; c++)
+                    {
+                        int aux2 = AuxListV[i, c];
+                        AuxListV[i, c] = AuxListV[j, c];
+                        AuxListV[j, c] = aux2;
+                    }
+                    for (int c = 0; c < tam; c++)
+                    {
+                        int aux2 = AuxListV[c, i];
+                        AuxListV[c, i] = AuxListV[c, j];
+                        AuxListV[c, j] = aux2;
+                    }
+            
         }
-           public void GradosRenglon(int[,] prueba)
+        public void GradosRenglon(int[,] prueba)
             {
             int b = 0;
             for (int i=0; i < tam; i++)
@@ -121,25 +125,7 @@ namespace ProyectoVisual
             aux = b; //Número más grande de renglón
         }
         //Método para sacar el grado más alto y el número de renglones que tienen ese grado
-        public void BuscaPos()
-        {
-            for(int i=0; i< tam; i++)
-            {
-                if(aux == GradosV[i])
-                {
-                    v1 = i;
-                    break;
-                }
-            }
-            for(int j =0; j < tam; j++)
-            {
-                if(aux == GradosV[j] && j != v1)
-                {
-                    v2 = j;
-                    break;
-                }
-            }
-        }
+
 
     }
 }

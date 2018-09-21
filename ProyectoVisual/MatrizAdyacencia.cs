@@ -30,20 +30,20 @@ namespace ProyectoVisual
             vertice = l;
             arista = a;
             MatrizIn = new int[vertice.Count, vertice.Count];
-            for (int i = 0; i < vertice.Count; i++)
-            {
                 for (int j = 0; j < arista.Count; j++)
                 {
                     //Condicionales para verificar la comunicación entre vértices.
-                    if (vertice[i].ID == arista[j].IDV2 && vertice[i].ID == arista[j].IDV1)
+                    if (arista[j].IDV2 == arista[j].IDV1)
                     {
                         MatrizIn[arista[j].IDV1, arista[j].IDV2] = 1;
                     }
-                    MatrizIn[arista[j].IDV1, arista[j].IDV2] = 1;
-                    MatrizIn[arista[j].IDV2, arista[j].IDV1] = 1;
+                    else
+                    {
+                        MatrizIn[arista[j].IDV1, arista[j].IDV2] += 1;
+                        MatrizIn[arista[j].IDV2, arista[j].IDV1] += 1;
+                    }
 
                 }
-            }
         }
         //Realiza matriz adyacencia dirigida
         public void RealizaMatriz(List<Vertice> l, List<Arista> a)

@@ -21,7 +21,7 @@ namespace ProyectoVisual
         private Pen juan = new Pen(Color.Blue); //Lapiz 
         private Font letra = new Font("Arial", 20);
         private SolidBrush brocha = new SolidBrush(Color.Black);
-
+        private int Tot = 0;
 
 
         public Vertice(int id_in, int X, int Y)
@@ -145,7 +145,12 @@ namespace ProyectoVisual
         }
         public int total()
         {
-            return (VEnt + VSal);
+            calc();
+            return (Tot);
+        }
+        public void calc()
+        {
+            Tot = VEnt + VSal;
         }
         //Método para dibujar vértice
         public void Dibujar(Graphics g)

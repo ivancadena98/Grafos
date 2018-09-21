@@ -56,6 +56,17 @@
             this.BTNAgregar = new System.Windows.Forms.Button();
             this.RTBGrafo = new System.Windows.Forms.RichTextBox();
             this.BTNGrado = new System.Windows.Forms.Button();
+            this.knToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.k1M = new System.Windows.Forms.ToolStripMenuItem();
+            this.k2M = new System.Windows.Forms.ToolStripMenuItem();
+            this.k3M = new System.Windows.Forms.ToolStripMenuItem();
+            this.k4M = new System.Windows.Forms.ToolStripMenuItem();
+            this.k5M = new System.Windows.Forms.ToolStripMenuItem();
+            this.k6M = new System.Windows.Forms.ToolStripMenuItem();
+            this.k7M = new System.Windows.Forms.ToolStripMenuItem();
+            this.regularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.R2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.r3 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).BeginInit();
@@ -84,7 +95,9 @@
             this.AristaMenu,
             this.MenuLista,
             this.MatrizMenu,
-            this.PropiedadGrafo});
+            this.PropiedadGrafo,
+            this.knToolStripMenuItem,
+            this.regularToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -249,7 +262,7 @@
             // 
             this.GrafoIs.Enabled = false;
             this.GrafoIs.Name = "GrafoIs";
-            this.GrafoIs.Size = new System.Drawing.Size(216, 26);
+            this.GrafoIs.Size = new System.Drawing.Size(144, 26);
             this.GrafoIs.Text = "Isomorfo";
             this.GrafoIs.Click += new System.EventHandler(this.GrafoIs_Click);
             // 
@@ -293,6 +306,92 @@
             this.BTNGrado.Text = "Grado de vértices";
             this.BTNGrado.UseVisualStyleBackColor = true;
             this.BTNGrado.Click += new System.EventHandler(this.BTNGrado_Click);
+            // 
+            // knToolStripMenuItem
+            // 
+            this.knToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.k1M,
+            this.k2M,
+            this.k3M,
+            this.k4M,
+            this.k5M,
+            this.k6M,
+            this.k7M});
+            this.knToolStripMenuItem.Name = "knToolStripMenuItem";
+            this.knToolStripMenuItem.Size = new System.Drawing.Size(38, 24);
+            this.knToolStripMenuItem.Text = "Kn";
+            // 
+            // k1M
+            // 
+            this.k1M.Name = "k1M";
+            this.k1M.Size = new System.Drawing.Size(216, 26);
+            this.k1M.Text = "k1";
+            this.k1M.Click += new System.EventHandler(this.k1M_Click);
+            // 
+            // k2M
+            // 
+            this.k2M.Name = "k2M";
+            this.k2M.Size = new System.Drawing.Size(216, 26);
+            this.k2M.Text = "k2";
+            this.k2M.Click += new System.EventHandler(this.k2M_Click);
+            // 
+            // k3M
+            // 
+            this.k3M.Name = "k3M";
+            this.k3M.Size = new System.Drawing.Size(216, 26);
+            this.k3M.Text = "k3";
+            this.k3M.Click += new System.EventHandler(this.k3M_Click);
+            // 
+            // k4M
+            // 
+            this.k4M.Name = "k4M";
+            this.k4M.Size = new System.Drawing.Size(216, 26);
+            this.k4M.Text = "k4";
+            this.k4M.Click += new System.EventHandler(this.k4M_Click);
+            // 
+            // k5M
+            // 
+            this.k5M.Name = "k5M";
+            this.k5M.Size = new System.Drawing.Size(216, 26);
+            this.k5M.Text = "k5";
+            this.k5M.Click += new System.EventHandler(this.k5M_Click);
+            // 
+            // k6M
+            // 
+            this.k6M.Name = "k6M";
+            this.k6M.Size = new System.Drawing.Size(216, 26);
+            this.k6M.Text = "k6";
+            this.k6M.Click += new System.EventHandler(this.k6M_Click);
+            // 
+            // k7M
+            // 
+            this.k7M.Name = "k7M";
+            this.k7M.Size = new System.Drawing.Size(216, 26);
+            this.k7M.Text = "k7";
+            this.k7M.Click += new System.EventHandler(this.k7M_Click);
+            // 
+            // regularToolStripMenuItem
+            // 
+            this.regularToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.R2,
+            this.r3});
+            this.regularToolStripMenuItem.Name = "regularToolStripMenuItem";
+            this.regularToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.regularToolStripMenuItem.Text = "Regular";
+            // 
+            // R2
+            // 
+            this.R2.Name = "R2";
+            this.R2.Size = new System.Drawing.Size(216, 26);
+            this.R2.Text = "Grafo regular 2";
+            this.R2.Click += new System.EventHandler(this.R2_Click);
+            // 
+            // r3
+            // 
+            this.r3.Name = "r3";
+            this.r3.Size = new System.Drawing.Size(216, 26);
+            this.r3.Text = "Grafo regular 3";
+            this.r3.Click += new System.EventHandler(this.r3_Click);
             // 
             // Form1
             // 
@@ -353,6 +452,17 @@
         private System.Windows.Forms.Button BTNGrado;
         private System.Windows.Forms.ToolStripMenuItem PropiedadGrafo;
         private System.Windows.Forms.ToolStripMenuItem GrafoIs;
+        private System.Windows.Forms.ToolStripMenuItem knToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem k1M;
+        private System.Windows.Forms.ToolStripMenuItem k2M;
+        private System.Windows.Forms.ToolStripMenuItem k3M;
+        private System.Windows.Forms.ToolStripMenuItem k4M;
+        private System.Windows.Forms.ToolStripMenuItem k5M;
+        private System.Windows.Forms.ToolStripMenuItem k6M;
+        private System.Windows.Forms.ToolStripMenuItem k7M;
+        private System.Windows.Forms.ToolStripMenuItem regularToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem R2;
+        private System.Windows.Forms.ToolStripMenuItem r3;
     }
 }
 
