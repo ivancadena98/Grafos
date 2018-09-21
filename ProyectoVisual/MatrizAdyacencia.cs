@@ -39,8 +39,9 @@ namespace ProyectoVisual
                     {
                         MatrizIn[arista[j].IDV1, arista[j].IDV2] = 1;
                     }
-                        MatrizIn[arista[j].IDV1, arista[j].IDV2] = 1;
-                        MatrizIn[arista[j].IDV2, arista[j].IDV1] = 1;
+                    MatrizIn[arista[j].IDV1, arista[j].IDV2] = 1;
+                    MatrizIn[arista[j].IDV2, arista[j].IDV1] = 1;
+
                 }
             }
         }

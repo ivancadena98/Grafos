@@ -30,8 +30,8 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuGrafo = new System.Windows.Forms.ToolStripMenuItem();
+            this.GrafoNuevo = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GuardarG = new System.Windows.Forms.ToolStripMenuItem();
             this.GuardarGrafoC = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +48,8 @@
             this.MatrizMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.MatrizAd = new System.Windows.Forms.ToolStripMenuItem();
             this.MatrizInc = new System.Windows.Forms.ToolStripMenuItem();
+            this.PropiedadGrafo = new System.Windows.Forms.ToolStripMenuItem();
+            this.GrafoIs = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.IdGrafos = new System.Windows.Forms.NumericUpDown();
@@ -77,11 +79,12 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem,
+            this.MenuGrafo,
             this.VerticeMenu,
             this.AristaMenu,
             this.MenuLista,
-            this.MatrizMenu});
+            this.MatrizMenu,
+            this.PropiedadGrafo});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -89,23 +92,24 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // archivoToolStripMenuItem
+            // MenuGrafo
             // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevoToolStripMenuItem,
+            this.MenuGrafo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GrafoNuevo,
             this.abrirToolStripMenuItem,
             this.GuardarG,
             this.GuardarGrafoC});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
-            this.archivoToolStripMenuItem.Text = "Archivo";
+            this.MenuGrafo.Name = "MenuGrafo";
+            this.MenuGrafo.Size = new System.Drawing.Size(71, 24);
+            this.MenuGrafo.Text = "Archivo";
             // 
-            // nuevoToolStripMenuItem
+            // GrafoNuevo
             // 
-            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
-            this.nuevoToolStripMenuItem.Text = "Nuevo";
-            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
+            this.GrafoNuevo.Enabled = false;
+            this.GrafoNuevo.Name = "GrafoNuevo";
+            this.GrafoNuevo.Size = new System.Drawing.Size(188, 26);
+            this.GrafoNuevo.Text = "Nuevo";
+            this.GrafoNuevo.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // abrirToolStripMenuItem
             // 
@@ -203,7 +207,7 @@
             // ListaAdy
             // 
             this.ListaAdy.Name = "ListaAdy";
-            this.ListaAdy.Size = new System.Drawing.Size(216, 26);
+            this.ListaAdy.Size = new System.Drawing.Size(213, 26);
             this.ListaAdy.Text = "Lista de adyacencia";
             this.ListaAdy.Click += new System.EventHandler(this.ListaAdy_Click);
             // 
@@ -231,6 +235,23 @@
             this.MatrizInc.Size = new System.Drawing.Size(225, 26);
             this.MatrizInc.Text = "Matríz de incidencia";
             this.MatrizInc.Click += new System.EventHandler(this.matrízDeIncidenciaToolStripMenuItem_Click);
+            // 
+            // PropiedadGrafo
+            // 
+            this.PropiedadGrafo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GrafoIs});
+            this.PropiedadGrafo.Enabled = false;
+            this.PropiedadGrafo.Name = "PropiedadGrafo";
+            this.PropiedadGrafo.Size = new System.Drawing.Size(104, 24);
+            this.PropiedadGrafo.Text = "Propiedades";
+            // 
+            // GrafoIs
+            // 
+            this.GrafoIs.Enabled = false;
+            this.GrafoIs.Name = "GrafoIs";
+            this.GrafoIs.Size = new System.Drawing.Size(216, 26);
+            this.GrafoIs.Text = "Isomorfo";
+            this.GrafoIs.Click += new System.EventHandler(this.GrafoIs_Click);
             // 
             // openFileDialog1
             // 
@@ -306,8 +327,8 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuGrafo;
+        private System.Windows.Forms.ToolStripMenuItem GrafoNuevo;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GuardarG;
         private System.Windows.Forms.ToolStripMenuItem GuardarGrafoC;
@@ -330,6 +351,8 @@
         private System.Windows.Forms.ToolStripMenuItem MatrizInc;
         private System.Windows.Forms.RichTextBox RTBGrafo;
         private System.Windows.Forms.Button BTNGrado;
+        private System.Windows.Forms.ToolStripMenuItem PropiedadGrafo;
+        private System.Windows.Forms.ToolStripMenuItem GrafoIs;
     }
 }
 

@@ -58,6 +58,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Grafo.cs" />
+    <Compile Include="Isomorfismo.cs" />
     <Compile Include="ListaAdyacente.cs" />
     <Compile Include="MatrizAdyacencia.cs" />
     <Compile Include="MatrizIncidencia.cs" />

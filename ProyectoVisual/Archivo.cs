@@ -22,17 +22,17 @@ namespace ProyectoVisual
                 ruta = value;
             }
         }
-        public void Guardar(Grafo g)
+        public void Guardar(List<Grafo> g)
         {
             var jsongrafo = JsonConvert.SerializeObject(g);
             System.IO.File.WriteAllText(ruta, jsongrafo);
         }
-        public Grafo Abrir(Pen D)
+        public List<Grafo> Abrir(Pen D)
         {
 
-            Grafo g = new Grafo(D);
-            g = JsonConvert.DeserializeObject<Grafo>(System.IO.File.ReadAllText(ruta));
-            return g;
+           List< Grafo> r = new List<Grafo>();
+            r = JsonConvert.DeserializeObject<List<Grafo>>(System.IO.File.ReadAllText(ruta));
+            return r;
         }
     }
 }

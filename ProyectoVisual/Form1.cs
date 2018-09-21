@@ -51,7 +51,8 @@ namespace ProyectoVisual
         //Lista de grafos
         List<Grafo> ListGrafo;
         Grafo grafo;
-
+        //Auxiliares 
+        int[,] AuxList;
         public Form1()
         {
             InitializeComponent();
@@ -238,6 +239,7 @@ namespace ProyectoVisual
             GuardarGrafoC.Enabled = true;
             MatrizMenu.Enabled = true;
             MenuLista.Enabled = true;
+            PropiedadGrafo.Enabled = GrafoIs.Enabled = true;
         }
 
        //MOVER VERTICE
@@ -288,8 +290,6 @@ namespace ProyectoVisual
         //ABRIR
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            
             checando = true; //se activa el hilo que checa que el proyecto actualizado esté guardado
             while (checando)
             {
@@ -300,18 +300,22 @@ namespace ProyectoVisual
                 {
 
                     archivo.Ruta = openFileDialog1.FileName;
-
                     //abre el grafo nuevo
-                    grafo = archivo.Abrir(flD);
-                    grafo.Dibujar(lienzo);
+                    ListGrafo = archivo.Abrir(flD);
+                    foreach (Grafo g in ListGrafo)
+                        g.Dibujar(lienzo);
                 }
                 else
                 {
-                    grafoaux.copiar(grafo);
-                    grafoaux.destruir();
-                    grafo.Dibujar(lienzo);
+                    foreach (Grafo g in ListGrafo)
+                    {
+                        grafoaux.copiar(g);
+                        grafoaux.destruir();
+                        g.Dibujar(lienzo);
+                    }
                 }
                 borrar = false;
+                VerticeMenu.Enabled = true;
             }
 
 
@@ -328,9 +332,11 @@ namespace ProyectoVisual
                 }
                 else
                     return;
+
+             
+                    archivo.Guardar(ListGrafo);
+                up2Date = true;
             }
-            archivo.Guardar(grafo);
-            up2Date = true;
         }
 
         //GUARDAR COMO
@@ -339,8 +345,7 @@ namespace ProyectoVisual
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 archivo.Ruta = saveFileDialog1.FileName;
-
-                archivo.Guardar(grafo);
+                archivo.Guardar(ListGrafo);
                 up2Date = true;
             }
         }
@@ -358,7 +363,8 @@ namespace ProyectoVisual
                         {
                             borrar = true;
                             lienzo.Clear(Color.White);
-                            grafo.copiar(grafoaux);
+                            foreach(Grafo g in ListGrafo)
+                                g.copiar(grafoaux);
                             //grafo.destruir();
                             up2Date = true;
                             AristaMenu.Enabled = false;
@@ -370,13 +376,12 @@ namespace ProyectoVisual
                     else
                     {
                         borrar = true;
-                        lienzo.Clear(Color.LightGray);
-                        grafo.copiar(grafoaux);
+                        lienzo.Clear(Color.White);
+                        foreach (Grafo g in ListGrafo)
+                            g.copiar(grafoaux);
                         //grafo.destruir();
                         up2Date = true;
                     }
-                        
-
                     checando = false;
                 }
                 
@@ -431,14 +436,18 @@ namespace ProyectoVisual
                                 archivo.Ruta = openFileDialog1.FileName;
 
                                 //abre el grafo nuevo
-                                grafo = archivo.Abrir(flD);
-                                grafo.Dibujar(lienzo);
+                                ListGrafo = archivo.Abrir(flD);
+                                foreach (Grafo g in ListGrafo)
+                                    g.Dibujar(lienzo);
                             }
                             else
                             {
-                                grafoaux.copiar(grafo);
-                                grafoaux.destruir();
-                                grafo.Dibujar(lienzo);
+                                foreach (Grafo g in ListGrafo)
+                                {
+                                    grafoaux.copiar(g);
+                                    grafoaux.destruir();
+                                    g.Dibujar(lienzo);
+                                }
                             }
                             borrar = false;
                         }
@@ -462,7 +471,7 @@ namespace ProyectoVisual
                             else
                                 return;
                         }
-                        archivo.Guardar(grafo);
+                        archivo.Guardar(ListGrafo);
                         up2Date = true;
                     }
                         
@@ -496,7 +505,7 @@ namespace ProyectoVisual
         private void BTNAgregar_Click(object sender, EventArgs e)
         {
             tipo = -1;
-            VerticeMenu.Enabled = true;
+            GrafoNuevo.Enabled = VerticeMenu.Enabled = true;
             Grafo g = new Grafo(flD);
             ListGrafo.Add(g);
             IdGrafos.Value ++;
@@ -534,7 +543,6 @@ namespace ProyectoVisual
         //Imprimir la matríz de incidencia
         private void matrízDeIncidenciaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int[,] AuxList;
             RTBGrafo.Clear();
             if (ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count == 0)
             {
@@ -595,7 +603,6 @@ namespace ProyectoVisual
         //imprimir la matriz de adyacencia
         private void MatrizAd_Click(object sender, EventArgs e)
         {
-            int[,] AuxList;
             RTBGrafo.Clear();
             if(ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count == 0)
             {
@@ -605,52 +612,36 @@ namespace ProyectoVisual
             {
                 ListGrafo[(int)IdGrafos.Value - 1].MatAdDir();
                 AuxList = ListGrafo[(int)IdGrafos.Value - 1].RegresaAd();
-                RTBGrafo.Text += " ";
-                RTBGrafo.Text += "|    ";
-                foreach (Vertice a in ListGrafo[(int)IdGrafos.Value - 1].Vertices)
-                {
-                    RTBGrafo.Text += string.Format("{0,4:D}", (a.ID + 1).ToString());
-                }
-                RTBGrafo.Text += "\n";
-                for (int i = 0; i < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; i++)
-                {
-                    RTBGrafo.Text += (ListGrafo[(int)IdGrafos.Value - 1].Vertices[i].ID + 1).ToString() + "|";
-                    RTBGrafo.Text += "   ";
-                    for (int j = 0; j < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; j++)
-                    {
-
-                        //RTBGrafo.Text += (AuxList[i, j]).ToString();
-                        RTBGrafo.Text += string.Format("{0,4:D}", AuxList[i, j].ToString());
-                    }
-                    RTBGrafo.Text += Environment.NewLine;
-                }
-
+                ImprimeMat();
             }
             else if (!dirigido)
             {
                 ListGrafo[(int)IdGrafos.Value - 1].MatANoDir();
                 AuxList = ListGrafo[(int)IdGrafos.Value - 1].RegresaAd();
-                RTBGrafo.Text += " ";
-                RTBGrafo.Text += "|    ";
-                foreach (Vertice a in ListGrafo[(int)IdGrafos.Value - 1].Vertices)
+                ImprimeMat();
+            }
+        }
+        //Método para agregar la atriz de adyacencia al form
+        public void ImprimeMat()
+        {
+            RTBGrafo.Text += " ";
+            RTBGrafo.Text += "|    ";
+            foreach (Vertice a in ListGrafo[(int)IdGrafos.Value - 1].Vertices)
+            {
+                //RTBGrafo.Text += "  ";
+                RTBGrafo.Text += string.Format("{0,4:D}", (a.ID + 1).ToString());
+                //RTBGrafo.Text += "";
+            }
+            RTBGrafo.Text += "\n";
+            for (int i = 0; i < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; i++)
+            {
+                RTBGrafo.Text += (ListGrafo[(int)IdGrafos.Value - 1].Vertices[i].ID + 1).ToString() + "|";
+                RTBGrafo.Text += "   ";
+                for (int j = 0; j < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; j++)
                 {
-                    //RTBGrafo.Text += "  ";
-                    RTBGrafo.Text += string.Format("{0,4:D}", (a.ID + 1).ToString());
-                    //RTBGrafo.Text += "";
+                    RTBGrafo.Text += string.Format("{0,4:D}", AuxList[i, j].ToString());
                 }
-                RTBGrafo.Text += "\n";
-                for (int i = 0; i < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; i++)
-                {
-                    RTBGrafo.Text += (ListGrafo[(int)IdGrafos.Value - 1].Vertices[i].ID + 1).ToString() + "|";
-                    RTBGrafo.Text += "   ";
-                    for (int j = 0; j < ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count; j++)
-                    {
-
-                        //RTBGrafo.Text += (AuxList[i, j]).ToString();
-                        RTBGrafo.Text += string.Format("{0,4:D}", AuxList[i, j].ToString());
-                    }
-                    RTBGrafo.Text += Environment.NewLine;
-                }
+                RTBGrafo.Text += Environment.NewLine;
             }
         }
         //Método para imprimir los grafos
@@ -678,7 +669,38 @@ namespace ProyectoVisual
         {
 
         }
-
+        //Evento para activar la propiedad de isomorfo
+        private void GrafoIs_Click(object sender, EventArgs e)
+        {
+            
+            if (ListGrafo.Count == 1)
+            {
+                MessageBox.Show("Debe haber más de 1 grafo");
+            }
+            else
+            {
+                int[,] U = ListGrafo[0].RegresaAd();
+                int[,] V = ListGrafo[1].RegresaAd();
+                Isomorfismo IS = new Isomorfismo(ListGrafo[0], ListGrafo[1],U,
+                V,ListGrafo[0].Vertices.Count);
+                if (!IS.Ban) //Es falso
+                {
+                    MessageBox.Show("Los grafos no son iguales");
+                    if (IS.VerAr())
+                    {
+                        IS.CambiaMat();
+                        AuxList = IS.AuxListV1;
+                        ImprimeMat();
+                        //IS.GradosRenglon();
+                    }
+                    else
+                        MessageBox.Show("No tiene el mismo numero de vertices o aristas");
+                }
+                else
+                    MessageBox.Show("Los grafos son iguales");
+                //}
+            }
+        }
         //Agregar Arista Dirigida
         private void agregarAristaDirigidaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
