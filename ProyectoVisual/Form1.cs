@@ -370,7 +370,8 @@ namespace ProyectoVisual
                             borrar = true;
                             lienzo.Clear(Color.White);
                             foreach(Grafo g in ListGrafo)
-                                g.copiar(grafoaux);
+                                IdGrafos.Value --;
+                            ListGrafo.Clear();
                             //grafo.destruir();
                             up2Date = true;
                             AristaMenu.Enabled = false;
@@ -511,7 +512,9 @@ namespace ProyectoVisual
         private void BTNAgregar_Click(object sender, EventArgs e)
         {
             tipo = -1;
-            GrafoNuevo.Enabled = VerticeMenu.Enabled = true;
+            //GrafoNuevo.Enabled = 
+            VerticeMenu.Enabled = true;
+            AbrirG.Enabled = false;
             Grafo g = new Grafo(flD);
             ListGrafo.Add(g);
             IdGrafos.Value ++;
@@ -682,84 +685,100 @@ namespace ProyectoVisual
         //Evento para activar la propiedad de isomorfo
         private void GrafoIs_Click(object sender, EventArgs e)
         {
+            //Contador que muestra el numero de pasos que van
             int cont = 1;
-            if (ListGrafo.Count == 1)
+            if (ListGrafo.Count == 1) //Tamaño de lista de grafos
             {
                 MessageBox.Show("Debe haber más de 1 grafo");
             }
             else
             {
-                ListGrafo[0].MatANoDir();
-                ListGrafo[1].MatANoDir();
+                ListGrafo[0].MatANoDir(); //Matris de adyacencia del grafo U
+                ListGrafo[1].MatANoDir();//Matris de adyacencia del grafo V
 
-                ListGrafo[0].CalculaGrado();
-                ListGrafo[1].CalculaGrado();
-                RTBGrafo.Text += "Matriz original \n";
-                AuxList = ListGrafo[1].RegresaAd();
-                ImprimeMat();
+                ListGrafo[0].CalculaGrado(); //Caldula los grados del grafo U
+                ListGrafo[1].CalculaGrado(); //Caldula los grados del grafo V
+                RTBGrafo.Text += "Matriz de U \n";
+                AuxList = ListGrafo[0].RegresaAd(); //Matriz de adyacencia original del grafo U
+                ImprimeMat(); //Metodo para imprimir la matriz AuxList
+                RTBGrafo.Text += "Matriz inicial de V \n";
+                AuxList = ListGrafo[1].RegresaAd(); //Matriz de adyacencia original del grafo V
+                ImprimeMat(); //Metodo para imprimir la matriz AuxList
                 
-                int[,] U = ListGrafo[0].RegresaAd();
-                int[,] V = ListGrafo[1].RegresaAd();
+                int[,] U = ListGrafo[0].RegresaAd(); //Se guarda la matriz de adyacencia del grafo U
+                int[,] V = ListGrafo[1].RegresaAd(); //Se guarda la matriz de adyacencia del grafo V
 
+                //Se crea una instancia de isomorfismo para hacer los cálculos
                 Isomorfismo IS = new Isomorfismo(ListGrafo[0], ListGrafo[1],U,
                 V,ListGrafo[0].Vertices.Count);
-                IS.MatrizIGual();
-                if (!IS.Ban) //Es falso
+                IS.MatrizIGual(); //Método que compara las matrices de U y V
+                if (!IS.Ban) //No son iguales
                 {
-                    if (IS.VerAr())
+                    if (IS.VerAr())//Verifica que tengan el mismo numero de vertices y aristas
                     {
                         
-                        if (IS.GradoVertice())
+                        if (IS.GradoVertice()) //Verifica el numero de grados de los nodos
                         {
-                            for (int i = 0; i < ListGrafo[0].Vertices.Count; i++)
+                            for (int i = 0; i < ListGrafo[0].Vertices.Count; i++) //accede al grafo u y v
                             {
-                                int a1 = ListGrafo[1].Vertices[i].total();
+                                //Se guarda el grado el primer nodo de V
+                                int a1 = ListGrafo[1].Vertices[i].total(); 
 
                                 for (int j = 0; j < ListGrafo[0].Vertices.Count; j++)
                                 {
-                                    int a2 = ListGrafo[0].Vertices[j].total();
-                                        if (a1 == a2)
+                                    //Se guarda el grado del nodo j de U
+                                    int a2 = ListGrafo[0].Vertices[j].total(); //Se guarda el grado del nodo
+                                        if (a1 == a2) //Se busca que los grado sean iguales
                                         {
                                             if (cont == 0)
                                                 cont++;
                                             else
                                             {
-                                                IS.CambiaMat(i, j);
+                                                /*Se hace el cambio de matriz entre la posicion de i  por el de j
+                                                Se efectua el cambio del mismo vertice
+                                                esto no afecta en nada el resultado final*/
+                                                IS.CambiaMat(i, j); 
+                                            //Se recupera la matriz modificada
                                                 AuxList = IS.AuxListV1;
+                                            //Se compara con la original de U
                                                 IS.MatrizIGual();
-                                                RTBGrafo.Text += "Cambio numero " + cont.ToString() +
-                                                " y se cambia " + (i + 1).ToString() +
+                                                RTBGrafo.Text += "Cambio numero: " + cont.ToString() +
+                                                " | Se cambia " + (i + 1).ToString() +
                                                 " por "+ (j + 1).ToString()+ "\n";
                                                  cont++;
                                                  ImprimeMat();
                                                  j = ListGrafo[0].Vertices.Count;
                                             }
                                         }
-                                        if (IS.Ban)
+                                        if (IS.Ban) //Si son iguales se sale del ciclo
                                         {
                                             i = ListGrafo[0].Vertices.Count;
                                             
                                         }
                                 }
                             }
-                            if (IS.Ban)
+                            if (IS.Ban) //Si recorre los movimientos y son iguales dispara el mensaje
                             {
                                 MessageBox.Show("Son isomorficos");
                             }
                             else
                             {
+                                //Si recorre los movimientos y no son iguales dispara el mensaje
                                 MessageBox.Show("No son isomorficos");
                             }
                                 
                         }
                         else
+                            //Los grados son diferentes
                             MessageBox.Show("Grado mayor de vertice diferente, no son isomorficos");
                         //IS.GradosRenglon();
                     }
                     else
+                        //No tiene le mismo numero de nodos o aristas
                         MessageBox.Show("No tiene el mismo numero de vertices o aristas");
                 }
                 else
+                    //Son iguales de entrada, deben ser diferentes
                     MessageBox.Show("Los grafos son iguales");
                 //}
                 ListGrafo[0].BorraGrados();
@@ -767,9 +786,11 @@ namespace ProyectoVisual
                 cont = 1;
             }
         }
+        //Eventos para mostrar los grafos kn,wn,cn, rn
 
         private void k1M_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k1.json";
@@ -781,6 +802,7 @@ namespace ProyectoVisual
 
         private void k2M_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k2.json";
@@ -792,6 +814,7 @@ namespace ProyectoVisual
 
         private void k3M_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k3.json";
@@ -803,6 +826,7 @@ namespace ProyectoVisual
 
         private void k4M_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k4.json";
@@ -814,6 +838,7 @@ namespace ProyectoVisual
 
         private void k5M_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k5.json";
@@ -825,6 +850,7 @@ namespace ProyectoVisual
 
         private void k6M_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k6.json";
@@ -836,6 +862,7 @@ namespace ProyectoVisual
 
         private void k7M_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k7.json";
@@ -850,6 +877,7 @@ namespace ProyectoVisual
 
         private void R2_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/GRegular2.json";
@@ -864,9 +892,191 @@ namespace ProyectoVisual
 
         private void r3_Click(object sender, EventArgs e)
         {
+            VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/GRegular3.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void R4_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/GRegular4.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void c3_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c3.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void c4_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c4.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void c5_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c5.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void c6_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c6.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void c7_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c7.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void w3_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w3.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void w4_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w4.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void w5_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w5.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void w6_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w6.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void w7_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            IdGrafos.Value = 0;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w7.json";
+            //abre el grafo nuevo
+            ListGrafo = archivo.Abrir(flD);
+            foreach (Grafo g in ListGrafo)
+            {
+                g.Dibujar(lienzo);
+                IdGrafos.Value++;
+            }
+        }
+
+        private void q3_Click(object sender, EventArgs e)
+        {
+            VerticeMenu.Enabled = true;
+            ListGrafo.Clear();
+            lienzo.Clear(Color.White);
+            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/Cubo.json";
             //abre el grafo nuevo
             ListGrafo = archivo.Abrir(flD);
             foreach (Grafo g in ListGrafo)

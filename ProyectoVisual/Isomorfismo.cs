@@ -79,24 +79,28 @@ namespace ProyectoVisual
             {
                 for (int j = 0; j < tam; j++) //Columna
                 {
+                    //Compara si son iguales
                     if (AuxListU[i, j] != AuxListV[i, j])
                     {
+                        //Falso si un valor no es igual
                         ban = false;
-                        break;
+                        i = j = tam;
                     }
                 }
             }
             
         }
-        
+        //Método para cambiar renglones y columnas
         public void CambiaMat(int i,int j)
         {
+                    //Ciclo para cambiar el renglón
                     for (int c = 0; c < tam; c++)
                     {
                         int aux2 = AuxListV[i, c];
                         AuxListV[i, c] = AuxListV[j, c];
                         AuxListV[j, c] = aux2;
                     }
+                    //Ciclo para cambiar la columna
                     for (int c = 0; c < tam; c++)
                     {
                         int aux2 = AuxListV[c, i];
@@ -105,7 +109,7 @@ namespace ProyectoVisual
                     }
             
         }
-        public void GradosRenglon(int[,] prueba)
+       /* public void GradosRenglon(int[,] prueba)
             {
             int b = 0;
             for (int i=0; i < tam; i++)
@@ -123,7 +127,7 @@ namespace ProyectoVisual
                     b = GradosV[i];
             }
             aux = b; //Número más grande de renglón
-        }
+        }*/
         //Método para sacar el grado más alto y el número de renglones que tienen ese grado
 
 

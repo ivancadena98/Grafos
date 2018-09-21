@@ -32,7 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuGrafo = new System.Windows.Forms.ToolStripMenuItem();
             this.GrafoNuevo = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AbrirG = new System.Windows.Forms.ToolStripMenuItem();
             this.GuardarG = new System.Windows.Forms.ToolStripMenuItem();
             this.GuardarGrafoC = new System.Windows.Forms.ToolStripMenuItem();
             this.VerticeMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,12 +50,6 @@
             this.MatrizInc = new System.Windows.Forms.ToolStripMenuItem();
             this.PropiedadGrafo = new System.Windows.Forms.ToolStripMenuItem();
             this.GrafoIs = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.IdGrafos = new System.Windows.Forms.NumericUpDown();
-            this.BTNAgregar = new System.Windows.Forms.Button();
-            this.RTBGrafo = new System.Windows.Forms.RichTextBox();
-            this.BTNGrado = new System.Windows.Forms.Button();
             this.knToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.k1M = new System.Windows.Forms.ToolStripMenuItem();
             this.k2M = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +61,27 @@
             this.regularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.R2 = new System.Windows.Forms.ToolStripMenuItem();
             this.r3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.R4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.CicloG = new System.Windows.Forms.ToolStripMenuItem();
+            this.c3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.c4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.c5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.c6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.c7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.volanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.w3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.w4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.w5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.w6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.w7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cuboToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.q3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.IdGrafos = new System.Windows.Forms.NumericUpDown();
+            this.BTNAgregar = new System.Windows.Forms.Button();
+            this.RTBGrafo = new System.Windows.Forms.RichTextBox();
+            this.BTNGrado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).BeginInit();
@@ -97,7 +112,10 @@
             this.MatrizMenu,
             this.PropiedadGrafo,
             this.knToolStripMenuItem,
-            this.regularToolStripMenuItem});
+            this.regularToolStripMenuItem,
+            this.CicloG,
+            this.volanteToolStripMenuItem,
+            this.cuboToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -109,7 +127,7 @@
             // 
             this.MenuGrafo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.GrafoNuevo,
-            this.abrirToolStripMenuItem,
+            this.AbrirG,
             this.GuardarG,
             this.GuardarGrafoC});
             this.MenuGrafo.Name = "MenuGrafo";
@@ -120,28 +138,28 @@
             // 
             this.GrafoNuevo.Enabled = false;
             this.GrafoNuevo.Name = "GrafoNuevo";
-            this.GrafoNuevo.Size = new System.Drawing.Size(188, 26);
+            this.GrafoNuevo.Size = new System.Drawing.Size(216, 26);
             this.GrafoNuevo.Text = "Nuevo";
             this.GrafoNuevo.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
-            // abrirToolStripMenuItem
+            // AbrirG
             // 
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            this.AbrirG.Name = "AbrirG";
+            this.AbrirG.Size = new System.Drawing.Size(216, 26);
+            this.AbrirG.Text = "Abrir";
+            this.AbrirG.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // GuardarG
             // 
             this.GuardarG.Name = "GuardarG";
-            this.GuardarG.Size = new System.Drawing.Size(188, 26);
+            this.GuardarG.Size = new System.Drawing.Size(216, 26);
             this.GuardarG.Text = "Guardar";
             this.GuardarG.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
             // GuardarGrafoC
             // 
             this.GuardarGrafoC.Name = "GuardarGrafoC";
-            this.GuardarGrafoC.Size = new System.Drawing.Size(188, 26);
+            this.GuardarGrafoC.Size = new System.Drawing.Size(216, 26);
             this.GuardarGrafoC.Text = "Guardar como...";
             this.GuardarGrafoC.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
             // 
@@ -266,6 +284,209 @@
             this.GrafoIs.Text = "Isomorfo";
             this.GrafoIs.Click += new System.EventHandler(this.GrafoIs_Click);
             // 
+            // knToolStripMenuItem
+            // 
+            this.knToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.k1M,
+            this.k2M,
+            this.k3M,
+            this.k4M,
+            this.k5M,
+            this.k6M,
+            this.k7M});
+            this.knToolStripMenuItem.Name = "knToolStripMenuItem";
+            this.knToolStripMenuItem.Size = new System.Drawing.Size(38, 24);
+            this.knToolStripMenuItem.Text = "Kn";
+            // 
+            // k1M
+            // 
+            this.k1M.Name = "k1M";
+            this.k1M.Size = new System.Drawing.Size(99, 26);
+            this.k1M.Text = "k1";
+            this.k1M.Click += new System.EventHandler(this.k1M_Click);
+            // 
+            // k2M
+            // 
+            this.k2M.Name = "k2M";
+            this.k2M.Size = new System.Drawing.Size(99, 26);
+            this.k2M.Text = "k2";
+            this.k2M.Click += new System.EventHandler(this.k2M_Click);
+            // 
+            // k3M
+            // 
+            this.k3M.Name = "k3M";
+            this.k3M.Size = new System.Drawing.Size(99, 26);
+            this.k3M.Text = "k3";
+            this.k3M.Click += new System.EventHandler(this.k3M_Click);
+            // 
+            // k4M
+            // 
+            this.k4M.Name = "k4M";
+            this.k4M.Size = new System.Drawing.Size(99, 26);
+            this.k4M.Text = "k4";
+            this.k4M.Click += new System.EventHandler(this.k4M_Click);
+            // 
+            // k5M
+            // 
+            this.k5M.Name = "k5M";
+            this.k5M.Size = new System.Drawing.Size(99, 26);
+            this.k5M.Text = "k5";
+            this.k5M.Click += new System.EventHandler(this.k5M_Click);
+            // 
+            // k6M
+            // 
+            this.k6M.Name = "k6M";
+            this.k6M.Size = new System.Drawing.Size(99, 26);
+            this.k6M.Text = "k6";
+            this.k6M.Click += new System.EventHandler(this.k6M_Click);
+            // 
+            // k7M
+            // 
+            this.k7M.Name = "k7M";
+            this.k7M.Size = new System.Drawing.Size(99, 26);
+            this.k7M.Text = "k7";
+            this.k7M.Click += new System.EventHandler(this.k7M_Click);
+            // 
+            // regularToolStripMenuItem
+            // 
+            this.regularToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.R2,
+            this.r3,
+            this.R4});
+            this.regularToolStripMenuItem.Name = "regularToolStripMenuItem";
+            this.regularToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.regularToolStripMenuItem.Text = "Regular";
+            // 
+            // R2
+            // 
+            this.R2.Name = "R2";
+            this.R2.Size = new System.Drawing.Size(216, 26);
+            this.R2.Text = "Grafo regular 2";
+            this.R2.Click += new System.EventHandler(this.R2_Click);
+            // 
+            // r3
+            // 
+            this.r3.Name = "r3";
+            this.r3.Size = new System.Drawing.Size(216, 26);
+            this.r3.Text = "Grafo regular 3";
+            this.r3.Click += new System.EventHandler(this.r3_Click);
+            // 
+            // R4
+            // 
+            this.R4.Name = "R4";
+            this.R4.Size = new System.Drawing.Size(216, 26);
+            this.R4.Text = "Grafo regular 4";
+            this.R4.Click += new System.EventHandler(this.R4_Click);
+            // 
+            // CicloG
+            // 
+            this.CicloG.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.c3,
+            this.c4,
+            this.c5,
+            this.c6,
+            this.c7});
+            this.CicloG.Name = "CicloG";
+            this.CicloG.Size = new System.Drawing.Size(54, 24);
+            this.CicloG.Text = "Ciclo";
+            // 
+            // c3
+            // 
+            this.c3.Name = "c3";
+            this.c3.Size = new System.Drawing.Size(101, 26);
+            this.c3.Text = "C3";
+            this.c3.Click += new System.EventHandler(this.c3_Click);
+            // 
+            // c4
+            // 
+            this.c4.Name = "c4";
+            this.c4.Size = new System.Drawing.Size(101, 26);
+            this.c4.Text = "C4";
+            this.c4.Click += new System.EventHandler(this.c4_Click);
+            // 
+            // c5
+            // 
+            this.c5.Name = "c5";
+            this.c5.Size = new System.Drawing.Size(101, 26);
+            this.c5.Text = "C5";
+            this.c5.Click += new System.EventHandler(this.c5_Click);
+            // 
+            // c6
+            // 
+            this.c6.Name = "c6";
+            this.c6.Size = new System.Drawing.Size(101, 26);
+            this.c6.Text = "C6";
+            this.c6.Click += new System.EventHandler(this.c6_Click);
+            // 
+            // c7
+            // 
+            this.c7.Name = "c7";
+            this.c7.Size = new System.Drawing.Size(101, 26);
+            this.c7.Text = "C7";
+            this.c7.Click += new System.EventHandler(this.c7_Click);
+            // 
+            // volanteToolStripMenuItem
+            // 
+            this.volanteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.w3,
+            this.w4,
+            this.w5,
+            this.w6,
+            this.w7});
+            this.volanteToolStripMenuItem.Name = "volanteToolStripMenuItem";
+            this.volanteToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.volanteToolStripMenuItem.Text = "Giratorio";
+            // 
+            // w3
+            // 
+            this.w3.Name = "w3";
+            this.w3.Size = new System.Drawing.Size(103, 26);
+            this.w3.Text = "w3";
+            this.w3.Click += new System.EventHandler(this.w3_Click);
+            // 
+            // w4
+            // 
+            this.w4.Name = "w4";
+            this.w4.Size = new System.Drawing.Size(103, 26);
+            this.w4.Text = "w4";
+            this.w4.Click += new System.EventHandler(this.w4_Click);
+            // 
+            // w5
+            // 
+            this.w5.Name = "w5";
+            this.w5.Size = new System.Drawing.Size(103, 26);
+            this.w5.Text = "w5";
+            this.w5.Click += new System.EventHandler(this.w5_Click);
+            // 
+            // w6
+            // 
+            this.w6.Name = "w6";
+            this.w6.Size = new System.Drawing.Size(103, 26);
+            this.w6.Text = "w6";
+            this.w6.Click += new System.EventHandler(this.w6_Click);
+            // 
+            // w7
+            // 
+            this.w7.Name = "w7";
+            this.w7.Size = new System.Drawing.Size(103, 26);
+            this.w7.Text = "w7";
+            this.w7.Click += new System.EventHandler(this.w7_Click);
+            // 
+            // cuboToolStripMenuItem
+            // 
+            this.cuboToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.q3});
+            this.cuboToolStripMenuItem.Name = "cuboToolStripMenuItem";
+            this.cuboToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.cuboToolStripMenuItem.Text = "Cubo";
+            // 
+            // q3
+            // 
+            this.q3.Name = "q3";
+            this.q3.Size = new System.Drawing.Size(103, 26);
+            this.q3.Text = "Q3";
+            this.q3.Click += new System.EventHandler(this.q3_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -307,92 +528,6 @@
             this.BTNGrado.UseVisualStyleBackColor = true;
             this.BTNGrado.Click += new System.EventHandler(this.BTNGrado_Click);
             // 
-            // knToolStripMenuItem
-            // 
-            this.knToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.k1M,
-            this.k2M,
-            this.k3M,
-            this.k4M,
-            this.k5M,
-            this.k6M,
-            this.k7M});
-            this.knToolStripMenuItem.Name = "knToolStripMenuItem";
-            this.knToolStripMenuItem.Size = new System.Drawing.Size(38, 24);
-            this.knToolStripMenuItem.Text = "Kn";
-            // 
-            // k1M
-            // 
-            this.k1M.Name = "k1M";
-            this.k1M.Size = new System.Drawing.Size(216, 26);
-            this.k1M.Text = "k1";
-            this.k1M.Click += new System.EventHandler(this.k1M_Click);
-            // 
-            // k2M
-            // 
-            this.k2M.Name = "k2M";
-            this.k2M.Size = new System.Drawing.Size(216, 26);
-            this.k2M.Text = "k2";
-            this.k2M.Click += new System.EventHandler(this.k2M_Click);
-            // 
-            // k3M
-            // 
-            this.k3M.Name = "k3M";
-            this.k3M.Size = new System.Drawing.Size(216, 26);
-            this.k3M.Text = "k3";
-            this.k3M.Click += new System.EventHandler(this.k3M_Click);
-            // 
-            // k4M
-            // 
-            this.k4M.Name = "k4M";
-            this.k4M.Size = new System.Drawing.Size(216, 26);
-            this.k4M.Text = "k4";
-            this.k4M.Click += new System.EventHandler(this.k4M_Click);
-            // 
-            // k5M
-            // 
-            this.k5M.Name = "k5M";
-            this.k5M.Size = new System.Drawing.Size(216, 26);
-            this.k5M.Text = "k5";
-            this.k5M.Click += new System.EventHandler(this.k5M_Click);
-            // 
-            // k6M
-            // 
-            this.k6M.Name = "k6M";
-            this.k6M.Size = new System.Drawing.Size(216, 26);
-            this.k6M.Text = "k6";
-            this.k6M.Click += new System.EventHandler(this.k6M_Click);
-            // 
-            // k7M
-            // 
-            this.k7M.Name = "k7M";
-            this.k7M.Size = new System.Drawing.Size(216, 26);
-            this.k7M.Text = "k7";
-            this.k7M.Click += new System.EventHandler(this.k7M_Click);
-            // 
-            // regularToolStripMenuItem
-            // 
-            this.regularToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.R2,
-            this.r3});
-            this.regularToolStripMenuItem.Name = "regularToolStripMenuItem";
-            this.regularToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
-            this.regularToolStripMenuItem.Text = "Regular";
-            // 
-            // R2
-            // 
-            this.R2.Name = "R2";
-            this.R2.Size = new System.Drawing.Size(216, 26);
-            this.R2.Text = "Grafo regular 2";
-            this.R2.Click += new System.EventHandler(this.R2_Click);
-            // 
-            // r3
-            // 
-            this.r3.Name = "r3";
-            this.r3.Size = new System.Drawing.Size(216, 26);
-            this.r3.Text = "Grafo regular 3";
-            this.r3.Click += new System.EventHandler(this.r3_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -428,7 +563,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem MenuGrafo;
         private System.Windows.Forms.ToolStripMenuItem GrafoNuevo;
-        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AbrirG;
         private System.Windows.Forms.ToolStripMenuItem GuardarG;
         private System.Windows.Forms.ToolStripMenuItem GuardarGrafoC;
         private System.Windows.Forms.ToolStripMenuItem VerticeMenu;
@@ -463,6 +598,21 @@
         private System.Windows.Forms.ToolStripMenuItem regularToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem R2;
         private System.Windows.Forms.ToolStripMenuItem r3;
+        private System.Windows.Forms.ToolStripMenuItem R4;
+        private System.Windows.Forms.ToolStripMenuItem CicloG;
+        private System.Windows.Forms.ToolStripMenuItem c3;
+        private System.Windows.Forms.ToolStripMenuItem c4;
+        private System.Windows.Forms.ToolStripMenuItem c5;
+        private System.Windows.Forms.ToolStripMenuItem c6;
+        private System.Windows.Forms.ToolStripMenuItem c7;
+        private System.Windows.Forms.ToolStripMenuItem volanteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem w3;
+        private System.Windows.Forms.ToolStripMenuItem w4;
+        private System.Windows.Forms.ToolStripMenuItem w5;
+        private System.Windows.Forms.ToolStripMenuItem w6;
+        private System.Windows.Forms.ToolStripMenuItem w7;
+        private System.Windows.Forms.ToolStripMenuItem cuboToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem q3;
     }
 }
 
