@@ -711,10 +711,10 @@ namespace ProyectoVisual
                 //Se crea una instancia de isomorfismo para hacer los cálculos
                 Isomorfismo IS = new Isomorfismo(ListGrafo[0], ListGrafo[1],U,
                 V,ListGrafo[0].Vertices.Count);
-                IS.MatrizIGual(); //Método que compara las matrices de U y V
-                if (!IS.Ban) //No son iguales
+                if (IS.VerAr()) //Verifica que tengan el mismo numero de vertices y aristas
                 {
-                    if (IS.VerAr())//Verifica que tengan el mismo numero de vertices y aristas
+                    IS.MatrizIGual(); //Método que compara las matrices de U y V
+                    if (!IS.Ban)//No son iguales
                     {
                         
                         if (IS.GradoVertice()) //Verifica el numero de grados de los nodos
@@ -774,12 +774,13 @@ namespace ProyectoVisual
                         //IS.GradosRenglon();
                     }
                     else
-                        //No tiene le mismo numero de nodos o aristas
-                        MessageBox.Show("No tiene el mismo numero de vertices o aristas");
+                        //Son iguales de entrada, deben ser diferentes
+                        MessageBox.Show("Los grafos son iguales");
+                   
                 }
                 else
-                    //Son iguales de entrada, deben ser diferentes
-                    MessageBox.Show("Los grafos son iguales");
+                    //No tiene le mismo numero de nodos o aristas
+                    MessageBox.Show("No tiene el mismo numero de vertices o aristas");
                 //}
                 ListGrafo[0].BorraGrados();
                 ListGrafo[1].BorraGrados();
