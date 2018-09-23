@@ -788,303 +788,138 @@ namespace ProyectoVisual
             }
         }
         //Eventos para mostrar los grafos kn,wn,cn, rn
-
-        private void k1M_Click(object sender, EventArgs e)
-        {
+        public void AbreEspecial() {
             VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k1.json";
-            //abre el grafo nuevo
             ListGrafo = archivo.Abrir(flD);
             foreach (Grafo g in ListGrafo)
                 g.Dibujar(lienzo);
+        }
+        private void k1M_Click(object sender, EventArgs e)
+        {
+            archivo.Ruta = "GEspecial/k1.json";
+            AbreEspecial();
         }
 
         private void k2M_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k2.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-                g.Dibujar(lienzo);
+            archivo.Ruta = "GEspecial/k2.json";
+            AbreEspecial();
         }
 
         private void k3M_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k3.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-                g.Dibujar(lienzo);
+            archivo.Ruta = "GEspecial/k3.json";
+            AbreEspecial();
         }
 
         private void k4M_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k4.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-                g.Dibujar(lienzo);
+            archivo.Ruta = "GEspecial/k4.json";
+            AbreEspecial();
         }
 
         private void k5M_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k5.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-                g.Dibujar(lienzo);
+            archivo.Ruta = "GEspecial/k5.json";
+            AbreEspecial();
         }
 
         private void k6M_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k6.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-                g.Dibujar(lienzo);
+            archivo.Ruta = "GEspecial/k6.json";
+            AbreEspecial();
         }
 
         private void k7M_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/k7.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/k7.json";
+            AbreEspecial();
         }
 
         private void R2_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/GRegular2.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/GRegular2.json";
+            AbreEspecial();
         }
 
         private void r3_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/GRegular3.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/GRegular3.json";
+            AbreEspecial();
         }
 
         private void R4_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/GRegular4.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/GRegular4.json";
+            AbreEspecial();
         }
 
         private void c3_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c3.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "Grafos/GEspecial/c3.json";
+            AbreEspecial();
         }
 
         private void c4_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c4.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/c4.json";
+            AbreEspecial();
         }
 
         private void c5_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c5.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/c5.json";
+            AbreEspecial();
         }
 
         private void c6_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c6.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/c6.json";
+            AbreEspecial();
         }
 
         private void c7_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/c7.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/c7.json";
+            AbreEspecial();
         }
 
         private void w3_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w3.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/w3.json";
+            AbreEspecial();
         }
 
         private void w4_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w4.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/w4.json";
+            AbreEspecial();
         }
 
         private void w5_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w5.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/w5.json";
+            AbreEspecial();
         }
 
         private void w6_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w6.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/w6.json";
+            AbreEspecial();
         }
 
         private void w7_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            IdGrafos.Value = 0;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/w7.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/w7.json";
+            AbreEspecial();
         }
 
         private void q3_Click(object sender, EventArgs e)
         {
-            VerticeMenu.Enabled = true;
-            ListGrafo.Clear();
-            lienzo.Clear(Color.White);
-            archivo.Ruta = "C:/Users/Ivan/Desktop/Grafos/GEspecial/Cubo.json";
-            //abre el grafo nuevo
-            ListGrafo = archivo.Abrir(flD);
-            foreach (Grafo g in ListGrafo)
-            {
-                g.Dibujar(lienzo);
-                IdGrafos.Value++;
-            }
+            archivo.Ruta = "GEspecial/Cubo.json";
+            AbreEspecial();
         }
 
         //Agregar Arista Dirigida
