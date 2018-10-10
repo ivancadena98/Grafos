@@ -16,6 +16,7 @@ namespace ProyectoVisual
         private int id, idv1, idv2;
         private int x1, y1, x2, y2;
         private int Dir;
+        private bool ArVisitado = false;
         private Font letra = new Font("Arial", 10);
         private SolidBrush brocha = new SolidBrush(Color.Black);
         public Arista(int id_in, int idv1_in, int idv2_in, int x1_in, int y1_in, int x2_in, int y2_in, int D=0) {
@@ -125,6 +126,9 @@ namespace ProyectoVisual
                 Dir = value;
             }
         }
+
+        public bool ArVisitado1 { get => ArVisitado; set => ArVisitado = value; }
+
         //Método para dibujar una arísta
         public void DibujaArista(Graphics g)
         {

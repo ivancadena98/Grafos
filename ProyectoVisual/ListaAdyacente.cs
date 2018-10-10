@@ -27,6 +27,7 @@ namespace ProyectoVisual
          */
         public void Lista(List<Vertice> l, List<Arista> a)
         {
+            ide.Clear();
             vertice = l;
             arista = a;
 

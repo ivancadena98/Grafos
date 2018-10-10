@@ -295,7 +295,23 @@ namespace ProyectoVisual
             {
                 vr.VerticesEntrada = 0;
                 vr.VerticesSalida = 0;
+                vr.Tot1 = 0;
             }
+        }
+
+        public bool GradosPares()
+        {
+            bool bandera = true;
+            foreach(Vertice ver in vertices)
+            {
+                int a = ver.total();
+
+                if (a % 2 != 0)
+                {
+                    bandera = false;
+                }
+            }
+            return bandera;
         }
     }
 

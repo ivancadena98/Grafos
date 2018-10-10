@@ -298,6 +298,7 @@ namespace ProyectoVisual
             {
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
+                    AristaMenu.Enabled = MenuLista.Enabled = true;
                     ListGrafo.Clear();
                     lienzo.Clear(Color.White);
                     archivo.Ruta = openFileDialog1.FileName;
@@ -658,6 +659,10 @@ namespace ProyectoVisual
         //Método para imprimir los grafos
         private void BTNGrado_Click(object sender, EventArgs e)
         {
+            ImprimeGrados();
+        }
+        public void ImprimeGrados()
+        {
             RTBGrafo.Clear();
             ListGrafo[(int)IdGrafos.Value - 1].CalculaGrado();
             foreach (Vertice v in ListGrafo[(int)IdGrafos.Value - 1].Vertices)
@@ -673,11 +678,10 @@ namespace ProyectoVisual
                    " salida= " + v.VerticesSalida.ToString() + " Total= " + v.total();
                     RTBGrafo.Text += "\n";
                 }
-                v.VerticesEntrada = 0;
-                v.VerticesSalida = 0;
+                
             }
+            ListGrafo[(int)IdGrafos.Value - 1].BorraGrados();
         }
-
         private void MatrizMenu_Click(object sender, EventArgs e)
         {
 
@@ -730,10 +734,6 @@ namespace ProyectoVisual
                                     int a2 = ListGrafo[0].Vertices[j].total(); //Se guarda el grado del nodo
                                         if (a1 == a2) //Se busca que los grado sean iguales
                                         {
-                                            if (cont == 0)
-                                                cont++;
-                                            else
-                                            {
                                                 /*Se hace el cambio de matriz entre la posicion de i  por el de j
                                                 Se efectua el cambio del mismo vertice
                                                 esto no afecta en nada el resultado final*/
@@ -748,7 +748,7 @@ namespace ProyectoVisual
                                                  cont++;
                                                  ImprimeMat();
                                                  j = ListGrafo[0].Vertices.Count;
-                                            }
+                                            
                                         }
                                         if (IS.Ban) //Si son iguales se sale del ciclo
                                         {
@@ -789,12 +789,17 @@ namespace ProyectoVisual
         }
         //Eventos para mostrar los grafos kn,wn,cn, rn
         public void AbreEspecial() {
+            IdGrafos.Value = 0;
             VerticeMenu.Enabled = true;
             ListGrafo.Clear();
             lienzo.Clear(Color.White);
             ListGrafo = archivo.Abrir(flD);
             foreach (Grafo g in ListGrafo)
+            {
+                IdGrafos.Value++;
                 g.Dibujar(lienzo);
+            }
+                
         }
         private void k1M_Click(object sender, EventArgs e)
         {
@@ -920,6 +925,23 @@ namespace ProyectoVisual
         {
             archivo.Ruta = "GEspecial/Cubo.json";
             AbreEspecial();
+        }
+
+        private void Euler_Click(object sender, EventArgs e)
+        {
+            ImprimeGrados();
+            int Pos =(int) IdGrafos.Value;
+            ListGrafo[Pos-1].CalculaGrado();
+            if (ListGrafo[Pos - 1].GradosPares())
+            {
+                MessageBox.Show("Son pares");
+                
+            }
+            else
+            {
+                MessageBox.Show("Son impares");
+            }
+            ListGrafo[Pos - 1].BorraGrados();
         }
 
         //Agregar Arista Dirigida

@@ -82,6 +82,8 @@
             this.BTNAgregar = new System.Windows.Forms.Button();
             this.RTBGrafo = new System.Windows.Forms.RichTextBox();
             this.BTNGrado = new System.Windows.Forms.Button();
+            this.MenuPropiedades = new System.Windows.Forms.ToolStripMenuItem();
+            this.Euler = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).BeginInit();
@@ -115,7 +117,8 @@
             this.regularToolStripMenuItem,
             this.CicloG,
             this.volanteToolStripMenuItem,
-            this.cuboToolStripMenuItem});
+            this.cuboToolStripMenuItem,
+            this.MenuPropiedades});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -138,28 +141,28 @@
             // 
             this.GrafoNuevo.Enabled = false;
             this.GrafoNuevo.Name = "GrafoNuevo";
-            this.GrafoNuevo.Size = new System.Drawing.Size(216, 26);
+            this.GrafoNuevo.Size = new System.Drawing.Size(188, 26);
             this.GrafoNuevo.Text = "Nuevo";
             this.GrafoNuevo.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // AbrirG
             // 
             this.AbrirG.Name = "AbrirG";
-            this.AbrirG.Size = new System.Drawing.Size(216, 26);
+            this.AbrirG.Size = new System.Drawing.Size(188, 26);
             this.AbrirG.Text = "Abrir";
             this.AbrirG.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // GuardarG
             // 
             this.GuardarG.Name = "GuardarG";
-            this.GuardarG.Size = new System.Drawing.Size(216, 26);
+            this.GuardarG.Size = new System.Drawing.Size(188, 26);
             this.GuardarG.Text = "Guardar";
             this.GuardarG.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
             // GuardarGrafoC
             // 
             this.GuardarGrafoC.Name = "GuardarGrafoC";
-            this.GuardarGrafoC.Size = new System.Drawing.Size(216, 26);
+            this.GuardarGrafoC.Size = new System.Drawing.Size(188, 26);
             this.GuardarGrafoC.Text = "Guardar como...";
             this.GuardarGrafoC.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
             // 
@@ -238,7 +241,7 @@
             // ListaAdy
             // 
             this.ListaAdy.Name = "ListaAdy";
-            this.ListaAdy.Size = new System.Drawing.Size(213, 26);
+            this.ListaAdy.Size = new System.Drawing.Size(216, 26);
             this.ListaAdy.Text = "Lista de adyacencia";
             this.ListaAdy.Click += new System.EventHandler(this.ListaAdy_Click);
             // 
@@ -360,21 +363,21 @@
             // R2
             // 
             this.R2.Name = "R2";
-            this.R2.Size = new System.Drawing.Size(216, 26);
+            this.R2.Size = new System.Drawing.Size(184, 26);
             this.R2.Text = "Grafo regular 2";
             this.R2.Click += new System.EventHandler(this.R2_Click);
             // 
             // r3
             // 
             this.r3.Name = "r3";
-            this.r3.Size = new System.Drawing.Size(216, 26);
+            this.r3.Size = new System.Drawing.Size(184, 26);
             this.r3.Text = "Grafo regular 3";
             this.r3.Click += new System.EventHandler(this.r3_Click);
             // 
             // R4
             // 
             this.R4.Name = "R4";
-            this.R4.Size = new System.Drawing.Size(216, 26);
+            this.R4.Size = new System.Drawing.Size(184, 26);
             this.R4.Text = "Grafo regular 4";
             this.R4.Click += new System.EventHandler(this.R4_Click);
             // 
@@ -528,6 +531,21 @@
             this.BTNGrado.UseVisualStyleBackColor = true;
             this.BTNGrado.Click += new System.EventHandler(this.BTNGrado_Click);
             // 
+            // MenuPropiedades
+            // 
+            this.MenuPropiedades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Euler});
+            this.MenuPropiedades.Name = "MenuPropiedades";
+            this.MenuPropiedades.Size = new System.Drawing.Size(104, 24);
+            this.MenuPropiedades.Text = "Propiedades";
+            // 
+            // Euler
+            // 
+            this.Euler.Name = "Euler";
+            this.Euler.Size = new System.Drawing.Size(216, 26);
+            this.Euler.Text = "Euler";
+            this.Euler.Click += new System.EventHandler(this.Euler_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -613,6 +631,8 @@
         private System.Windows.Forms.ToolStripMenuItem w7;
         private System.Windows.Forms.ToolStripMenuItem cuboToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem q3;
+        private System.Windows.Forms.ToolStripMenuItem MenuPropiedades;
+        private System.Windows.Forms.ToolStripMenuItem Euler;
     }
 }
 

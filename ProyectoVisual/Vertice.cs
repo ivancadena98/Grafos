@@ -22,7 +22,7 @@ namespace ProyectoVisual
         private Font letra = new Font("Arial", 20);
         private SolidBrush brocha = new SolidBrush(Color.Black);
         private int Tot = 0;
-
+        private bool VerVisitado = false;
 
         public Vertice(int id_in, int X, int Y)
         {
@@ -143,6 +143,10 @@ namespace ProyectoVisual
                 radio = value;
             }
         }
+
+        public bool VerVisitado1 { get => VerVisitado; set => VerVisitado = value; }
+        public int Tot1 { get => Tot; set => Tot = value; }
+
         public int total()
         {
             calc();
