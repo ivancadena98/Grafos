@@ -18,6 +18,7 @@ namespace ProyectoVisual
         private MatrizIncidencia MatInc;
         private int[,] MatrizIncidencia;
         private MatrizAdyacencia MatAD;
+        private bool CaminoNoDirEuler = true;
         //selecciones
         private Vertice vselec;
         public Grafo(Pen DL)
@@ -65,6 +66,9 @@ namespace ProyectoVisual
             get { return ida; }
             set { ida = value; }
         }
+
+        public bool CaminoNoDirEuler1 { get => CaminoNoDirEuler; set => CaminoNoDirEuler = value; }
+
         //Método para crear vértice
         public void AgregaVertice(Graphics g, int x, int y, int width, int height)
         {
@@ -301,6 +305,8 @@ namespace ProyectoVisual
 
         public bool GradosPares()
         {
+            CaminoNoDirEuler = true;
+            int cont = 0;
             bool bandera = true;
             foreach(Vertice ver in vertices)
             {
@@ -309,8 +315,12 @@ namespace ProyectoVisual
                 if (a % 2 != 0)
                 {
                     bandera = false;
+                    cont++;
                 }
             }
+            if (cont > 2)
+                CaminoNoDirEuler = false;
+            cont = 0;
             return bandera;
         }
     }

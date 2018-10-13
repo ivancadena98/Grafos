@@ -29,6 +29,8 @@ namespace ProyectoVisual
             y2 = y2_in;
             Dir = D;
         }
+
+        public Arista() { }
         //getters setters
         public int ID
         {

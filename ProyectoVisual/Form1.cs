@@ -28,6 +28,8 @@ namespace ProyectoVisual
         //Auxiliares
         Vertice v1 = new Vertice();
         Vertice v2 = new Vertice();
+        Vertice VerEuler = new Vertice();
+        Arista ArEuler = new Arista ();
         List<Vertice> ListaVerAux = new List<Vertice>();
         Grafo grafoaux;
 
@@ -36,7 +38,6 @@ namespace ProyectoVisual
         Graphics lienzo;
         Pen flD;
         int tam = 4;
-        int auxv1, auxv2;
         //Acciones
         int tipo=-1; //Define el tipo de objeto que se va a agregar
         int selectMove = -1;                   //selectMove es para el nodo que fue seleccionado para que se mueva
@@ -929,21 +930,63 @@ namespace ProyectoVisual
 
         private void Euler_Click(object sender, EventArgs e)
         {
-            ImprimeGrados();
-            int Pos =(int) IdGrafos.Value;
-            ListGrafo[Pos-1].CalculaGrado();
-            if (ListGrafo[Pos - 1].GradosPares())
-            {
-                MessageBox.Show("Son pares");
-                
-            }
+
+            if (ListGrafo.Count == 0)
+                MessageBox.Show("No hay vértices");
             else
             {
-                MessageBox.Show("Son impares");
-            }
-            ListGrafo[Pos - 1].BorraGrados();
-        }
+                if (Valida())
+                {
+                    ImprimeGrados();
+                    int Pos = (int)IdGrafos.Value;
+                    if (!dirigido)
+                    {
+                        ListGrafo[Pos - 1].CalculaGrado();
+                        if (ListGrafo[Pos - 1].GradosPares())
+                        {
+                            MessageBox.Show("Son pares");
+                            RTBGrafo.Clear();
+                            VerEuler = ListGrafo[Pos - 1].Vertices[0];
+                            for (int i=1; i < ListGrafo[Pos - 1].Vertices.Count; i++)
+                            {
+                                EncuentraSigVer(ListGrafo[Pos - 1].Vertices[i].ID);
+                                RTBGrafo.Text += (VerEuler.ID + 1).ToString();
+                            }
 
+                        }
+                        else if (ListGrafo[Pos - 1].CaminoNoDirEuler1)
+                        {
+                            MessageBox.Show("Hay dos vértices de grado impar");
+                        }
+                        
+                    }
+                    ListGrafo[Pos - 1].BorraGrados();
+                }
+                else
+                    MessageBox.Show("No hay vértices o arístas");
+            }
+        }
+        public bool Valida()
+        {
+            int Pos = (int)IdGrafos.Value;
+            if (ListGrafo[Pos - 1].Vertices.Count == 0 || ListGrafo[Pos - 1].Aristas.Count == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+        public void EncuentraSigVer(int id)
+        {
+            int Pos = (int)IdGrafos.Value;
+            foreach (Arista a in ListGrafo[Pos - 1].Aristas)
+            {
+                if (a.IDV2 == id)
+                {
+                    ArEuler = a;
+                    /*IVAN HUELE A ATUN CON ARROZ*/
+                }
+            }
+        }
         //Agregar Arista Dirigida
         private void agregarAristaDirigidaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
