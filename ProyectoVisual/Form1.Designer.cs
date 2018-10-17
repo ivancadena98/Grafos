@@ -50,6 +50,10 @@
             this.MatrizInc = new System.Windows.Forms.ToolStripMenuItem();
             this.PropiedadGrafo = new System.Windows.Forms.ToolStripMenuItem();
             this.GrafoIs = new System.Windows.Forms.ToolStripMenuItem();
+            this.CamCirEuler = new System.Windows.Forms.ToolStripMenuItem();
+            this.KurAu = new System.Windows.Forms.ToolStripMenuItem();
+            this.K33 = new System.Windows.Forms.ToolStripMenuItem();
+            this.K5 = new System.Windows.Forms.ToolStripMenuItem();
             this.knToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.k1M = new System.Windows.Forms.ToolStripMenuItem();
             this.k2M = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,8 +86,6 @@
             this.BTNAgregar = new System.Windows.Forms.Button();
             this.RTBGrafo = new System.Windows.Forms.RichTextBox();
             this.BTNGrado = new System.Windows.Forms.Button();
-            this.MenuPropiedades = new System.Windows.Forms.ToolStripMenuItem();
-            this.Euler = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).BeginInit();
@@ -91,10 +93,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 31);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 49);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(896, 414);
+            this.pictureBox1.Size = new System.Drawing.Size(896, 415);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -117,8 +119,7 @@
             this.regularToolStripMenuItem,
             this.CicloG,
             this.volanteToolStripMenuItem,
-            this.cuboToolStripMenuItem,
-            this.MenuPropiedades});
+            this.cuboToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -241,7 +242,7 @@
             // ListaAdy
             // 
             this.ListaAdy.Name = "ListaAdy";
-            this.ListaAdy.Size = new System.Drawing.Size(216, 26);
+            this.ListaAdy.Size = new System.Drawing.Size(213, 26);
             this.ListaAdy.Text = "Lista de adyacencia";
             this.ListaAdy.Click += new System.EventHandler(this.ListaAdy_Click);
             // 
@@ -273,7 +274,9 @@
             // PropiedadGrafo
             // 
             this.PropiedadGrafo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.GrafoIs});
+            this.GrafoIs,
+            this.CamCirEuler,
+            this.KurAu});
             this.PropiedadGrafo.Enabled = false;
             this.PropiedadGrafo.Name = "PropiedadGrafo";
             this.PropiedadGrafo.Size = new System.Drawing.Size(104, 24);
@@ -283,9 +286,39 @@
             // 
             this.GrafoIs.Enabled = false;
             this.GrafoIs.Name = "GrafoIs";
-            this.GrafoIs.Size = new System.Drawing.Size(144, 26);
+            this.GrafoIs.Size = new System.Drawing.Size(236, 26);
             this.GrafoIs.Text = "Isomorfo";
             this.GrafoIs.Click += new System.EventHandler(this.GrafoIs_Click);
+            // 
+            // CamCirEuler
+            // 
+            this.CamCirEuler.Name = "CamCirEuler";
+            this.CamCirEuler.Size = new System.Drawing.Size(236, 26);
+            this.CamCirEuler.Text = "Euler";
+            this.CamCirEuler.Click += new System.EventHandler(this.CamCirEuler_Click);
+            // 
+            // KurAu
+            // 
+            this.KurAu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.K33,
+            this.K5});
+            this.KurAu.Name = "KurAu";
+            this.KurAu.Size = new System.Drawing.Size(236, 26);
+            this.KurAu.Text = "Kuratowski automático";
+            // 
+            // K33
+            // 
+            this.K33.Name = "K33";
+            this.K33.Size = new System.Drawing.Size(216, 26);
+            this.K33.Text = "K 3:3";
+            this.K33.Click += new System.EventHandler(this.K33_Click);
+            // 
+            // K5
+            // 
+            this.K5.Name = "K5";
+            this.K5.Size = new System.Drawing.Size(216, 26);
+            this.K5.Text = "K 5";
+            this.K5.Click += new System.EventHandler(this.K5_Click);
             // 
             // knToolStripMenuItem
             // 
@@ -504,7 +537,7 @@
             // 
             // BTNAgregar
             // 
-            this.BTNAgregar.Location = new System.Drawing.Point(1091, 82);
+            this.BTNAgregar.Location = new System.Drawing.Point(1091, 70);
             this.BTNAgregar.Name = "BTNAgregar";
             this.BTNAgregar.Size = new System.Drawing.Size(120, 49);
             this.BTNAgregar.TabIndex = 3;
@@ -514,16 +547,16 @@
             // 
             // RTBGrafo
             // 
-            this.RTBGrafo.Location = new System.Drawing.Point(914, 137);
+            this.RTBGrafo.Location = new System.Drawing.Point(914, 125);
             this.RTBGrafo.Name = "RTBGrafo";
-            this.RTBGrafo.Size = new System.Drawing.Size(297, 308);
+            this.RTBGrafo.Size = new System.Drawing.Size(297, 338);
             this.RTBGrafo.TabIndex = 4;
             this.RTBGrafo.Text = "";
             // 
             // BTNGrado
             // 
             this.BTNGrado.Enabled = false;
-            this.BTNGrado.Location = new System.Drawing.Point(914, 82);
+            this.BTNGrado.Location = new System.Drawing.Point(914, 70);
             this.BTNGrado.Name = "BTNGrado";
             this.BTNGrado.Size = new System.Drawing.Size(128, 49);
             this.BTNGrado.TabIndex = 5;
@@ -531,26 +564,11 @@
             this.BTNGrado.UseVisualStyleBackColor = true;
             this.BTNGrado.Click += new System.EventHandler(this.BTNGrado_Click);
             // 
-            // MenuPropiedades
-            // 
-            this.MenuPropiedades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Euler});
-            this.MenuPropiedades.Name = "MenuPropiedades";
-            this.MenuPropiedades.Size = new System.Drawing.Size(104, 24);
-            this.MenuPropiedades.Text = "Propiedades";
-            // 
-            // Euler
-            // 
-            this.Euler.Name = "Euler";
-            this.Euler.Size = new System.Drawing.Size(216, 26);
-            this.Euler.Text = "Euler";
-            this.Euler.Click += new System.EventHandler(this.Euler_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1223, 457);
+            this.ClientSize = new System.Drawing.Size(1223, 475);
             this.Controls.Add(this.BTNGrado);
             this.Controls.Add(this.RTBGrafo);
             this.Controls.Add(this.BTNAgregar);
@@ -631,8 +649,10 @@
         private System.Windows.Forms.ToolStripMenuItem w7;
         private System.Windows.Forms.ToolStripMenuItem cuboToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem q3;
-        private System.Windows.Forms.ToolStripMenuItem MenuPropiedades;
-        private System.Windows.Forms.ToolStripMenuItem Euler;
+        private System.Windows.Forms.ToolStripMenuItem CamCirEuler;
+        private System.Windows.Forms.ToolStripMenuItem KurAu;
+        private System.Windows.Forms.ToolStripMenuItem K33;
+        private System.Windows.Forms.ToolStripMenuItem K5;
     }
 }
 

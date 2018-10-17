@@ -24,9 +24,10 @@ namespace ProyectoVisual
         }
 
 
-        //Realiza matris adyacencia no dirigida
+        //Realiza matríz adyacencia no dirigida
         public void RealizaMatrizNDir(List<Vertice> l, List<Arista> a)
         {
+            int v1=0, v2=0;
             vertice = l;
             arista = a;
             MatrizIn = new int[vertice.Count, vertice.Count];
@@ -35,12 +36,36 @@ namespace ProyectoVisual
                     //Condicionales para verificar la comunicación entre vértices.
                     if (arista[j].IDV2 == arista[j].IDV1)
                     {
-                        MatrizIn[arista[j].IDV1, arista[j].IDV2] = 1;
+                        for(int i=0; i< vertice.Count; i++)
+                        {
+                            if(vertice[i].ID == arista[j].IDV2)
+                            {
+                                v1 = i;
+                                i = vertice.Count;
+                            }
+                        }
+                        MatrizIn[v1,v1] = 1;
                     }
                     else
                     {
-                        MatrizIn[arista[j].IDV1, arista[j].IDV2] += 1;
-                        MatrizIn[arista[j].IDV2, arista[j].IDV1] += 1;
+                        for (int i = 0; i < vertice.Count; i++)
+                        {
+                            if (vertice[i].ID == arista[j].IDV2)
+                            {
+                                v1 = i;
+                                i = vertice.Count;
+                            }
+                        }
+                        for (int i = 0; i < vertice.Count; i++)
+                        {
+                            if (vertice[i].ID == arista[j].IDV1)
+                            {
+                                v2 = i;
+                                i = vertice.Count;
+                            }
+                        }
+                       MatrizIn[v1,v2] += 1;
+                       MatrizIn[v2,v1] += 1;
                     }
 
                 }
