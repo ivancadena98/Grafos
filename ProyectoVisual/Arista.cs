@@ -16,6 +16,7 @@ namespace ProyectoVisual
         private int id, idv1, idv2;
         private int x1, y1, x2, y2;
         private int Dir;
+        private Color color =Color.Black;
         private bool ArVisitado = false;
         private Font letra = new Font("Arial", 10);
         private SolidBrush brocha = new SolidBrush(Color.Black);
@@ -130,6 +131,7 @@ namespace ProyectoVisual
         }
 
         public bool ArVisitado1 { get => ArVisitado; set => ArVisitado = value; }
+        public Color Color { get => color; set => color = value; }
 
         //Método para dibujar una arísta
         public void DibujaArista(Graphics g)
@@ -145,13 +147,13 @@ namespace ProyectoVisual
                 //Arista no dirigida
                 if (Dir == 0)
             {
-                Pen pablo = new Pen(Color.Black, 4);
+                Pen pablo = new Pen(color, 4);
                 g.DrawLine(pablo, x1, y1, x2, y2);
                 g.DrawString("e"+Convert.ToString(id + 1), letra, brocha, corx, cory);
             }
                 //Arista dirigida
             else {
-                Pen pablo = new Pen(Color.Black, 4);
+                Pen pablo = new Pen(color, 4);
                 pablo.EndCap = LineCap.ArrowAnchor;
                 g.DrawLine(pablo, x1, y1, x2, y2);
                 g.DrawString("e"+Convert.ToString(id + 1), letra, brocha, corx,cory);

@@ -31,6 +31,7 @@ namespace ProyectoVisual
         Vertice VerEuler = new Vertice();
         Arista ArEuler = new Arista ();
         List<Vertice> ListaVerAux = new List<Vertice>();
+        List<Arista> ListaArAux = new List<Arista>();
         Grafo grafoaux;
         Grafo Imp;
         //Graficos
@@ -38,6 +39,7 @@ namespace ProyectoVisual
         Graphics lienzo;
         Pen flD;
         int tam = 4;
+        bool BanderaColor = false;
         //Acciones
         int tipo=-1; //Define el tipo de objeto que se va a agregar
         int selectMove = -1;                   //selectMove es para el nodo que fue seleccionado para que se mueva
@@ -103,12 +105,14 @@ namespace ProyectoVisual
         }
 
         public void DibujarG(int IDG) {
-            lienzo.Clear(Color.White);
-            foreach (Grafo gr in ListGrafo)
-            {
-                gr.Dibujar(lienzo);
-            }
+                lienzo.Clear(Color.White);
+                foreach (Grafo gr in ListGrafo)
+                {
+                    gr.Dibujar(lienzo);
+                }
+            
         }
+       
         //CLICK para seleccionar qué se hará (Crear vértice, crear arísta, eliminar vértice).
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -615,6 +619,7 @@ namespace ProyectoVisual
         //imprimir la matriz de adyacencia
         private void MatrizAd_Click(object sender, EventArgs e)
         {
+            Imp = ListGrafo[(int)IdGrafos.Value - 1];
             RTBGrafo.Clear();
             if(ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count == 0)
             {
@@ -624,6 +629,7 @@ namespace ProyectoVisual
             {
                 ListGrafo[(int)IdGrafos.Value - 1].MatAdDir();
                 AuxList = ListGrafo[(int)IdGrafos.Value - 1].RegresaAd();
+                
                 ImprimeMat();
             }
             else if (!dirigido)
@@ -950,18 +956,7 @@ namespace ProyectoVisual
             }
             return true;
         }
-        public void EncuentraSigVer(int id)
-        {
-            int Pos = (int)IdGrafos.Value;
-            foreach (Arista a in ListGrafo[Pos - 1].Aristas)
-            {
-                if (a.IDV2 == id)
-                {
-                    ArEuler = a;
-                    /*IVAN HUELE A ATUN CON ARROZ*/
-                }
-            }
-        }
+        
         //Agregar Arista Dirigida
         private void agregarAristaDirigidaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -981,22 +976,31 @@ namespace ProyectoVisual
             {
                 if (Valida())
                 {
-                    ImprimeGrados();
                     int Pos = (int)IdGrafos.Value;
                     if (!dirigido)
                     {
                         ListGrafo[Pos - 1].CalculaGrado();
                         if (ListGrafo[Pos - 1].GradosPares())
                         {
-                            MessageBox.Show("Son pares");
-                            RTBGrafo.Clear();
-                            VerEuler = ListGrafo[Pos - 1].Vertices[0];
-                            for (int i = 1; i < ListGrafo[Pos - 1].Vertices.Count; i++)
+                            foreach (Arista ar in ListGrafo[Pos - 1].Aristas)
                             {
-                                EncuentraSigVer(ListGrafo[Pos - 1].Vertices[i].ID);
-                                RTBGrafo.Text += (VerEuler.ID + 1).ToString();
+                                ar.ArVisitado1 = false;
                             }
-
+                            RTBGrafo.Clear();
+                            BanderaColor = true;
+                            VerEuler = ListGrafo[Pos - 1].Vertices[0];
+                            for (int i = 0; i < ListGrafo[Pos - 1].Aristas.Count; i++)
+                            {
+                                RTBGrafo.Text += (VerEuler.ID + 1).ToString();
+                                RTBGrafo.Text += "-> ";
+                                Thread.Sleep(1000);
+                                EncuentraSigVer(Pos);
+                                CambiaColor();
+                            }
+                            RTBGrafo.Text += "1";
+                            Thread.Sleep(2000);
+                            BanderaColor = false;
+                            CambiaColor();
                         }
                         else if (ListGrafo[Pos - 1].CaminoNoDirEuler1)
                         {
@@ -1010,7 +1014,85 @@ namespace ProyectoVisual
                     MessageBox.Show("No hay vértices o arístas");
             }
         }
+        public void CambiaColor()
+        {
+            if (BanderaColor == true)
+            {
+                foreach (Arista a in ListaArAux)
+                {
+                    a.Color = Color.Red;
+                    a.DibujaArista(lienzo);
+                }
+            }
+            else
+            {
+                foreach (Arista a in ListaArAux)
+                {
+                    a.Color = Color.Black;
+                    a.DibujaArista(lienzo);
+                }
+            }
+        }
+        //Métodos para que encontrar los vértices
+        public void EncuentraSigVer(int Pos)
+        {
+            int Eu = 0, ID=0;
+            Vertice aux;
+            ID = VerEuler.ID;
+            for (int i = 0; i < ListGrafo[Pos - 1].Aristas.Count; i++)
+            {
+                if (ListGrafo[Pos - 1].Aristas[i].ArVisitado1 == false)
+                {
+                    if (VerEuler.ID == ListGrafo[Pos - 1].Aristas[i].IDV1 || VerEuler.ID == ListGrafo[Pos - 1].Aristas[i].IDV2)
+                    {
+                        for (int j = i; j < ListGrafo[Pos - 1].Vertices.Count; j++)
+                        {
+                            aux = ListGrafo[Pos - 1].Vertices[j];
+                            if ((aux.ID == ListGrafo[Pos - 1].Aristas[i].IDV2 || aux.ID == ListGrafo[Pos - 1].Aristas[i].IDV1) && aux.ID != VerEuler.ID)
+                            {
+                                VerEuler = ListGrafo[Pos - 1].Vertices[j];
+                                ListGrafo[Pos - 1].Aristas[i].ArVisitado1 = true;
+                                
+                                ListaArAux.Add(ListGrafo[Pos - 1].Aristas[i]);
+                                j = ListGrafo[Pos - 1].Vertices.Count;
+                                i = ListGrafo[Pos - 1].Aristas.Count;
+                            }
+                        }
+                    }
+                }
+                Eu = i;
+            }
+            if (ID == VerEuler.ID)
+                EncuentraSigVer2(Eu,Pos);
+        }
+        public void EncuentraSigVer2(int i,int Pos)
+        {
+            Vertice aux;
+            for (int j = 0; j < ListGrafo[Pos - 1].Aristas.Count; j++)
+            {
+                if (ListGrafo[Pos - 1].Aristas[j].ArVisitado1 == false)
+                {
+                    {
+                        if (VerEuler.ID == ListGrafo[Pos - 1].Aristas[j].IDV1 || VerEuler.ID == ListGrafo[Pos - 1].Aristas[j].IDV2)
+                        {
+                            for (int k = 0; k < i; k++)
+                            {
+                                aux = ListGrafo[Pos - 1].Vertices[k];
+                                if ((aux.ID == ListGrafo[Pos - 1].Aristas[j].IDV2 || aux.ID == ListGrafo[Pos - 1].Aristas[j].IDV1) && aux.ID != VerEuler.ID)
+                                {
+                                    VerEuler = ListGrafo[Pos - 1].Vertices[k];
+                                    ListGrafo[Pos - 1].Aristas[j].ArVisitado1 = true;
+                                    ListaArAux.Add(ListGrafo[Pos - 1].Aristas[j]);
+                                    k = i;
+                                    j = ListGrafo[Pos - 1].Aristas.Count;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
+        }
         private void K33_Click(object sender, EventArgs e)
         {
             string k3= "Matriz de K33 \n";

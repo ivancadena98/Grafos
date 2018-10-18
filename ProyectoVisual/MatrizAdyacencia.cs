@@ -75,6 +75,7 @@ namespace ProyectoVisual
         {
             vertice = l;
             arista = a;
+            int q=0;
             MatrizIn = new int[vertice.Count, vertice.Count];
             //Ciclos para acceder a los vértices y arístas
             for (int i = 0; i < vertice.Count; i++)
@@ -84,12 +85,20 @@ namespace ProyectoVisual
                     //Condicional para saber si es una oreja
                     if (vertice[i].ID == arista[j].IDV2 && vertice[i].ID == arista[j].IDV1)
                     {
-                        MatrizIn[arista[j].IDV1, arista[j].IDV2] = 1;
+                        MatrizIn[i, i] = 1;
                     }
                     //Condicional para saber si un vértice es entrada
                     else if (vertice[i].ID == arista[j].IDV1)//Entrada
                     {
-                        MatrizIn[arista[j].IDV1, arista[j].IDV2] = 1;//Entrada
+                        for (int h = 0; h < vertice.Count; h++)
+                        {
+                            if (vertice[h].ID == arista[j].IDV2)
+                            {
+                                q = h;
+                                h = vertice.Count;
+                            }
+                        }
+                        MatrizIn[i, q] = 1;//Entrada
                     }
 
                 }
