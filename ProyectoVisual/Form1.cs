@@ -24,7 +24,7 @@ namespace ProyectoVisual
 
         //Bandera para saber si el grafo es dirigido o no dirigido
         bool dirigido;
-
+        int ContVer = 0;
         //Auxiliares
         Vertice v1 = new Vertice();
         Vertice v2 = new Vertice();
@@ -32,6 +32,7 @@ namespace ProyectoVisual
         Arista ArEuler = new Arista ();
         List<Vertice> ListaVerAux = new List<Vertice>();
         List<Arista> ListaArAux = new List<Arista>();
+        List<Color> colores;
         Grafo grafoaux;
         Grafo Imp;
         //Graficos
@@ -44,7 +45,7 @@ namespace ProyectoVisual
         int tipo=-1; //Define el tipo de objeto que se va a agregar
         int selectMove = -1;                   //selectMove es para el nodo que fue seleccionado para que se mueva
         int toque = 0; //Bandera para gestionar cómo se agregan las aristas
-
+        bool BanderaPlano = false;
         //Hilos
         Thread Actualizado; // Este hilo checa si hubo modificaciones posteriores a guardar el hilo en un archivo
 
@@ -80,6 +81,7 @@ namespace ProyectoVisual
             grafoKur = new Grafo(flD);
             //ListGrafo.Add(grafo);
             Controls.Add(pb);
+            colores = new List<Color>();
 
             Actualizado = new Thread(checarActualizaciones);
             Actualizado.Name = "Actualizado";
@@ -187,13 +189,13 @@ namespace ProyectoVisual
                     ListGrafo[IDG].Vertices.RemoveAt(i);
                     DibujarG(IDG);
                     break;
-
                 }
             }
-            
+            ActualizaCBAr();
         }
         //Agregar Arísta 
         public void AgregarArista(int x, int y,int IDG) {
+            string nom= "";
             foreach (Vertice v in ListGrafo[IDG].Vertices)
             {
                 if (v.Seleccion(x, y) && toque == 0)
@@ -209,6 +211,8 @@ namespace ProyectoVisual
                         ListGrafo[IDG].AgregaArista(lienzo, v1, v2,x,y);
                         up2Date = false;
                         toque = 0;
+                        nom += (ListGrafo[IDG].Aristas[ListGrafo[IDG].Aristas.Count - 1].ID + 1).ToString();
+                        CBArista.Items.Add(nom);
                     }
                 }
             }
@@ -216,6 +220,7 @@ namespace ProyectoVisual
         // Método para crear la arista dirigida 
         public void AgregarAristaDir(int x, int y,int IDG)
         {
+            string nom = "";
             foreach (Vertice v in ListGrafo[IDG].Vertices)
             {
                 if (v.Seleccion(x, y) && toque == 0)
@@ -229,6 +234,8 @@ namespace ProyectoVisual
                     if (!v1.Equals(v2))
                     {
                         ListGrafo[IDG].AgregarAristaDir(lienzo, v1, v2, x, y);
+                        nom += (ListGrafo[IDG].Aristas[ListGrafo[IDG].Aristas.Count - 1].ID+1).ToString();
+                        CBArista.Items.Add(nom);
                         up2Date = false;
                         toque = 0;
                     }
@@ -292,7 +299,7 @@ namespace ProyectoVisual
             while (checando) { }
 
         }
-
+        
         //ABRIR
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -746,7 +753,7 @@ namespace ProyectoVisual
                             //Se guarda el grado el primer nodo de V
                             int a1 = ListGrafo[1].Vertices[i].total();
 
-                            for (int j = 0; j < ListGrafo[0].Vertices.Count; j++)
+                            for (int j =0; j < ListGrafo[0].Vertices.Count; j++)
                             {
                                 //Se guarda el grado del nodo j de U
                                 int a2 = ListGrafo[0].Vertices[j].total(); //Se guarda el grado del nodo
@@ -765,13 +772,13 @@ namespace ProyectoVisual
                                     " por " + (j + 1).ToString() + "\n";
                                     cont++;
                                     ImprimeMat();
-                                    j = ListGrafo[0].Vertices.Count;
+                                    //j = ListGrafo[0].Vertices.Count;
                                     if (IS.Ban) //Si son iguales se sale del ciclo
                                     {
                                         i = ListGrafo[0].Vertices.Count;
                                         j = ListGrafo[0].Vertices.Count;
                                     }
-                                    break;
+                                    //break;
                                 }
 
                             }
@@ -779,6 +786,7 @@ namespace ProyectoVisual
                         if (IS.Ban) //Si recorre los movimientos y son iguales dispara el mensaje
                         {
                             MessageBox.Show("Son isomorficos");
+                            BanderaPlano = true;
                         }
                         else
                         {
@@ -803,6 +811,7 @@ namespace ProyectoVisual
             cont = 1;
         }
         //Eventos para mostrar los grafos kn,wn,cn, rn
+        #region Especiales
         public void AbreEspecial() {
             IdGrafos.Value = 0;
             BTNGrado.Enabled= GuardarGrafoC.Enabled= VerticeMenu.Enabled = true;
@@ -947,6 +956,8 @@ namespace ProyectoVisual
         private void Euler_Click(object sender, EventArgs e)
         {
         }
+
+        #endregion
         public bool Valida()
         {
             int Pos = (int)IdGrafos.Value;
@@ -970,44 +981,67 @@ namespace ProyectoVisual
 
         private void CamCirEuler_Click(object sender, EventArgs e)
         {
+            int C = 0;
             if (ListGrafo.Count == 0)
-                MessageBox.Show("No hay vértices");
+                MessageBox.Show("No hay grafos");
             else
             {
                 if (Valida())
                 {
                     int Pos = (int)IdGrafos.Value;
+
                     if (!dirigido)
                     {
                         ListGrafo[Pos - 1].CalculaGrado();
                         if (ListGrafo[Pos - 1].GradosPares())
                         {
-                            foreach (Arista ar in ListGrafo[Pos - 1].Aristas)
-                            {
-                                ar.ArVisitado1 = false;
-                            }
                             RTBGrafo.Clear();
                             BanderaColor = true;
                             VerEuler = ListGrafo[Pos - 1].Vertices[0];
-                            for (int i = 0; i < ListGrafo[Pos - 1].Aristas.Count; i++)
+                            CambiaColor();
+                                for (int i = 0; i < ListGrafo[Pos - 1].Aristas.Count; i++)
                             {
+                                C++;
                                 RTBGrafo.Text += (VerEuler.ID + 1).ToString();
                                 RTBGrafo.Text += "-> ";
                                 Thread.Sleep(1000);
-                                EncuentraSigVer(Pos);
+                                EncuentraSigVer(Pos, C);
                                 CambiaColor();
                             }
-                            RTBGrafo.Text += "1";
-                            Thread.Sleep(2000);
-                            BanderaColor = false;
-                            CambiaColor();
+                                RTBGrafo.Text += "1";
+                                Thread.Sleep(1000);
+                                BanderaColor = false;
+                                CambiaColor();
+                                MessageBox.Show("Es circuito");
+                            
                         }
                         else if (ListGrafo[Pos - 1].CaminoNoDirEuler1)
                         {
-                            MessageBox.Show("Hay dos vértices de grado impar");
+                            RTBGrafo.Clear();
+                            int id = ListGrafo[Pos - 1].IDVer11;
+                            BanderaColor = true;
+                            VerEuler = ListGrafo[Pos - 1].Vertices[id];
+                            for (int i = 0; i < ListGrafo[Pos - 1].Aristas.Count; i++)
+                            {
+                                C++;
+                                RTBGrafo.Text += (VerEuler.ID + 1).ToString();
+                                RTBGrafo.Text += "-> ";
+                                Thread.Sleep(1000);
+                                EncuentraSigVer(Pos, C);
+                                CambiaColor();
+                            }
+                                id = ListGrafo[Pos - 1].IDVer21;
+                                RTBGrafo.Text += (id + 1).ToString();
+                                Thread.Sleep(1000);
+                                BanderaColor = false;
+                                CambiaColor();
+                                MessageBox.Show("Es camino");
+                            
                         }
-
+                        else
+                            MessageBox.Show("No tiene camino ni circuito");
                     }
+                
                     ListGrafo[Pos - 1].BorraGrados();
                 }
                 else
@@ -1016,44 +1050,52 @@ namespace ProyectoVisual
         }
         public void CambiaColor()
         {
+            int Pos = (int)IdGrafos.Value;
             if (BanderaColor == true)
             {
-                foreach (Arista a in ListaArAux)
+                foreach (Arista a in ListGrafo[Pos - 1].Aristas)
                 {
-                    a.Color = Color.Red;
-                    a.DibujaArista(lienzo);
+                    if (a.ArVisitado1 == true){
+                        a.Color = Color.Red;
+                        a.DibujaArista(lienzo);
+                    }
+                   
                 }
             }
             else
             {
-                foreach (Arista a in ListaArAux)
+                foreach (Arista a in ListGrafo[Pos - 1].Aristas)
                 {
+                    a.ArVisitado1 = false;
                     a.Color = Color.Black;
                     a.DibujaArista(lienzo);
                 }
             }
         }
         //Métodos para que encontrar los vértices
-        public void EncuentraSigVer(int Pos)
+        public void EncuentraSigVer(int Pos,int C)
         {
-            int Eu = 0, ID=0;
+            int Eu = 0, IDv1 = 0, IDv2 = 0,ID=0 ;
             Vertice aux;
             ID = VerEuler.ID;
-            for (int i = 0; i < ListGrafo[Pos - 1].Aristas.Count; i++)
+            for (int i = 0; i < ListGrafo[Pos - 1].Aristas.Count; i++) //Ciclo para recorrer las aristas
             {
-                if (ListGrafo[Pos - 1].Aristas[i].ArVisitado1 == false)
+                if (ListGrafo[Pos - 1].Aristas[i].ArVisitado1 == false) //Verifica si la arista está visitada
                 {
+                    //Condicional para encontrar el vértice actual
                     if (VerEuler.ID == ListGrafo[Pos - 1].Aristas[i].IDV1 || VerEuler.ID == ListGrafo[Pos - 1].Aristas[i].IDV2)
                     {
-                        for (int j = i; j < ListGrafo[Pos - 1].Vertices.Count; j++)
+                        for (int j = C; j < ListGrafo[Pos - 1].Vertices.Count; j++) //Ciclo para recorrer los vértices
                         {
                             aux = ListGrafo[Pos - 1].Vertices[j];
-                            if ((aux.ID == ListGrafo[Pos - 1].Aristas[i].IDV2 || aux.ID == ListGrafo[Pos - 1].Aristas[i].IDV1) && aux.ID != VerEuler.ID)
+                            IDv1 = ListGrafo[Pos - 1].Aristas[i].IDV1;
+                            IDv2 = ListGrafo[Pos - 1].Aristas[i].IDV2;
+                            if ((aux.ID == IDv1 || aux.ID == IDv2) && aux.ID != VerEuler.ID) //Condicional para encontrar la siguiente arísta
                             {
+                                ContVer+=1;
                                 VerEuler = ListGrafo[Pos - 1].Vertices[j];
-                                ListGrafo[Pos - 1].Aristas[i].ArVisitado1 = true;
-                                
-                                ListaArAux.Add(ListGrafo[Pos - 1].Aristas[i]);
+                                ListGrafo[Pos - 1].Aristas[i].ArVisitado1 = true; //Cambio de vértice y visita la arista
+
                                 j = ListGrafo[Pos - 1].Vertices.Count;
                                 i = ListGrafo[Pos - 1].Aristas.Count;
                             }
@@ -1063,9 +1105,11 @@ namespace ProyectoVisual
                 Eu = i;
             }
             if (ID == VerEuler.ID)
-                EncuentraSigVer2(Eu,Pos);
+                EncuentraSigVer2(Eu,Pos,C);
         }
-        public void EncuentraSigVer2(int i,int Pos)
+        //Método para volver a buscar un vértice inicial
+        //La lógica se repite como en el método anterior
+        public void EncuentraSigVer2(int i,int Pos, int C)
         {
             Vertice aux;
             for (int j = 0; j < ListGrafo[Pos - 1].Aristas.Count; j++)
@@ -1080,9 +1124,9 @@ namespace ProyectoVisual
                                 aux = ListGrafo[Pos - 1].Vertices[k];
                                 if ((aux.ID == ListGrafo[Pos - 1].Aristas[j].IDV2 || aux.ID == ListGrafo[Pos - 1].Aristas[j].IDV1) && aux.ID != VerEuler.ID)
                                 {
+                                    ContVer += 1;
                                     VerEuler = ListGrafo[Pos - 1].Vertices[k];
                                     ListGrafo[Pos - 1].Aristas[j].ArVisitado1 = true;
-                                    ListaArAux.Add(ListGrafo[Pos - 1].Aristas[j]);
                                     k = i;
                                     j = ListGrafo[Pos - 1].Aristas.Count;
                                 }
@@ -1104,8 +1148,14 @@ namespace ProyectoVisual
             ListGrafo[0] = grafoKur;
             ListGrafo.Add(aux);
 
-            
-            Isomorfo(k3);
+            Isomorfo(k3); //Llama a isomorfo para verificar si son iguales
+            if(BanderaPlano == true)
+            {
+                BanderaPlano = false;
+                MessageBox.Show("No es plano");
+            } //Si son iguales no es plano
+            else
+                MessageBox.Show("Es plano");
             //}
             ListGrafo[0].BorraGrados();
             ListGrafo[1].BorraGrados();
@@ -1114,7 +1164,6 @@ namespace ProyectoVisual
             ListGrafo.Clear();
             ListGrafo.Add(aux);
         }
-
         private void K5_Click(object sender, EventArgs e)
         {
             string k5 = "Matriz de K 5\n";
@@ -1128,6 +1177,13 @@ namespace ProyectoVisual
 
 
             Isomorfo(k5);
+            if (BanderaPlano == true)
+            {
+                MessageBox.Show("No es plano");
+                BanderaPlano = false;
+            }
+            else
+                MessageBox.Show("Es plano");
             //}
             ListGrafo[0].BorraGrados();
             ListGrafo[1].BorraGrados();
@@ -1135,6 +1191,291 @@ namespace ProyectoVisual
             aux = ListGrafo[1];
             ListGrafo.Clear();
             ListGrafo.Add(aux);
+        }
+        private void Corolario_Click(object sender, EventArgs e)
+        {
+            int E = ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count;
+            int V = ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count;
+            int Col1 = (3 * V) - 6;
+            int Col2 = (2 * V) - 4;
+
+            RTBGrafo.Clear();
+            RTBGrafo.Text += "Corolario 1 \n";
+            RTBGrafo.Text += "E <= 3v -6 \n";
+            RTBGrafo.Text +=E.ToString()+ " <= 3("+V.ToString()+") -6 \n";
+            RTBGrafo.Text += E.ToString() + " <= "+ Col1.ToString() +"\n";
+            if (E <= Col1)
+            {
+                MessageBox.Show("Cumple el Corolario 1");
+                RTBGrafo.Text += "Corolario 2 \n";
+                RTBGrafo.Text += "E <= 2v -4 \n";
+                RTBGrafo.Text += E.ToString() + " <= 2(" + V.ToString() + ") -4 \n";
+                RTBGrafo.Text += E.ToString() + " <= " + Col2.ToString();
+                if(E <= Col2)
+                    MessageBox.Show("Cumple el Corolario 2, es plano");
+            }
+            else
+                MessageBox.Show("No es plano");
+
+        }
+        //Método para calcular la matríz de costo
+        public int[,] CalculaMatrizCosto()
+        {
+            int q = 0, p = 0;
+            int Pos = (int)IdGrafos.Value;
+            List<Vertice> vertice = ListGrafo[Pos - 1].Vertices;
+            List<Arista> arista = ListGrafo[Pos - 1].Aristas;
+            int[,] MatrizCosto = new int[vertice.Count, vertice.Count];
+            for (int i = 0; i < vertice.Count; i++)
+            {
+                for (int j = 0; j < ListGrafo[Pos - 1].Aristas.Count; j++)
+                {
+                    //Condicional para saber si un vértice es entrada
+                    if (vertice[i].ID == arista[j].IDV1)//Entrada
+                    {
+                        for (int h = 0; h < vertice.Count; h++)
+                        {
+                            if (vertice[h].ID == arista[j].IDV2)
+                            {
+                                if (arista[j].Costo == 0)
+                                    p = 100;
+                                else
+                                    p = arista[j].Costo;
+                                q = h;
+                                MatrizCosto[i, h] = p;//Entrada
+                                h = vertice.Count;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+
+            return MatrizCosto;
+        
+        }
+        public void Cambia0(ref int[,] MatC)
+        {
+            int q = 0, p = 0;
+            int Pos = (int)IdGrafos.Value;
+            for (int i=0; i< ListGrafo[Pos - 1].Vertices.Count; i++)
+            {
+                for (int j = 0; j < ListGrafo[Pos - 1].Vertices.Count; j++)
+                {
+                    if (MatC[i, j] == 0)
+                        MatC[i, j] = 1000;
+                }
+            }
+        }
+        //Evento de floyd
+        private void floydToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RTBGrafo.Clear();
+            int Pos = (int)IdGrafos.Value;
+            int tamV = ListGrafo[Pos - 1].Vertices.Count;
+            int[,] C;
+            int[,] A;
+            int[,] P = new int[tamV, tamV];
+            C = CalculaMatrizCosto();
+            Cambia0(ref C);
+            A = C;
+            for (int i = 0; i < ListGrafo[Pos - 1].Vertices.Count; i++)
+            {
+                A[i, i] = 0;
+            }
+            RTBGrafo.Text += "Matriz de costo\n";
+            AuxList = C; //Matriz de adyacencia original del grafo U
+            Imp = ListGrafo[Pos-1];
+            ImprimeMat(); //Metodo para imprimir la matriz AuxList
+            for (int k = 0; k < ListGrafo[Pos - 1].Vertices.Count; k++)
+            {
+                for (int i = 0; i < ListGrafo[Pos - 1].Vertices.Count; i ++)
+                {
+                    for (int j = 0; j < ListGrafo[Pos - 1].Vertices.Count; j++)
+                    {
+                        if (A[i, k] + A[k, j] < A[i, j])
+                        {
+                            A[i, j] = A[i, k] + A[k, j];
+                            P[i, j] = k+1;
+                        }
+                    }
+                }
+            }
+            RTBGrafo.Text += "Matriz de Floyd\n";
+            AuxList = A; //Matriz de adyacencia original del grafo U
+            Imp = ListGrafo[Pos - 1];
+            ImprimeMat(); //Metodo para imprimir la matriz AuxList
+            RTBGrafo.Text += "Matriz de P\n";
+            AuxList = P; //Matriz de adyacencia original del grafo U
+            Imp = ListGrafo[Pos - 1];
+            ImprimeMat(); //Metodo para imprimir la matriz AuxList
+        }
+        //Método para cambiar el peso de una arísta
+        private void CambiarC_Click(object sender, EventArgs e)
+        {
+            int NumAr;
+            int Pos = (int)IdGrafos.Value;
+            Arista AAux = new Arista();
+            try
+            {
+                NumAr = Convert.ToInt32(CBArista.Text);
+                ListGrafo[Pos - 1].EncuentraAr((NumAr-1), ref AAux);
+                AAux.Costo = Convert.ToInt32(TBModificar.Text);
+                DibujarG(0);
+            }
+            catch(Exception es)
+            {
+                MessageBox.Show("Introduce un número");
+            }
+        }
+        //Método para actualizar CB
+        public void ActualizaCBAr()
+        {
+            CBArista.Items.Clear();
+            foreach(Arista a in ListGrafo[(int)IdGrafos.Value - 1].Aristas)
+            {
+                CBArista.Items.Add((a.ID + 1).ToString());
+            }
+        }
+        //Evento para borrar arísta
+        private void BTNBorrar_Click(object sender, EventArgs e)
+        {
+            int NumAr;
+            int Pos = (int)IdGrafos.Value;
+            Arista AAux = new Arista();
+            try
+            {
+                NumAr = Convert.ToInt32(CBArista.Text);
+                ListGrafo[Pos - 1].EncuentraAr((NumAr - 1), ref AAux);
+                ListGrafo[Pos - 1].EliminaAr(AAux);
+                DibujarG(0);
+                ActualizaCBAr();
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Introduce un número");
+            }
+        }
+        //Evento de agregar vértice de corte
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count > 1 &&
+                ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count > 0)
+            {
+                string a;
+                Vertice v1 = new Vertice();
+                Vertice v2 = new Vertice();
+                Vertice v3 = new Vertice();
+                int Xin, Yin, Xfin, Yfin,Xint,Yint;
+                Arista arx = new Arista();
+                int c = 0;
+                a = Interaction.InputBox("Id de arista", "Vértice de corte", "0", 100, 50);
+                try
+                {
+                    //pictureBox1.Width
+                    c = Convert.ToInt32(a) - 1;
+                    ListGrafo[(int)IdGrafos.Value - 1].EncuentraAr(c, ref arx);
+                    ListGrafo[(int)IdGrafos.Value - 1].EncuentraVer(arx.IDV1, ref v1);
+                    ListGrafo[(int)IdGrafos.Value - 1].EncuentraVer(arx.IDV2, ref v2);
+                    //Xin = arx.X1;
+                    //Yin = arx.Y1;
+                    Xfin = arx.X2;
+                    Yfin = arx.Y2;
+                    Xint = arx.CordInX1;
+                    Yint = arx.CordIny1;
+                    ListGrafo[(int)IdGrafos.Value - 1].EliminaAr(arx);
+                    ListGrafo[(int)IdGrafos.Value - 1].AgregaVertice(lienzo, Xint, Yint, pictureBox1.Width, pictureBox1.Height);
+                    ListGrafo[(int)IdGrafos.Value - 1].EncuentraVer((ListGrafo[(int)IdGrafos.Value - 1].IDV-1), ref v3);
+                    if (dirigido)
+                    {
+                        ListGrafo[(int)IdGrafos.Value - 1].AgregarAristaDir(lienzo, v1, v3, Xint, Yint);
+                        ListGrafo[(int)IdGrafos.Value - 1].AgregarAristaDir(lienzo, v3, v2, Xfin, Yfin);
+                    }
+                    else
+                    {
+                        ListGrafo[(int)IdGrafos.Value - 1].AgregaArista(lienzo, v1, v3, Xint, Yint);
+                        ListGrafo[(int)IdGrafos.Value - 1].AgregaArista(lienzo, v3, v2, Xfin, Yfin);
+                    }
+                    DibujarG(0);
+                    ActualizaCBAr();
+                }
+                catch (Exception ex) {
+                    MessageBox.Show("Ingrese un número");
+                }
+            }
+            else
+                MessageBox.Show("Deben de existir al menos dos vértices y un arísta");
+        }
+        //Evento de borrar vértice de corte y agregar una arísta puente
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (ListGrafo[(int)IdGrafos.Value - 1].Vertices.Count > 2 &&
+                ListGrafo[(int)IdGrafos.Value - 1].Aristas.Count > 1)
+            {
+                Vertice v1 = new Vertice();
+                Vertice v2 = new Vertice();
+                Vertice v3 = new Vertice();
+                int Cont = 0;
+                int ArEn=0, ArSal=0;
+                int c = 0;
+                string a;
+                int pos = (int)IdGrafos.Value - 1;
+                a = Interaction.InputBox("Id de vértice a borrar", "Arísta de puente", "0", 100, 50);
+                try
+                {
+                    c = Convert.ToInt32(a) - 1;
+                    ListGrafo[pos].EncuentraVer(c, ref v3);
+
+                    for (int j = 0; j < ListGrafo[pos].Aristas.Count; j++)
+                    {
+                        if(ListGrafo[pos].Aristas[j].IDV1 == v3.ID)
+                        {
+                            ArSal = ListGrafo[pos].Aristas[j].IDV2;
+                            Cont++;
+                            j = ListGrafo[pos].Aristas.Count;
+                        }
+                        else if (ListGrafo[pos].Aristas[j].IDV2 == v3.ID)
+                        {
+                            ArSal = ListGrafo[pos].Aristas[j].IDV1;
+                            j = ListGrafo[pos].Aristas.Count;
+                            Cont++;
+                        }
+                    }
+                    for (int j = 0; j < ListGrafo[pos].Aristas.Count; j++)
+                    {
+                        if (ListGrafo[pos].Aristas[j].IDV1 == v3.ID && ListGrafo[pos].Aristas[j].IDV2 != ArSal)
+                        {
+                            ArEn = ListGrafo[pos].Aristas[j].IDV2;
+                            Cont++;
+                        }
+                        else if (ListGrafo[pos].Aristas[j].IDV2 == v3.ID && ListGrafo[pos].Aristas[j].IDV1 != ArSal)
+                        {
+                            ArEn = ListGrafo[pos].Aristas[j].IDV1;
+                            Cont++;
+                        }
+                    }
+                    if (Cont < 3)
+                    {
+                        ElimVertice(v3.XV, v3.YV, pos);
+                        ListGrafo[pos].EncuentraVer(ArEn, ref v1);
+                        ListGrafo[pos].EncuentraVer(ArSal, ref v2);
+                        int t = v1.XV;
+                        int b = v1.YV;
+                        ListGrafo[pos].AgregaArista(lienzo, v1, v2, v2.XV,v2.YV);
+                        DibujarG(0);
+                        ActualizaCBAr();
+                    }
+                    else
+                        MessageBox.Show("Tiene más de 2 arístas, no se puede crear arísta de puente");
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Ingrese un número");
+                }
+            }
+            else
+                MessageBox.Show("Deben de existir al menos tres vértices y dos aristas");
         }
     }
 }

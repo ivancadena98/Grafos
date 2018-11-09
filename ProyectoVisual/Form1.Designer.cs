@@ -54,6 +54,8 @@
             this.KurAu = new System.Windows.Forms.ToolStripMenuItem();
             this.K33 = new System.Windows.Forms.ToolStripMenuItem();
             this.K5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Corolario = new System.Windows.Forms.ToolStripMenuItem();
+            this.floydToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.knToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.k1M = new System.Windows.Forms.ToolStripMenuItem();
             this.k2M = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +88,14 @@
             this.BTNAgregar = new System.Windows.Forms.Button();
             this.RTBGrafo = new System.Windows.Forms.RichTextBox();
             this.BTNGrado = new System.Windows.Forms.Button();
+            this.CBArista = new System.Windows.Forms.ComboBox();
+            this.TBModificar = new System.Windows.Forms.TextBox();
+            this.CambiarC = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.BTNBorrar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).BeginInit();
@@ -96,7 +106,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(12, 49);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(896, 415);
+            this.pictureBox1.Size = new System.Drawing.Size(896, 427);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -123,7 +133,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1223, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1217, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -276,7 +286,9 @@
             this.PropiedadGrafo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.GrafoIs,
             this.CamCirEuler,
-            this.KurAu});
+            this.KurAu,
+            this.Corolario,
+            this.floydToolStripMenuItem});
             this.PropiedadGrafo.Enabled = false;
             this.PropiedadGrafo.Name = "PropiedadGrafo";
             this.PropiedadGrafo.Size = new System.Drawing.Size(104, 24);
@@ -303,22 +315,36 @@
             this.K33,
             this.K5});
             this.KurAu.Name = "KurAu";
-            this.KurAu.Size = new System.Drawing.Size(236, 26);
-            this.KurAu.Text = "Kuratowski automático";
+            this.KurAu.Size = new System.Drawing.Size(216, 26);
+            this.KurAu.Text = "Kuratowski ";
             // 
             // K33
             // 
             this.K33.Name = "K33";
-            this.K33.Size = new System.Drawing.Size(216, 26);
+            this.K33.Size = new System.Drawing.Size(116, 26);
             this.K33.Text = "K 3:3";
             this.K33.Click += new System.EventHandler(this.K33_Click);
             // 
             // K5
             // 
             this.K5.Name = "K5";
-            this.K5.Size = new System.Drawing.Size(216, 26);
+            this.K5.Size = new System.Drawing.Size(116, 26);
             this.K5.Text = "K 5";
             this.K5.Click += new System.EventHandler(this.K5_Click);
+            // 
+            // Corolario
+            // 
+            this.Corolario.Name = "Corolario";
+            this.Corolario.Size = new System.Drawing.Size(236, 26);
+            this.Corolario.Text = "Corolario";
+            this.Corolario.Click += new System.EventHandler(this.Corolario_Click);
+            // 
+            // floydToolStripMenuItem
+            // 
+            this.floydToolStripMenuItem.Name = "floydToolStripMenuItem";
+            this.floydToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.floydToolStripMenuItem.Text = "Floyd";
+            this.floydToolStripMenuItem.Click += new System.EventHandler(this.floydToolStripMenuItem_Click);
             // 
             // knToolStripMenuItem
             // 
@@ -537,7 +563,7 @@
             // 
             // BTNAgregar
             // 
-            this.BTNAgregar.Location = new System.Drawing.Point(1091, 70);
+            this.BTNAgregar.Location = new System.Drawing.Point(1091, 59);
             this.BTNAgregar.Name = "BTNAgregar";
             this.BTNAgregar.Size = new System.Drawing.Size(120, 49);
             this.BTNAgregar.TabIndex = 3;
@@ -547,16 +573,16 @@
             // 
             // RTBGrafo
             // 
-            this.RTBGrafo.Location = new System.Drawing.Point(914, 125);
+            this.RTBGrafo.Location = new System.Drawing.Point(914, 114);
             this.RTBGrafo.Name = "RTBGrafo";
-            this.RTBGrafo.Size = new System.Drawing.Size(297, 338);
+            this.RTBGrafo.Size = new System.Drawing.Size(297, 233);
             this.RTBGrafo.TabIndex = 4;
             this.RTBGrafo.Text = "";
             // 
             // BTNGrado
             // 
             this.BTNGrado.Enabled = false;
-            this.BTNGrado.Location = new System.Drawing.Point(914, 70);
+            this.BTNGrado.Location = new System.Drawing.Point(914, 59);
             this.BTNGrado.Name = "BTNGrado";
             this.BTNGrado.Size = new System.Drawing.Size(128, 49);
             this.BTNGrado.TabIndex = 5;
@@ -564,11 +590,92 @@
             this.BTNGrado.UseVisualStyleBackColor = true;
             this.BTNGrado.Click += new System.EventHandler(this.BTNGrado_Click);
             // 
+            // CBArista
+            // 
+            this.CBArista.FormattingEnabled = true;
+            this.CBArista.Location = new System.Drawing.Point(917, 370);
+            this.CBArista.Name = "CBArista";
+            this.CBArista.Size = new System.Drawing.Size(125, 24);
+            this.CBArista.TabIndex = 6;
+            // 
+            // TBModificar
+            // 
+            this.TBModificar.Location = new System.Drawing.Point(1091, 372);
+            this.TBModificar.Name = "TBModificar";
+            this.TBModificar.Size = new System.Drawing.Size(120, 22);
+            this.TBModificar.TabIndex = 7;
+            // 
+            // CambiarC
+            // 
+            this.CambiarC.Location = new System.Drawing.Point(1091, 400);
+            this.CambiarC.Name = "CambiarC";
+            this.CambiarC.Size = new System.Drawing.Size(120, 23);
+            this.CambiarC.TabIndex = 8;
+            this.CambiarC.Text = "Modificar";
+            this.CambiarC.UseVisualStyleBackColor = true;
+            this.CambiarC.Click += new System.EventHandler(this.CambiarC_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(914, 350);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 17);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Id de arista";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1165, 350);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 17);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Peso";
+            // 
+            // BTNBorrar
+            // 
+            this.BTNBorrar.Location = new System.Drawing.Point(917, 400);
+            this.BTNBorrar.Name = "BTNBorrar";
+            this.BTNBorrar.Size = new System.Drawing.Size(125, 23);
+            this.BTNBorrar.TabIndex = 11;
+            this.BTNBorrar.Text = "Borrar";
+            this.BTNBorrar.UseVisualStyleBackColor = true;
+            this.BTNBorrar.Click += new System.EventHandler(this.BTNBorrar_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(917, 429);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 46);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Agregar vértice de corte";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1091, 429);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 47);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Crear arísta de puente";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1223, 475);
+            this.ClientSize = new System.Drawing.Size(1217, 487);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BTNBorrar);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CambiarC);
+            this.Controls.Add(this.TBModificar);
+            this.Controls.Add(this.CBArista);
             this.Controls.Add(this.BTNGrado);
             this.Controls.Add(this.RTBGrafo);
             this.Controls.Add(this.BTNAgregar);
@@ -653,6 +760,16 @@
         private System.Windows.Forms.ToolStripMenuItem KurAu;
         private System.Windows.Forms.ToolStripMenuItem K33;
         private System.Windows.Forms.ToolStripMenuItem K5;
+        private System.Windows.Forms.ToolStripMenuItem Corolario;
+        private System.Windows.Forms.ToolStripMenuItem floydToolStripMenuItem;
+        private System.Windows.Forms.ComboBox CBArista;
+        private System.Windows.Forms.TextBox TBModificar;
+        private System.Windows.Forms.Button CambiarC;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button BTNBorrar;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

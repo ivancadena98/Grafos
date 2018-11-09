@@ -14,8 +14,9 @@ namespace ProyectoVisual
     class Arista
     {
         private int id, idv1, idv2;
-        private int x1, y1, x2, y2;
+        private int x1, y1, x2, y2,CordInX,CordIny;
         private int Dir;
+        private int costo;
         private Color color =Color.Black;
         private bool ArVisitado = false;
         private Font letra = new Font("Arial", 10);
@@ -29,6 +30,7 @@ namespace ProyectoVisual
             x2 = x2_in;
             y2 = y2_in;
             Dir = D;
+            costo = 0;
         }
 
         public Arista() { }
@@ -132,6 +134,9 @@ namespace ProyectoVisual
 
         public bool ArVisitado1 { get => ArVisitado; set => ArVisitado = value; }
         public Color Color { get => color; set => color = value; }
+        public int Costo { get => costo; set => costo = value; }
+        public int CordInX1 { get => CordInX; set => CordInX = value; }
+        public int CordIny1 { get => CordIny; set => CordIny = value; }
 
         //Método para dibujar una arísta
         public void DibujaArista(Graphics g)
@@ -150,6 +155,8 @@ namespace ProyectoVisual
                 Pen pablo = new Pen(color, 4);
                 g.DrawLine(pablo, x1, y1, x2, y2);
                 g.DrawString("e"+Convert.ToString(id + 1), letra, brocha, corx, cory);
+                CordInX = corx;
+                CordIny = cory;
             }
                 //Arista dirigida
             else {
@@ -157,7 +164,19 @@ namespace ProyectoVisual
                 pablo.EndCap = LineCap.ArrowAnchor;
                 g.DrawLine(pablo, x1, y1, x2, y2);
                 g.DrawString("e"+Convert.ToString(id + 1), letra, brocha, corx,cory);
+                g.DrawString("C" + Convert.ToString(costo), letra, brocha, corx + 20, cory + 9);
             }
+        }
+        public void DibujaCosto(Graphics g)
+        {
+            int corx = (x1 + x2) / 2 + 2; //Punto medio en x
+            int cory = (y1 + y2) / 2 + 3; //Punto medio en y
+            if (corx == (x1 + x2) / 2 || cory == (y1 + y2) / 2)
+            {
+                corx += 5;
+                cory += 5;
+            }
+            
         }
         //Método para encontrar un vértice
         public bool ChecarVertice(Vertice v)

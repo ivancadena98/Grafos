@@ -18,6 +18,8 @@ namespace ProyectoVisual
         private MatrizIncidencia MatInc;
         private int[,] MatrizIncidencia;
         private MatrizAdyacencia MatAD;
+        private int IDVer1;
+        private int IDVer2;
         private bool CaminoNoDirEuler = true;
         //selecciones
         private Vertice vselec;
@@ -68,6 +70,9 @@ namespace ProyectoVisual
         }
 
         public bool CaminoNoDirEuler1 { get => CaminoNoDirEuler; set => CaminoNoDirEuler = value; }
+        public int IDVer11 { get => IDVer1; set => IDVer1 = value; }
+        public int IDVer21 { get => IDVer2; set => IDVer2 = value; }
+        public int Idv { get => idv; set => idv = value; }
 
         //Método para crear vértice
         public void AgregaVertice(Graphics g, int x, int y, int width, int height)
@@ -81,9 +86,6 @@ namespace ProyectoVisual
                 if (banColision)
                     return;
             }
-                
-            
-
             if (!banColision && v.ChecarLimites(x, y, width, height))
             {
                 idv++;
@@ -139,12 +141,9 @@ namespace ProyectoVisual
             
             try
             {
-               
                 Arista a = new Arista(ida,v1.ID, v2.ID, v1.X, v1.Y, x, y);
                 aristas.Add(a);
-
                 a.DibujaArista(g);
-
                 ida++;
             }catch(Exception ex)
             {
@@ -306,22 +305,63 @@ namespace ProyectoVisual
         public bool GradosPares()
         {
             CaminoNoDirEuler = true;
+            int b = 0;
             int cont = 0;
             bool bandera = true;
-            foreach(Vertice ver in vertices)
+            for(int i=0; i <vertices.Count;i++)
             {
-                int a = ver.total();
-
+                
+                int a = vertices[i].total();
                 if (a % 2 != 0)
                 {
-                    bandera = false;
                     cont++;
-                }
+                    if (a % 2 != 0 && b == 0)
+                    {
+                        b++;
+                        IDVer1 = vertices[i].ID;
+                        bandera = false;
+                    }
+                    else if (a % 2 != 0 && b == 1)
+                    {
+                        b++;
+                        IDVer2 = vertices[i].ID;
+                        bandera = false;
+                    }
+
+                } 
             }
             if (cont > 2)
                 CaminoNoDirEuler = false;
             cont = 0;
             return bandera;
+        }
+        public void EncuentraAr(int NumId,ref Arista ArAux)
+        {
+           
+            for(int i=0; i< aristas.Count; i++)
+            {
+                if(aristas[i].ID == NumId)
+                {
+                    ArAux = aristas[i];
+                    i = aristas.Count;
+                }
+            }
+        }
+        public void EliminaAr(Arista art)
+        {
+            aristas.Remove(art);
+        }
+        public void EncuentraVer(int NumI,ref Vertice Verx)
+        {
+            for(int i=0; i < vertices.Count; i++)
+            {
+                if (vertices[i].ID == NumI)
+                {
+                    Verx = vertices[i];
+                    i = vertices.Count;
+                }
+                    
+            }
         }
     }
 

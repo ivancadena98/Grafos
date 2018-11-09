@@ -161,6 +161,8 @@ namespace ProyectoVisual
         {
             g.DrawEllipse(juan, x - radio, y - radio, radio * 2, radio * 2);
             g.DrawString(Convert.ToString(id + 1), letra, brocha, x - radio + 5, y - radio + 3);
+            xv = x - radio +5;
+            yv = y - radio +3;
 
         }
         
