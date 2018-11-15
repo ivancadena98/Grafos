@@ -18,7 +18,8 @@ namespace ProyectoVisual
         private List<Vertice> verticesAd;
         private int VEnt;
         private int VSal;
-        private Pen juan = new Pen(Color.Blue); //Lapiz 
+        private int ColVer;
+        private Pen juan = new Pen(Color.Blue,3); //Lapiz 
         private Font letra = new Font("Arial", 20);
         private SolidBrush brocha = new SolidBrush(Color.Black);
         private int Tot = 0;
@@ -35,6 +36,7 @@ namespace ProyectoVisual
             VerticesAd = new List<Vertice>();
             VEnt = 0;
             VSal = 0;
+            ColVer = 0;
         }
         public Vertice()
         {
@@ -143,9 +145,9 @@ namespace ProyectoVisual
                 radio = value;
             }
         }
-
         public bool VerVisitado1 { get => VerVisitado; set => VerVisitado = value; }
         public int Tot1 { get => Tot; set => Tot = value; }
+        public int ColVer1 { get => ColVer; set => ColVer = value; }
 
         public int total()
         {
@@ -163,9 +165,11 @@ namespace ProyectoVisual
             g.DrawString(Convert.ToString(id + 1), letra, brocha, x - radio + 5, y - radio + 3);
             xv = x - radio +5;
             yv = y - radio +3;
-
         }
-        
+        public void RellenaVer(Graphics g,SolidBrush b)
+        {
+            g.FillEllipse(b, x - radio, y - radio, radio * 2, radio * 2);
+        }
         public bool Seleccion(int xP, int yP)
         {
             // Los parametos de entrada son las coordenadas del click
@@ -176,7 +180,6 @@ namespace ProyectoVisual
 
             return resp;
         }
-
         public void Seleccionar(Graphics g)
         {
             Pen juan = new Pen(Color.Red);

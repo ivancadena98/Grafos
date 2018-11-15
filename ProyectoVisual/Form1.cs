@@ -25,6 +25,7 @@ namespace ProyectoVisual
         //Bandera para saber si el grafo es dirigido o no dirigido
         bool dirigido;
         int ContVer = 0;
+        int nC = 0;
         //Auxiliares
         Vertice v1 = new Vertice();
         Vertice v2 = new Vertice();
@@ -1476,6 +1477,40 @@ namespace ProyectoVisual
             }
             else
                 MessageBox.Show("Deben de existir al menos tres vértices y dos aristas");
+        }
+
+        private void MenuCrom_Click(object sender, EventArgs e)
+        {
+            cromatico();
+        }
+        public void cromatico()
+        {
+            int pos = (int)IdGrafos.Value - 1;
+            nC = 0;
+            Vertice v1 = new Vertice();
+            Vertice v2 = new Vertice();
+            for (int i = 0; i < ListGrafo[pos].Vertices.Count; i++)
+            {
+                if (i == 0)
+                    ListGrafo[pos].Vertices[i].ColVer1 = nC = 1;
+                else if (ListGrafo[pos].Aristas.Count > 0)
+                {
+                    foreach (Arista a in ListGrafo[pos].Aristas)
+                    {
+                            ListGrafo[pos].EncuentraVer(a.IDV1, ref v1);
+                            ListGrafo[pos].EncuentraVer(a.IDV2, ref v2);
+                            if (v1.ColVer1 == v2.ColVer1)
+                            {
+                                if (v1.ColVer1 == v2.ColVer1)
+                                    ListGrafo[pos].Vertices[i].ColVer1++;
+                                if (ListGrafo[pos].Vertices[i].ColVer1 > nC)
+                                    nC = ListGrafo[pos].Vertices[i].ColVer1;
+                            }
+                    }
+                }
+            }
+            MessageBox.Show("El número cromático es: " + nC.ToString());
+            DibujarG(0);
         }
     }
 }

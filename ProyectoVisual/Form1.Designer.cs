@@ -96,6 +96,7 @@
             this.BTNBorrar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.MenuCrom = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IdGrafos)).BeginInit();
@@ -288,7 +289,8 @@
             this.CamCirEuler,
             this.KurAu,
             this.Corolario,
-            this.floydToolStripMenuItem});
+            this.floydToolStripMenuItem,
+            this.MenuCrom});
             this.PropiedadGrafo.Enabled = false;
             this.PropiedadGrafo.Name = "PropiedadGrafo";
             this.PropiedadGrafo.Size = new System.Drawing.Size(104, 24);
@@ -298,14 +300,14 @@
             // 
             this.GrafoIs.Enabled = false;
             this.GrafoIs.Name = "GrafoIs";
-            this.GrafoIs.Size = new System.Drawing.Size(236, 26);
+            this.GrafoIs.Size = new System.Drawing.Size(216, 26);
             this.GrafoIs.Text = "Isomorfo";
             this.GrafoIs.Click += new System.EventHandler(this.GrafoIs_Click);
             // 
             // CamCirEuler
             // 
             this.CamCirEuler.Name = "CamCirEuler";
-            this.CamCirEuler.Size = new System.Drawing.Size(236, 26);
+            this.CamCirEuler.Size = new System.Drawing.Size(216, 26);
             this.CamCirEuler.Text = "Euler";
             this.CamCirEuler.Click += new System.EventHandler(this.CamCirEuler_Click);
             // 
@@ -335,14 +337,14 @@
             // Corolario
             // 
             this.Corolario.Name = "Corolario";
-            this.Corolario.Size = new System.Drawing.Size(236, 26);
+            this.Corolario.Size = new System.Drawing.Size(216, 26);
             this.Corolario.Text = "Corolario";
             this.Corolario.Click += new System.EventHandler(this.Corolario_Click);
             // 
             // floydToolStripMenuItem
             // 
             this.floydToolStripMenuItem.Name = "floydToolStripMenuItem";
-            this.floydToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.floydToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.floydToolStripMenuItem.Text = "Floyd";
             this.floydToolStripMenuItem.Click += new System.EventHandler(this.floydToolStripMenuItem_Click);
             // 
@@ -663,6 +665,13 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // MenuCrom
+            // 
+            this.MenuCrom.Name = "MenuCrom";
+            this.MenuCrom.Size = new System.Drawing.Size(216, 26);
+            this.MenuCrom.Text = "Cromatico";
+            this.MenuCrom.Click += new System.EventHandler(this.MenuCrom_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -770,6 +779,7 @@
         private System.Windows.Forms.Button BTNBorrar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem MenuCrom;
     }
 }
 

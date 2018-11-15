@@ -167,10 +167,42 @@ namespace ProyectoVisual
         //DIBUJAR GRAFO
         public void Dibujar(Graphics g)
         {
+            SolidBrush br;
             //g.Clear(Color.White);
             if(vertices.Count>0)
                 foreach (Vertice v in vertices)
+                {
                     v.Dibujar(g);
+                    switch (v.ColVer1)
+                    {
+                        case 1:
+                            br = new SolidBrush(Color.Red);
+                            v.RellenaVer(g,br);
+                            break;
+                        case 2:
+                            br = new SolidBrush(Color.Orange);
+                            v.RellenaVer(g, br);
+                            break;
+                        case 3:
+                            br = new SolidBrush(Color.Yellow);
+                            v.RellenaVer(g, br);
+                            break;
+                        case 4:
+                            br = new SolidBrush(Color.Green);
+                            v.RellenaVer(g, br);
+                            break;
+                        case 5:
+                            br = new SolidBrush(Color.Purple);
+                            v.RellenaVer(g, br);
+                            break;
+                        case 6:
+                            br = new SolidBrush(Color.BlueViolet);
+                            v.RellenaVer(g, br);
+                            break;
+                    }
+                    
+                }
+                    
 
             if (aristas.Count > 0)
                 foreach (Arista a in aristas)
