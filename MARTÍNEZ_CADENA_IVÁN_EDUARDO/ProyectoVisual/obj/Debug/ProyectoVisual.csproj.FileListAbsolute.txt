@@ -1,0 +1,65 @@
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\bin\Debug\ProyectoVisual.exe.config
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\bin\Debug\ProyectoVisual.exe
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\bin\Debug\ProyectoVisual.pdb
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\obj\Debug\ProyectoVisual.csprojResolveAssemblyReference.cache
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\obj\Debug\ProyectoVisual.Form1.resources
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\obj\Debug\ProyectoVisual.Properties.Resources.resources
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.GenerateResource.Cache
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.CoreCompileInputs.cache
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\obj\Debug\ProyectoVisual.exe
+c:\users\tiffany cortez\source\repos\ProyectoVisual\ProyectoVisual\obj\Debug\ProyectoVisual.pdb
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\bin\Debug\ProyectoVisual.exe.config
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.exe
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.pdb
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\bin\Debug\ProyectoVisual.exe
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\bin\Debug\ProyectoVisual.pdb
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.csprojResolveAssemblyReference.cache
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.Form1.resources
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.Properties.Resources.resources
+C:\Users\ESDLC\Desktop\Universidad\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.GenerateResource.Cache
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\bin\Debug\ProyectoVisual.exe.config
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\bin\Debug\ProyectoVisual.exe
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\bin\Debug\ProyectoVisual.pdb
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.csprojResolveAssemblyReference.cache
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.Form1.resources
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.Properties.Resources.resources
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.GenerateResource.Cache
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.CoreCompileInputs.cache
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.exe
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\obj\Debug\ProyectoVisual.pdb
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\ProyectoVisual\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\bin\Debug\ProyectoVisual.exe.config
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\bin\Debug\ProyectoVisual.exe
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\bin\Debug\ProyectoVisual.pdb
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\obj\Debug\ProyectoVisual.csprojResolveAssemblyReference.cache
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\obj\Debug\ProyectoVisual.Form1.resources
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\obj\Debug\ProyectoVisual.Properties.Resources.resources
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.GenerateResource.Cache
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.CoreCompileInputs.cache
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\obj\Debug\ProyectoVisual.exe
+C:\Users\Tiffany Cortez\Documents\UASLP\Visual\Proyecto Chido\ProyectoVisual-master\pv\ProyectoVisual\obj\Debug\ProyectoVisual.pdb
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\bin\Debug\ProyectoVisual.exe.config
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.exe
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.pdb
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\bin\Debug\ProyectoVisual.exe
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\bin\Debug\ProyectoVisual.pdb
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\bin\Debug\Newtonsoft.Json.dll
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\bin\Debug\Newtonsoft.Json.xml
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.csprojResolveAssemblyReference.cache
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.Form1.resources
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.Properties.Resources.resources
+C:\Users\IvanLap\Desktop\-\Visual\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.GenerateResource.Cache
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\bin\Debug\ProyectoVisual.exe.config
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.exe
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.pdb
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\bin\Debug\ProyectoVisual.exe
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\bin\Debug\ProyectoVisual.pdb
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\bin\Debug\Newtonsoft.Json.dll
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\bin\Debug\Newtonsoft.Json.xml
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.csprojResolveAssemblyReference.cache
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.Form1.resources
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.Properties.Resources.resources
+C:\Users\IvanLap\Desktop\-\Grafos\visual2018\ProyectoVisual\obj\Debug\ProyectoVisual.csproj.GenerateResource.Cache
