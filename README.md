@@ -1,4 +1,3 @@
 # Grafos
 
-Editor de grafos
-Hola
+Graph Editor Developed as a project in university
